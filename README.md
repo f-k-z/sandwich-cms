@@ -22,6 +22,10 @@ Vue.js CLI command:
 
 	INIT:
 	$ vue init webpack sandwich-cms
+	$ npm install
+
+	DEPENDENCY:
+	$ npm install firebase vuefire --save
 
 	RUN:
 	$ npm run dev
