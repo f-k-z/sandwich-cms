@@ -10,8 +10,10 @@ const firebaseConfig = {
   
 const app = Firebase.initializeApp(firebaseConfig)
 const db = app.database()
+const storage = app.storage().ref()
 
 export default {
 	test: 'Variable Global !!',
-	db: db
+	db: db,
+	storage: storage,
 }

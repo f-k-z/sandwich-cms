@@ -1,8 +1,11 @@
 <template>
   <div class="home">
-    <h1>{{ msg }}</h1>
-    <page-create></page-create>
-    <page-list></page-list>
+    <div class="col col-sm-2">
+      <page-create></page-create>
+    </div>
+    <div class="col col-sm-10">
+      <page-list></page-list>
+    </div>
   </div>
 </template>
 
@@ -14,7 +17,7 @@ export default {
   name: 'home',
   data () {
     return {
-      msg: 'Home'
+      msg: ''
     }
   },
   components: {

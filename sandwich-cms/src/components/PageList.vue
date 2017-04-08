@@ -1,7 +1,23 @@
 <template>
 	<div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">{{ msg }}</h3>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Cover</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="project in projects">
+              <td><a v-bind:href="project.url">{{project.title}}</a></td>
+              <td>{{project.description}}</td>
+              <td><img v-bind:src="project.cover.url" /></td>
+              <td><span class="glyphicon glyphicon-trash" aria-hidden="true" v-on:click="removeProject(project)"></span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 </template>
@@ -13,10 +29,13 @@ import global from '@/global'
 export default {
   name: 'page-list',
 
+  firebase: {
+    projects: global.db.ref('projects')
+  },
+
   data () {
     return {
       	msg: global.test,
-
     }
   }
 }
