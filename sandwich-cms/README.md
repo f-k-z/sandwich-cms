@@ -1,6 +1,6 @@
 # sandwich-cms
 
-> Sandwich CMS
+> Build your website like a Sandwich
 
 ## Build Setup
 
