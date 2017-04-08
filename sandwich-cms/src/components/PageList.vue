@@ -6,18 +6,23 @@
             <tr>
               <th>Title</th>
               <th>Slug</th>
-              <th>Created</th>
-              <th>Updated</th>
+              <th>Type</th>
+              <th class="hidden-xs">Created</th>
+              <th class="hidden-xs">Updated</th>
               <th>Published</th>
+              <th></th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="page in pages">
               <td>{{page.title}}</td>
               <td>{{page.slug}}</td>
-              <td>{{page.created}}</td>
-              <td>{{page.updated}}</td>
+              <td>{{page.type}}</td>
+              <td class="hidden-xs">{{page.created}}</td>
+              <td class="hidden-xs">{{page.updated}}</td>
               <td>{{page.published}}</td>
+              <td><span class="glyphicon glyphicon-edit" aria-hidden="true" v-on:click="editPage(page)"></span></td>
               <td><span class="glyphicon glyphicon-trash" aria-hidden="true" v-on:click="removePage(page)"></span></td>
             </tr>
           </tbody>

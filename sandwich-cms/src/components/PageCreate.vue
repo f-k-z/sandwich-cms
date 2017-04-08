@@ -1,12 +1,15 @@
 <template>
-  <div class="page-create">
-    <form id="form" class="form-inline" v-on:submit.prevent="addPage">
-		<div class="form-group">
-			<label for="projectTitle">Title:</label>
-			<input type="text" id="projectTitle" class="form-control" v-model="newPage.title">
-		</div>
-		<input type="submit" class="btn btn-primary" value="Add Page">
-	</form>
+  <div class="panel panel-default">
+	  <div class="panel-heading">
+	    <form id="form" class="form" v-on:submit.prevent="addPage">
+				<div class="form-group">
+					<label for="projectTitle">Title:</label>
+					<input type="text" id="projectTitle" class="form-control" v-model="newPage.title">
+				</div>
+				<input type="submit" class="btn btn-primary" value="+ Create">
+			</form>
+	  </div>
+	  </div>
   </div>
 </template>
 

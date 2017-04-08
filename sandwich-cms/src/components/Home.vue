@@ -1,9 +1,9 @@
 <template>
   <div class="home">
-    <div class="col col-sm-2">
+    <div class="col col-md-3">
       <page-create></page-create>
     </div>
-    <div class="col col-sm-10">
+    <div class="col col-md-9">
       <page-list></page-list>
     </div>
   </div>
