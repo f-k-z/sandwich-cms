@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'hello',
+  name: 'page-edit',
   data () {
     return {
       msg: ''

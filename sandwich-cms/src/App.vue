@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="container">
   	<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
-    <h1>{{ title }}</h1>
+    <h1><router-link v-bind:to="'/'">{{ title }}</router-link></h1>
     <router-view></router-view>
   </div>
 </template>
@@ -26,5 +26,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 }
 h1 { text-align: center; display: inline-block; }
+h1 a, h1 a:hover, h1 a:visited { text-decoration: none!important; color: grey; }
 .glyphicon-tasks {  display: inline-block; font-size: 26px; margin-left: 15px; }
 </style>

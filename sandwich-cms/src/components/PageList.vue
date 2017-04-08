@@ -49,8 +49,11 @@ export default {
     }
   },
 	methods: {
-	  removePage: function (project) {
-			global.db.ref('pages').child(project['.key']).remove()
+		editPage: function (page) {
+			this.$router.push('/page/edit/'+page['.key']);
+		},
+	  removePage: function (page) {
+			global.db.ref('pages').child(page['.key']).remove()
 	    toastr.success('Page removed successfully')
 		},
 	}
