@@ -1,93 +1,70 @@
 <template>
   <div class="page-create">
-    <form id="form" class="form-inline" v-on:submit.prevent="addProject">
+    <form id="form" class="form-inline" v-on:submit.prevent="addPage">
 		<div class="form-group">
 			<label for="projectTitle">Title:</label>
-			<input type="text" id="projectTitle" class="form-control" v-model="newProject.title">
+			<input type="text" id="projectTitle" class="form-control" v-model="newPage.title">
 		</div>
-		<div class="form-group">
-			<label for="projectDescription">Description:</label>
-			<input type="text" id="projectDescription" class="form-control" v-model="newProject.description">
-		</div>
-		<div class="form-group">
-			<label for="projectCover">Cover:</label>
-			<input type="file" id="projectCover" class="form-control" @change="onFileChange">
-		</div>
-		<div class="form-group">
-			<label for="projectUrl">Url:</label>
-			<input type="text" id="projectUrl" class="form-control" v-model="newProject.url">
-		</div>
-		<input type="submit" class="btn btn-primary" value="Add Project">
+		<input type="submit" class="btn btn-primary" value="Add Page">
 	</form>
   </div>
 </template>
 
 <script>
 import global from '@/global'
+import toastr from 'toastr'
+import moment from 'moment'
 
 export default {
-  name: 'page-create',
+	  name: 'page-create',
 
-  firebase: {
-    projects: global.db.ref('projects')
-  },
+	  firebase: {
+	    pages: global.db.ref('pages')
+	  },
 
-  data () {
+  	data () {
 	    return {
-	        newProject: {
+	        newPage: {
 		        title: '',
-		        description: '',
-		        url: 'http://'
+		        slug: '',
+		        created: '',
+		        updated: '',
+		        type: 'basic',
+		        published: false
 	      	}
 	    }
  	},
 	methods: {
-	  addProject: function () {
+	  addPage: function () {
 	    //get the scope
-	    var newProject = this.newProject;
-	    //upload the file
-	    var imageRef = global.storage.child(newProject.cover.name);
-	    imageRef.putString(newProject.cover.data, 'data_url').then(function(snapshot) {
-	      //cover will only save image download URL
-	      newProject.cover.url = snapshot.downloadURL;
-	      //this simple line add the project to the database
-	      global.db.ref('projects').push(newProject);
-	      //reset fields
-	      newProject.title = '';
-	      newProject.description = '';
-	      newProject.url = 'http://';
-	    });
+	    var newPage = this.newPage;
+	    //slugify
+	  	newPage.slug = this.slugify(newPage.title);
+	  	//set dates
+	  	newPage.created = newPage.updated = moment().format();
+	  	//add to firebase
+			global.db.ref('pages').push(newPage);
+			//reset fields
+			newPage.title = newPage.slug = newPage.created = newPage.updated = '';
+			toastr.success('Page added successfully')
 	  },
-	  removeProject: function (project) {
-	    var coverRef = global.storage.child(project.cover.name);
+	  slugify: function (str) {
+		  str = str.replace(/^\s+|\s+$/g, ''); // trim
+		  str = str.toLowerCase();
+		  
+		  // remove accents, swap ñ for n, etc
+		  var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+		  var to   = "aaaaeeeeiiiioooouuuunc------";
+		  for (var i=0, l=from.length ; i<l ; i++) {
+		    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+		  }
 
-	    // Delete the file
-	    coverRef.delete().then(function() {
-	      global.db.ref('projects').child(project['.key']).remove()
-	      toastr.success('Project removed successfully')
-	    }).catch(function(error) {
-	      // Uh-oh, an error occurred!
-	    });
-	  },
-	  onFileChange: function (e) {
-	    var files = e.target.files || e.dataTransfer.files;
-	    if (!files.length)
-	      return;
-	    this.createImage(files[0]);
-	  },
-	  createImage : function (file) {
-	    var image = new Image();
-	    var reader = new FileReader();
-	    var newProject = this.newProject;
+		  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+		    .replace(/\s+/g, '-') // collapse whitespace and replace by -
+		    .replace(/-+/g, '-'); // collapse dashes
 
-	    //get file data and binding on project object
-	    reader.onload = (e) => {
-	      this.newProject.cover = {};
-	      this.newProject.cover.name = file.name;
-	      this.newProject.cover.data = e.target.result;
-	    };
-	    reader.readAsDataURL(file);
-	  },
+		  return str;
+		},
 	},
 }
 </script>

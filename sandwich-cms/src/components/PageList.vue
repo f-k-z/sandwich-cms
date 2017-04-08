@@ -5,16 +5,20 @@
           <thead>
             <tr>
               <th>Title</th>
-              <th>Description</th>
-              <th>Cover</th>
+              <th>Slug</th>
+              <th>Created</th>
+              <th>Updated</th>
+              <th>Published</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="project in projects">
-              <td><a v-bind:href="project.url">{{project.title}}</a></td>
-              <td>{{project.description}}</td>
-              <td><img v-bind:src="project.cover.url" /></td>
-              <td><span class="glyphicon glyphicon-trash" aria-hidden="true" v-on:click="removeProject(project)"></span></td>
+            <tr v-for="page in pages">
+              <td>{{page.title}}</td>
+              <td>{{page.slug}}</td>
+              <td>{{page.created}}</td>
+              <td>{{page.updated}}</td>
+              <td>{{page.published}}</td>
+              <td><span class="glyphicon glyphicon-trash" aria-hidden="true" v-on:click="removePage(page)"></span></td>
             </tr>
           </tbody>
         </table>
@@ -25,19 +29,26 @@
 <script>
 
 import global from '@/global'
+import toastr from 'toastr'
 
 export default {
   name: 'page-list',
 
   firebase: {
-    projects: global.db.ref('projects')
+    pages: global.db.ref('pages')
   },
 
   data () {
     return {
       	msg: global.test,
     }
-  }
+  },
+	methods: {
+	  removePage: function (project) {
+			global.db.ref('pages').child(project['.key']).remove()
+	    toastr.success('Page removed successfully')
+		},
+	}
 }
 </script>
 

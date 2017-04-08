@@ -1,12 +1,12 @@
 import Firebase from 'firebase'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAcP7Mdrq2LkOshkwZWGGwz-T8yFfBihCI",
-    authDomain: "test-project-c9e5c.firebaseapp.com",
-    databaseURL: "https://test-project-c9e5c.firebaseio.com",
-    storageBucket: "test-project-c9e5c.appspot.com",
-    messagingSenderId: "70554115470"
-  };
+	apiKey: "AIzaSyCSVG7-XelqpFOuiIC-XmuQGT212ROCneg",
+    authDomain: "sandwich-cms.firebaseapp.com",
+    databaseURL: "https://sandwich-cms.firebaseio.com",
+    storageBucket: "sandwich-cms.appspot.com",
+    messagingSenderId: "390513086545"
+};
   
 const app = Firebase.initializeApp(firebaseConfig)
 const db = app.database()

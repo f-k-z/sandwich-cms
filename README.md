@@ -26,6 +26,8 @@ Vue.js CLI command:
 
 	DEPENDENCY:
 	$ npm install firebase vuefire --save
+	$ npm install --save jquery
+	$ npm install --save toastr
 
 	RUN:
 	$ npm run dev
