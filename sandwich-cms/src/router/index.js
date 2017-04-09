@@ -16,7 +16,7 @@ export default new Router({
       component: Home
     },
     {
-      path: '/page/edit/:id',
+      path: '/page/edit/:page_id',
       name: 'PageEdit',
       component: PageEdit
     }

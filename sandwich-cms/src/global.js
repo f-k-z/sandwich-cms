@@ -15,5 +15,13 @@ const storage = app.storage().ref()
 export default {
 	test: 'Variable Global !!',
 	db: db,
+	emptyPage: {
+		        title: '',
+		        slug: '',
+		        created: '',
+		        updated: '',
+		        type: 'basic',
+		        published: false
+	      	},
 	storage: storage,
 }
