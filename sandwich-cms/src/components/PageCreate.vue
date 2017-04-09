@@ -3,8 +3,8 @@
 	  <div class="panel-heading">
 	    <form id="form" class="form" v-on:submit.prevent="addPage">
 				<div class="form-group">
-					<label for="projectTitle">Title:</label>
-					<input type="text" id="projectTitle" class="form-control" v-model="newPage.title">
+					<label for="pageTitle">Title:</label>
+					<input type="text" id="pageTitle" class="form-control" v-model="newPage.title">
 				</div>
 				<input type="submit" class="btn btn-primary" value="+ Create">
 			</form>
@@ -46,10 +46,10 @@ export default {
 	  	//set dates
 	  	newPage.created = newPage.updated = moment().format();
 	  	//add to firebase
-			global.db.ref('pages').push(newPage);
-			//reset fields
-			newPage.title = newPage.slug = newPage.created = newPage.updated = '';
-			toastr.success('Page added successfully')
+		global.db.ref('pages').push(newPage);
+		//reset fields
+		newPage.title = newPage.slug = newPage.created = newPage.updated = '';
+		toastr.success('Page added successfully')
 	  },
 	  slugify: function (str) {
 		  str = str.replace(/^\s+|\s+$/g, ''); // trim

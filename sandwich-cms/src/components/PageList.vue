@@ -22,8 +22,8 @@
               <td class="hidden-xs">{{page.created}}</td>
               <td class="hidden-xs">{{page.updated}}</td>
               <td>{{page.published}}</td>
-              <td><span class="glyphicon glyphicon-edit" aria-hidden="true" v-on:click="editPage(page)"></span></td>
-              <td><span class="glyphicon glyphicon-trash" aria-hidden="true" v-on:click="removePage(page)"></span></td>
+              <td class="action" v-on:click="editPage(page)"><span class="glyphicon glyphicon-edit" aria-hidden="true" ></span></td>
+              <td  class="action" v-on:click="removePage(page)"><span class="glyphicon glyphicon-trash" aria-hidden="true" ></span></td>
             </tr>
           </tbody>
         </table>
@@ -62,4 +62,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.action {  cursor: pointer; }
+.action:hover { background: #DDD; }
 </style>
