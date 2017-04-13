@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"tex",
+				"text-decoration"
+			],
+			[
 				"log",
 				"logRadius"
 			],
@@ -66,10 +70,6 @@
 			[
 				"is",
 				"is_array"
-			],
-			[
-				"tex",
-				"text-align"
 			],
 			[
 				"fi",
@@ -451,6 +451,54 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "sandwich-cms/src/App.vue",
+			"settings":
+			{
+				"buffer_size": 769,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sandwich-cms/src/components/PageList.vue",
+			"settings":
+			{
+				"buffer_size": 1784,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sandwich-cms/src/components/PageEdit.vue",
+			"settings":
+			{
+				"buffer_size": 1798,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sandwich-cms/src/router/index.js",
+			"settings":
+			{
+				"buffer_size": 395,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sandwich-cms/src/global.js",
+			"settings":
+			{
+				"buffer_size": 658,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sandwich-cms/src/components/PageCreate.vue",
+			"settings":
+			{
+				"buffer_size": 1951,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -564,6 +612,23 @@
 	},
 	"file_history":
 	[
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/Hello.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/README.md",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/PageCreate.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/Home.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/global.js",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/PageList.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/main.js",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/db/db.js",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/App.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/db.js",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/db.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/db/index.js",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/DB.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/package.json",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/index.html",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/router/index.js",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/build/webpack.base.conf.js",
 		"/Users/francoisgillet/Documents/WWW/intranet/spoonRadius/js/main.js",
 		"/Users/francoisgillet/Documents/WWW/intranet/spoonRadius/php/lib/lagoon/soap/smile/SmileSubscription.php",
 		"/Users/fgillet/Documents/MP3/_JAZZ/Keith Jarrett - The Köln Concert 1975 - ECM - 320Kbps - Jazz # DrBn/Music/Keith Jarrett/The Köln Concert/01 Köln, January 24, 1975, Part I.mp3",
@@ -674,24 +739,7 @@
 		"/Applications/MAMP/htdocs/selfcare/public/sites/all/modules/lagoon/lagoon_crm/lagoon_crm.info",
 		"/Applications/MAMP/htdocs/selfcare/public/sites/all/modules/lagoon/lagoon_crm/lagoon_crm.module",
 		"/Applications/MAMP/htdocs/selfcare/testsoap/number.php",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/default/settings.php",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/all/modules/lagoon/accountstatus/js/historic.js",
-		"/Applications/MAMP/htdocs/selfcare/testsoap/lib/SOAPHelper.php",
-		"/Applications/MAMP/htdocs/selfcare/testsoap/lib/ACSHelper.php",
-		"/Applications/MAMP/htdocs/selfcare/testsoap/acs/SOAPTest.xml",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/all/themes/selfcare_lagoon/js/main.js",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/all/modules/wsclient/wsclient_soap/wsclient_soap.module",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/all/modules/lagoon/consoplus/consoplus_export/settings.php",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/all/modules/lagoon/consoplus/consoplus_export/consoplus_export.module",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/all/modules/lagoon/consoplus/consoplus_export/test_connect.php",
-		"/Applications/MAMP/htdocs/selfcare/testsoap/settings.php",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/all/themes/bootstrap/css/overrides.css",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/all/themes/selfcare_lagoon/templates/suivi_conso/views-view-fields--suivi-de-consommation--block-2.tpl.php",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/all/themes/selfcare_lagoon/sass/_suiviconso.scss",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/all/themes/selfcare_lagoon/sass/_main.scss",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/all/modules/lagoon/lagoon_invoice/lagoon_invoice.module",
-		"/Applications/MAMP/htdocs/selfcare/public/sites/all/modules/lagoon/smilehelper/smilehelper.module",
-		"/Applications/MAMP/htdocs/selfcare/testsoap/regul/index.php"
+		"/Applications/MAMP/htdocs/selfcare/public/sites/default/settings.php"
 	],
 	"find":
 	{
@@ -710,6 +758,12 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"removeProject",
+			"addProject",
+			"projects",
+			"newProject",
+			"projectsRef",
+			"storageRef",
 			"Voir le ",
 			"coll",
 			"images/",
@@ -831,6 +885,12 @@
 		"regex": false,
 		"replace_history":
 		[
+			"removePage",
+			"addPage",
+			"pages",
+			"newPage",
+			"global.db.ref('projects')",
+			"global.storage",
 			"../img/date/images/",
 			"",
 			"$grey",
@@ -856,8 +916,173 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "sandwich-cms/src/App.vue",
+					"settings":
+					{
+						"buffer_size": 769,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								759,
+								666
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 38.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "sandwich-cms/src/components/PageList.vue",
+					"settings":
+					{
+						"buffer_size": 1784,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1467,
+								1467
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 889.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "sandwich-cms/src/components/PageEdit.vue",
+					"settings":
+					{
+						"buffer_size": 1798,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								991,
+								991
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"tab_size": 2
+						},
+						"translation.x": 0.0,
+						"translation.y": 551.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "sandwich-cms/src/router/index.js",
+					"settings":
+					{
+						"buffer_size": 395,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								322,
+								329
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "sandwich-cms/src/global.js",
+					"settings":
+					{
+						"buffer_size": 658,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								475,
+								484
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "sandwich-cms/src/components/PageCreate.vue",
+					"settings":
+					{
+						"buffer_size": 1951,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								525,
+								498
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 159.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -921,6 +1146,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 170.0,
+	"side_bar_width": 304.0,
 	"status_bar_visible": true
 }
