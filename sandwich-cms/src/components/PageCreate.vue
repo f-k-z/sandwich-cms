@@ -4,11 +4,11 @@
 	    <form id="form" class="form" v-on:submit.prevent="validate">
 				<div class="form-group">
 					<label for="pageTitle">Title:</label>
-					<input type="text" id="pageTitle" class="form-control" v-model="newPage.title">
+					<input type="text" id="pageTitle" class="form-control" v-model="title">
 				</div>
 				<div class="form-group">
 					<label for="pageSlug">URL:</label>
-					{{ slug }}
+					<input type="text" id="pageSlug" class="form-control" v-model="slug">
 				</div>
 				<input id="submitos" type="submit" class="btn btn-primary" v-bind:class="{ disabled: !active }" value="+ Create">
 			</form>
@@ -39,19 +39,24 @@ export default {
 		        updated: '',
 		        type: 'basic',
 		        published: false
-	      	}
+	      	},
+	      	slug: '',
+	      	title: ''
 	    }
  	},
 	methods: {
 	  addPage: function () {
 	    //get the scope
 	    var newPage = this.newPage;
+	    //
+	    newPage.title = this.title;
+	    newPage.slug = this.slug; 
 	  	//set dates
 	  	newPage.created = newPage.updated = moment().format();
 	  	//add to firebase
 		this.$firebaseRefs.pages.push(newPage);
 		//reset fields
-		newPage.title = newPage.slug = newPage.created = newPage.updated = '';
+		newPage.title = newPage.slug = newPage.created = newPage.updated = this.slug = this.title = '';
 		toastr.success('Page added successfully')
 	  },
 	  updateSlug: function () {
@@ -64,7 +69,7 @@ export default {
 	  	this.$firebaseRefs.pages.once('value').then(function(snapshot) {
 		    snapshot.forEach(function(data) {
 		        var page = data.val();
-		        if(page.slug == scope.newPage.slug) {
+		        if(page.slug == scope.slug) {
 		        	toastr.error('Page URL already exists')
 		        	doublon = true;
 		        	//simple return to cancel further snapshot.forEach call
@@ -94,13 +99,14 @@ export default {
 		},
 	},
 	computed: {
-	    slug: function () {
-	    	this.newPage.slug = this.slugify(this.newPage.title);
-	      	return this.newPage.slug;
-	  	},
 	  	active: function () {
-	  		return (this.newPage.slug != '');
+	  		return (this.slug != '');
 	  	}
+	},
+	watch: {
+	    title: function () {
+	      	this.slug = this.slugify(this.title);
+	  	},
 	},
 }
 </script>
