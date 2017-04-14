@@ -19,8 +19,8 @@
               <td>{{page.title}}</td>
               <td>{{page.slug}}</td>
               <td>{{page.type}}</td>
-              <td class="hidden-xs">{{page.created}}</td>
-              <td class="hidden-xs">{{page.updated}}</td>
+              <td class="hidden-xs">{{page.created | timestampToDate}}</td>
+              <td class="hidden-xs">{{page.updated | timestampToDate}}</td>
               <td>{{page.published}}</td>
               <td class="action" v-on:click="editPage(page)"><span class="glyphicon glyphicon-edit" aria-hidden="true" ></span></td>
               <td  class="action" v-on:click="removePage(page)"><span class="glyphicon glyphicon-trash" aria-hidden="true" ></span></td>
@@ -53,10 +53,15 @@ export default {
 			this.$router.push('/page/edit/'+page['.key']);
 		},
 	  removePage: function (page) {
-			global.db.ref('pages').child(page['.key']).remove()
+			this.$firebaseRefs.page.child(page['.key']).remove()
 	    toastr.success('Page removed successfully')
 		},
-	}
+	},
+  computed: {
+      active: function () {
+        return (this.slug != '');
+      }
+  },
 }
 </script>
 

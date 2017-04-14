@@ -7,7 +7,7 @@
 					<input type="text" id="pageTitle" class="form-control" v-model="title">
 				</div>
 				<div class="form-group">
-					<label for="pageSlug">URL:</label>
+					<label for="pageSlug">Slug:</label>
 					<input type="text" id="pageSlug" class="form-control" v-model="slug">
 				</div>
 				<input id="submitos" type="submit" class="btn btn-primary" v-bind:class="{ disabled: !active }" value="+ Create">
@@ -52,7 +52,7 @@ export default {
 	    newPage.title = this.title;
 	    newPage.slug = this.slug; 
 	  	//set dates
-	  	newPage.created = newPage.updated = moment().format();
+	  	newPage.created = newPage.updated = moment().format('x');
 	  	//add to firebase
 		this.$firebaseRefs.pages.push(newPage);
 		//reset fields
@@ -70,7 +70,7 @@ export default {
 		    snapshot.forEach(function(data) {
 		        var page = data.val();
 		        if(page.slug == scope.slug) {
-		        	toastr.error('Page URL already exists')
+		        	toastr.error('Page slug already exists')
 		        	doublon = true;
 		        	//simple return to cancel further snapshot.forEach call
 		        	return true;
