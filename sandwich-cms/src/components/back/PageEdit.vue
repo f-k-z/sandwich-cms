@@ -4,7 +4,7 @@
   	<div class="panel panel-default">
 	  <div class="panel-heading">
 	  	<h5>{{ key }}</h5>
-	    <form id="form" class="form" v-on:submit.prevent="editPage">
+	    <form id="form" class="form" v-on:submit.prevent="validate">
 				<div class="form-group">
 					<label for="pageTitle">Title:</label>
 					<input type="text" id="pageTitle" class="form-control" v-model="title">
@@ -77,6 +77,23 @@ export default {
 	  	this.$firebaseRefs.pages.child(this.key).set(this.currentPage);
 			toastr.success('Page edited successfully')
 	  },
+	  validate: function () {
+	  	var scope = this;
+	  	var doublon = false;
+	  	this.$firebaseRefs.pages.once('value').then(function(snapshot) {
+		    snapshot.forEach(function(data) {
+		        var page = data.val();
+		        if(page.slug == scope.currentPage.slug) {
+		        	toastr.error('Page slug already exists')
+		        	doublon = true;
+		        	//simple return to cancel further snapshot.forEach call
+		        	return true;
+		        }
+		    });
+		    if(!doublon)
+					scope.editPage();
+			});
+  	},
 	},
 
 	watch: {

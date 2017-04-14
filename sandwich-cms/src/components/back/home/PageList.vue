@@ -53,7 +53,7 @@ export default {
 			this.$router.push('/page/edit/'+page['.key']);
 		},
 	  removePage: function (page) {
-			this.$firebaseRefs.page.child(page['.key']).remove()
+			this.$firebaseRefs.pages.child(page['.key']).remove()
 	    toastr.success('Page removed successfully')
 		},
 	},
