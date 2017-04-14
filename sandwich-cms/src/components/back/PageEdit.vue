@@ -7,12 +7,9 @@
 	    <form id="form" class="form" v-on:submit.prevent="editPage">
 				<div class="form-group">
 					<label for="pageTitle">Title:</label>
-					<input type="text" id="pageTitle" class="form-control" v-model="currentPage.title">
+					<input type="text" id="pageTitle" class="form-control" v-model="title">
 				</div>
-				<div class="form-group">
-					<label for="pageTitle">Slug:</label>
-					<input type="text" id="pageSlug" class="form-control" v-model="currentPage.slug">
-				</div>
+				<slug-field v-on:update="updatePageSlug" :string-to-slug="stringToSlug"></slug-field>
 				<div class="form-group">
 					<input type="checkbox" id="pagePublished" v-model="currentPage.published">
 					<label for="pagePublished">Published</label>
@@ -32,38 +29,66 @@
 import global from '@/global'
 import toastr from 'toastr'
 import moment from 'moment'
+import SlugField from '@/components/back/field/SlugField'
 
 export default {
   name: 'page-edit',
+
+  firebase: {
+	    pages: global.db.ref('pages')
+	},
 
   data () {
     return {
     	//page key
       key: this.$route.params.page_id,
-      currentPage: global.emptyPage
+      currentPage: global.emptyPage,
+      title: '',
+      stringToSlug: ''
     }
+  },
+  components: {
+    SlugField,
   },
   //load object on created
   created: function() {
   	var scope = this;
   	toastr.info('Loading page...')
-		global.db.ref('pages').child(this.key)
+		this.$firebaseRefs.pages.child(this.key)
 	    .once('value')
 	    .then(function(snapshot) {
 	      var object = snapshot.val();
 	      scope.currentPage = object;
+	      //always update title before slug
+	      scope.title = scope.currentPage.title;
+	      //init first slug
+	      scope.stringToSlug = scope.currentPage.slug;
 	      toastr.clear();
 	    })
 	    .catch();
   },
 
   methods: {
+  	updatePageSlug: function (newSlug) {
+	  	this.currentPage.slug = newSlug;
+	  },
 	  editPage: function () {
 	  	this.currentPage.updated = moment().format();
-	  	global.db.ref('pages').child(this.key).set(this.currentPage);
+	  	this.$firebaseRefs.pages.child(this.key).set(this.currentPage);
 			toastr.success('Page edited successfully')
 	  },
-	}
+	},
+
+	watch: {
+	    title: { 
+	    	handler: function () {
+		      this.currentPage.title = this.title;
+		      this.stringToSlug = this.title;
+		  	},
+		  	//make it sync to avoid stringToSlug override by title when both values are directly set 
+		  	sync: true,
+		  }
+	},
 
 }
 </script>

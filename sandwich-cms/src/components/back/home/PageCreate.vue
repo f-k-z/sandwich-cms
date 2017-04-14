@@ -6,10 +6,7 @@
 					<label for="pageTitle">Title:</label>
 					<input type="text" id="pageTitle" class="form-control" v-model="title">
 				</div>
-				<div class="form-group">
-					<label for="pageSlug">Slug:</label>
-					<input type="text" id="pageSlug" class="form-control" v-model="slug">
-				</div>
+				<slug-field v-on:update="updatePageSlug" :string-to-slug="stringToSlug"></slug-field>
 				<input id="submitos" type="submit" class="btn btn-primary" v-bind:class="{ disabled: !active }" value="+ Create">
 			</form>
 	  </div>
@@ -21,30 +18,38 @@
 import global from '@/global'
 import toastr from 'toastr'
 import moment from 'moment'
-import jquery from 'jquery'
+import SlugField from '@/components/back/field/SlugField'
 
 export default {
-	  name: 'page-create',
+	name: 'page-create',
 
-	  firebase: {
-	    pages: global.db.ref('pages')
-	  },
+  firebase: {
+    pages: global.db.ref('pages')
+  },
 
-  	data () {
-	    return {
-	        newPage: {
-		        title: '',
-		        slug: '',
-		        created: '',
-		        updated: '',
-		        type: 'basic',
-		        published: false
-	      	},
-	      	slug: '',
-	      	title: ''
-	    }
+  components: {
+    SlugField,
+  },
+  
+	data () {
+    return {
+        newPage: {
+	        title: '',
+	        slug: '',
+	        created: '',
+	        updated: '',
+	        type: 'basic',
+	        published: false
+      	},
+      	slug: '',
+      	stringToSlug: '',
+      	title: ''
+    }
  	},
 	methods: {
+		updatePageSlug: function (newSlug) {
+	  	this.slug = newSlug;
+	  },
 	  addPage: function () {
 	    //get the scope
 	    var newPage = this.newPage;
@@ -53,15 +58,11 @@ export default {
 	    newPage.slug = this.slug; 
 	  	//set dates
 	  	newPage.created = newPage.updated = moment().format('x');
-	  	//add to firebase
-		this.$firebaseRefs.pages.push(newPage);
-		//reset fields
-		newPage.title = newPage.slug = newPage.created = newPage.updated = this.slug = this.title = '';
-		toastr.success('Page added successfully')
-	  },
-	  updateSlug: function () {
-	  	console.log(slug);
-	  	this.newPage.slug = slug;
+		  //add to firebase
+			this.$firebaseRefs.pages.push(newPage);
+			//reset fields
+			newPage.title = newPage.slug = newPage.created = newPage.updated = this.slug = this.title = '';
+			toastr.success('Page added successfully')
 	  },
 	  validate: function () {
 	  	var scope = this;
@@ -78,35 +79,22 @@ export default {
 		    });
 		    if(!doublon)
 				scope.addPage();
-		});
-	  },
-	  slugify: function (str) {
-		  str = str.replace(/^\s+|\s+$/g, ''); // trim
-		  str = str.toLowerCase();
-		  
-		  // remove accents, swap ñ for n, etc
-		  var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
-		  var to   = "aaaaeeeeiiiioooouuuunc------";
-		  for (var i=0, l=from.length ; i<l ; i++) {
-		    str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
-		  }
-
-		  str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
-		    .replace(/\s+/g, '-') // collapse whitespace and replace by -
-		    .replace(/-+/g, '-'); // collapse dashes
-
-		  return str;
-		},
-	},
+			});
+  	},
+  },
 	computed: {
 	  	active: function () {
 	  		return (this.slug != '');
 	  	}
 	},
 	watch: {
-	    title: function () {
-	      	this.slug = this.slugify(this.title);
-	  	},
+	    title: { 
+	    	handler: function () {
+		      this.stringToSlug = this.title;
+		  	},
+		  	//make it sync to avoid stringToSlug override by title when both values are directly set 
+		  	sync: true,
+		  }
 	},
 }
 </script>
