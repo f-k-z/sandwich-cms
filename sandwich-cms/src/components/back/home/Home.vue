@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import PageCreate from '@/components/PageCreate'
-import PageList from '@/components/PageList'
+import PageCreate from '@/components/back/home/PageCreate'
+import PageList from '@/components/back/home/PageList'
 
 export default {
   name: 'home',
