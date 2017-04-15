@@ -73,7 +73,7 @@ export default {
 	  	this.currentPage.slug = newSlug;
 	  },
 	  editPage: function () {
-	  	this.currentPage.updated = moment().format();
+	  	this.currentPage.updated = moment().format('x');
 	  	this.$firebaseRefs.pages.child(this.key).set(this.currentPage);
 			toastr.success('Page edited successfully')
 	  },
@@ -83,7 +83,7 @@ export default {
 	  	this.$firebaseRefs.pages.once('value').then(function(snapshot) {
 		    snapshot.forEach(function(data) {
 		        var page = data.val();
-		        if(page.slug == scope.currentPage.slug) {
+		        if(page.slug == scope.currentPage.slug && data.key != scope.key) {
 		        	toastr.error('Page slug already exists')
 		        	doublon = true;
 		        	//simple return to cancel further snapshot.forEach call
