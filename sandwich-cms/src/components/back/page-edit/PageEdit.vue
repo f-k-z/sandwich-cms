@@ -1,25 +1,32 @@
 <template>
 	<div class="page-edit">
-  <div class="col col-md-3">
+  <div class="col col-md-4">
   	<div class="panel panel-default">
-	  <div class="panel-heading">
-	  	<h5>{{ key }}</h5>
-	    <form id="form" class="form" v-on:submit.prevent="validate">
-				<div class="form-group">
-					<label for="pageTitle">Title:</label>
-					<input type="text" id="pageTitle" class="form-control" v-model="title">
-				</div>
-				<slug-field v-on:update="updatePageSlug" :string-to-slug="stringToSlug"></slug-field>
-				<div class="form-group">
-					<input type="checkbox" id="pagePublished" v-model="currentPage.published">
-					<label for="pagePublished">Published</label>
-				</div>
-				<input type="submit" class="btn btn-primary" value="/ Edit">
-			</form>
-	  </div>
+		  <div class="panel-heading">
+		  	<strong>{{ key }}</strong>
+		  </div>
+		  <div class="panel-body">
+		  	<form id="form" class="form" v-on:submit.prevent="validate">
+					<div class="form-group">
+						<label for="pageTitle">Title:</label>
+						<input type="text" id="pageTitle" class="form-control" v-model="title">
+					</div>
+					<slug-field v-on:update="updatePageSlug" :string-to-slug="stringToSlug"></slug-field>
+					<div class="form-group">
+						<input type="checkbox" id="pagePublished" v-model="currentPage.published">
+						<label for="pagePublished">Published</label>
+					</div>
+					<div class="form-group">
+						<p><strong>Created:</strong> {{currentPage.created | timestampToDate}}</p>
+						<p><strong>Last update:</strong>  {{currentPage.updated | timestampToDate}}</p>
+					</div>
+					<input type="submit" class="btn btn-primary" value="/ Edit">
+				</form>
+		  </div>
 	  </div>
   </div>
-  <div class="col col-md-9">
+  <div class="col col-md-8">
+  	<slice-manager></slice-manager>
   </div>
 </div>
 </template>
@@ -30,6 +37,7 @@ import global from '@/global'
 import toastr from 'toastr'
 import moment from 'moment'
 import SlugField from '@/components/back/field/SlugField'
+import SliceManager from '@/components/back/page-edit/SliceManager'
 
 export default {
   name: 'page-edit',
@@ -48,7 +56,7 @@ export default {
     }
   },
   components: {
-    SlugField,
+    SlugField, SliceManager
   },
   //load object on created
   created: function() {
@@ -79,6 +87,7 @@ export default {
 	  },
 	  validate: function () {
 	  	var scope = this;
+	  	//check if slug already exists
 	  	var doublon = false;
 	  	this.$firebaseRefs.pages.once('value').then(function(snapshot) {
 		    snapshot.forEach(function(data) {

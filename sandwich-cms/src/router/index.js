@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 // components
 import Home from '@/components/back/home/Home'
-import PageEdit from '@/components/back/PageEdit'
+import PageEdit from '@/components/back/page-edit/PageEdit'
 
 // router
 Vue.use(Router)

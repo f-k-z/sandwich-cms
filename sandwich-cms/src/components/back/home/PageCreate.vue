@@ -1,13 +1,16 @@
 <template>
   <div class="panel panel-default">
-	  <div class="panel-heading">
+  	<div class="panel-heading">
+      <strong>New Page</strong>
+    </div>
+	  <div class="panel-body">
 	    <form id="form" class="form" v-on:submit.prevent="validate">
 				<div class="form-group">
 					<label for="pageTitle">Title:</label>
 					<input type="text" id="pageTitle" class="form-control" v-model="title">
 				</div>
 				<slug-field v-on:update="updatePageSlug" :string-to-slug="stringToSlug"></slug-field>
-				<input id="submitos" type="submit" class="btn btn-primary" v-bind:class="{ disabled: !active }" value="+ Create">
+				<input type="submit" class="btn btn-primary" v-bind:class="{ disabled: !active }" value="+ Create">
 			</form>
 	  </div>
 	  </div>
@@ -66,6 +69,7 @@ export default {
 	  },
 	  validate: function () {
 	  	var scope = this;
+	  	//check if slug already exists
 	  	var doublon = false;
 	  	this.$firebaseRefs.pages.once('value').then(function(snapshot) {
 		    snapshot.forEach(function(data) {
