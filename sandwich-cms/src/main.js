@@ -72,7 +72,7 @@ var editorOptions = {
         "link",
         "unlink",
         //"tabulation",
-        "image",
+        //"image",
         //"hr",
         "eraser",
         "undo",

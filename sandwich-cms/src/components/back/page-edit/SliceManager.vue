@@ -13,15 +13,18 @@
                 <h4 class="modal-title">New Slice</h4>
               </div>
               <div class="modal-body">
-                <vue-html5-editor :content="content" :height="200" :z-index="1000" :auto-height="true" :show-module-name="false"></vue-html5-editor>
+                <vue-html5-editor :content="content" v-on:change="onChangeSlice" :height="200" :z-index="1000" :auto-height="true" :show-module-name="false"></vue-html5-editor>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" v-on:click="addSlice" class="btn btn-primary">Save</button>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+        <hr/>
+        <p v-for="slice in slices" v-html="slice.content">
+        </p>
       </div>
     </div>
 </template>
@@ -33,7 +36,7 @@ import toastr from 'toastr'
 
 export default {
   name: 'slice-manager',
-
+  props: ['pageKey'],
   firebase: {
     pages: global.db.ref('pages')
   },
@@ -44,18 +47,25 @@ export default {
     }
   },
 	methods: {
-		editPage: function (page) {
-			this.$router.push('/page/edit/'+page['.key']);
-		},
-	  removePage: function (page) {
-			this.$firebaseRefs.pages.child(page['.key']).remove()
-	    toastr.success('Page removed successfully')
-		},
+    addSlice: function () {
+      var newSlice = { content: this.content }
+      global.db.ref('pages/'+this.pageKey+'/slices').push(newSlice);
+      $('#sliceModal').modal('toggle');
+      toastr.success('Slice added');
+      this.content = '';
+    },
+    onChangeSlice: function(newContent) {
+      this.content = newContent;
+    }
 	},
-  computed: {
-      active: function () {
-        return (this.slug != '');
-      }
+   //load object on created
+  created: function() {
+    var scope = this;
+    global.db.ref('pages/'+this.pageKey+'/slices').on('value', function(snapshot) {
+        var object = snapshot.val();
+        scope.slices = object;
+      })
+      .catch();
   },
 }
 </script>

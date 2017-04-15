@@ -26,7 +26,7 @@
 	  </div>
   </div>
   <div class="col col-md-8">
-  	<slice-manager></slice-manager>
+  	<slice-manager :page-key="key"></slice-manager>
   </div>
 </div>
 </template>
