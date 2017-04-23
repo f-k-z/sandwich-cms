@@ -2,21 +2,21 @@
 Sandwich CMS
 
 Firebase DB Setting (access & write for everybody):
-{
-	"rules": {
-		".read": true,
-		".write": true
+	{
+		"rules": {
+			".read": true,
+			".write": true
+		}
 	}
-}
 
 Firebase Storage Setting (access & write for everybody):
-service firebase.storage {
-  match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read, write;
-    }
-  }
-}
+	service firebase.storage {
+	  match /b/{bucket}/o {
+	    match /{allPaths=**} {
+	      allow read, write;
+	    }
+	  }
+	}
 
 Vue.js CLI command:
 
