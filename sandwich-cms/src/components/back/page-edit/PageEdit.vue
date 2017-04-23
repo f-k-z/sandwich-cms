@@ -26,7 +26,7 @@
 	  </div>
   </div>
   <div class="col col-md-8">
-  	<slice-manager :page-key="key"></slice-manager>
+  	<slice-manager v-on:update="updatePageData" :page-key="key"></slice-manager>
   </div>
 </div>
 </template>
@@ -72,8 +72,7 @@ export default {
 	      //init first slug
 	      scope.stringToSlug = scope.currentPage.slug;
 	      toastr.clear();
-	    })
-	    .catch();
+	    });
   },
 
   methods: {
@@ -102,6 +101,9 @@ export default {
 		    if(!doublon)
 					scope.editPage();
 			});
+  	},
+  	updatePageData: function (page) {
+  		this.currentPage = page;
   	},
 	},
 

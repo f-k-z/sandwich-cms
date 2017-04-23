@@ -23,7 +23,29 @@
           </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
         <hr/>
-        <p v-for="slice in slices" v-html="slice.content">
+        <div id="slices" class="panel-group">
+            <div v-for="(slice, sliceKey) in slices" class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#slices" :href="'#'+ sliceKey">
+                          {{ sliceKey }}
+                        </a>
+                        <a class="action" v-on:click="removeSlice(slice, sliceKey)">
+                          <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                        <a class="action" v-on:click="editSlice(slice, sliceKey)">
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                    </h4>
+                </div>
+                <div :id="sliceKey" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <p v-html="slice.content"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         </p>
       </div>
     </div>
@@ -44,6 +66,7 @@ export default {
   data () {
     return {
       	content: '',
+        slices: [],
     }
   },
 	methods: {
@@ -52,7 +75,23 @@ export default {
       global.db.ref('pages/'+this.pageKey+'/slices').push(newSlice);
       $('#sliceModal').modal('toggle');
       toastr.success('Slice added');
+      this.dispatchUpdatedPage();
       this.content = '';
+    },
+    editSlice: function (slice) {
+
+    },
+    removeSlice: function (slice, sliceKey) {
+      global.db.ref('pages/'+this.pageKey+'/slices').child(sliceKey).remove();
+      toastr.success('Slice removed successfully');
+      this.dispatchUpdatedPage();
+    },
+    dispatchUpdatedPage: function() {
+      var scope = this;
+      global.db.ref('pages/'+this.pageKey).on('value', function(snapshot) {
+        var object = snapshot.val();
+        scope.$emit('update', object);
+      });
     },
     onChangeSlice: function(newContent) {
       this.content = newContent;
@@ -64,8 +103,7 @@ export default {
     global.db.ref('pages/'+this.pageKey+'/slices').on('value', function(snapshot) {
         var object = snapshot.val();
         scope.slices = object;
-      })
-      .catch();
+      });
   },
 }
 </script>
@@ -74,4 +112,10 @@ export default {
 <style scoped>
 .action {  cursor: pointer; }
 .action:hover { background: #DDD; }
+.panel-title { position: relative; }
+.panel-title .action {
+  float: right;
+  margin: -10px 0 0 0;
+  padding: 10px;
+}
 </style>
