@@ -4,20 +4,20 @@
         <strong>Slices</strong>
       </div>
       <div class="panel-body">
-        <button class="btn btn-primary" data-toggle="modal" data-target="#sliceModal">+ Add Slice</button>
+        <button class="btn btn-primary" v-on:click="resetSlice" data-toggle="modal" data-target="#sliceModal">+ Add Slice</button>
         <div class="modal fade" id="sliceModal" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">New Slice</h4>
+                <h4 class="modal-title">{{ modalTitle }}</h4>
               </div>
               <div class="modal-body">
-                <vue-html5-editor :content="content" v-on:change="onChangeSlice" :height="200" :z-index="1000" :auto-height="true" :show-module-name="false"></vue-html5-editor>
+                <vue-html5-editor :content="currentSlice.content" v-on:change="onChangeContent" :height="200" :z-index="1000" :auto-height="true" :show-module-name="false"></vue-html5-editor>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" v-on:click="addSlice" class="btn btn-primary">Save</button>
+                <button type="button" v-on:click="saveSlice" class="btn btn-primary">Save</button>
               </div>
             </div><!-- /.modal-content -->
           </div><!-- /.modal-dialog -->
@@ -65,21 +65,39 @@ export default {
 
   data () {
     return {
-      	content: '',
-        slices: [],
+      sliceKey: false,
+      modalTitle:'New Slice', 
+      currentSlice: {
+        content: ''},
+      slices: [],
     }
   },
 	methods: {
-    addSlice: function () {
-      var newSlice = { content: this.content }
-      global.db.ref('pages/'+this.pageKey+'/slices').push(newSlice);
+    saveSlice: function () {
+      if(!this.sliceKey ) {
+        //add new slice
+        global.db.ref('pages/'+this.pageKey+'/slices').push(this.currentSlice);
+        toastr.success('Slice added');
+      }
+      else {
+        global.db.ref('pages/'+this.pageKey+'/slices').child(this.sliceKey).set(this.currentSlice);
+        toastr.success('Slice edited');
+      }
       $('#sliceModal').modal('toggle');
-      toastr.success('Slice added');
       this.dispatchUpdatedPage();
-      this.content = '';
+      this.resetSlice();
     },
-    editSlice: function (slice) {
-
+    resetSlice: function() {
+      this.sliceKey = false;
+      this.modalTitle = 'New Slice';
+      this.currentSlice = { content: '' };
+    },
+    editSlice: function (slice, sliceKey) {
+      this.currentSlice = slice;
+      this.sliceKey = sliceKey;
+      this.modalTitle = 'Edit Slice: '+sliceKey;
+      this.content = slice.content;
+      $('#sliceModal').modal('toggle');
     },
     removeSlice: function (slice, sliceKey) {
       global.db.ref('pages/'+this.pageKey+'/slices').child(sliceKey).remove();
@@ -93,8 +111,8 @@ export default {
         scope.$emit('update', object);
       });
     },
-    onChangeSlice: function(newContent) {
-      this.content = newContent;
+    onChangeContent: function(newContent) {
+      this.currentSlice.content = newContent;
     }
 	},
    //load object on created
