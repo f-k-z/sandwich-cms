@@ -25,13 +25,20 @@ Vue.js CLI command:
 	$ npm install
 
 	DEPENDENCY:
+	$ npm install -g firebase-tools
 	$ npm install firebase vuefire --save
 	$ npm install --save jquery
 	$ npm install --save toastr
 	$ npm install vue-html5-editor --save-dev
+
+	FIREBASE:
+	$ firebase init
 
 	RUN:
 	$ npm run dev
 
 	BUILD (files in dist):
 	$ npm run build
+
+	DEPLOY:
+	$ firebase deploy
