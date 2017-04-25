@@ -1,6 +1,11 @@
 <template>
 	<div class="page-view">
 		<h1>{{ page.title }}</h1>
+		<div id="slices">
+            <div v-for="(slice, sliceKey) in page.slices" class="slice">
+              <p v-html="slice.content"></p>
+            </div>
+        </div>
 	</div>
 </template>
 
@@ -26,7 +31,7 @@ export default {
   created: function() {
   	var scope = this;
   	//get page by slug
-  	this.$firebaseRefs.pages.orderByChild("slug").equalTo(this.slug).once('value').then(function(pageSnapshot) {
+  	this.$firebaseRefs.pages.orderByChild("slug").equalTo(this.slug).on('value', function(pageSnapshot) {
   		var exists = pageSnapshot.exists();
   		if(exists)
   		{
