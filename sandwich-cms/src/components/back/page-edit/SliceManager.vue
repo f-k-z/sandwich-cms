@@ -77,11 +77,11 @@ export default {
       if(!this.sliceKey ) {
         //add new slice
         global.db.ref('pages/'+this.pageKey+'/slices').push(this.currentSlice);
-        toastr.success('Slice added');
+        toastr.success(global.errorMessages.SLICE_ADDED);
       }
       else {
         global.db.ref('pages/'+this.pageKey+'/slices').child(this.sliceKey).set(this.currentSlice);
-        toastr.success('Slice edited');
+        toastr.success(global.errorMessages.SLICE_EDITED);
       }
       $('#sliceModal').modal('toggle');
       this.dispatchUpdatedPage();
@@ -101,7 +101,7 @@ export default {
     },
     removeSlice: function (slice, sliceKey) {
       global.db.ref('pages/'+this.pageKey+'/slices').child(sliceKey).remove();
-      toastr.success('Slice removed successfully');
+      toastr.success(global.errorMessages.SLICE_REMOVED);
       this.dispatchUpdatedPage();
     },
     dispatchUpdatedPage: function() {

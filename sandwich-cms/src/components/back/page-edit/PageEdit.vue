@@ -61,7 +61,7 @@ export default {
   //load object on created
   created: function() {
   	var scope = this;
-  	toastr.info('Loading page...')
+  	toastr.info(global.errorMessages.LOADING);
 		this.$firebaseRefs.pages.child(this.key)
 	    .once('value')
 	    .then(function(snapshot) {
@@ -82,7 +82,7 @@ export default {
 	  editPage: function () {
 	  	this.currentPage.updated = moment().format('x');
 	  	this.$firebaseRefs.pages.child(this.key).set(this.currentPage);
-			toastr.success('Page edited successfully')
+			toastr.success(global.errorMessages.PAGE_EDITED)
 	  },
 	  validate: function () {
 	  	var scope = this;
@@ -90,7 +90,7 @@ export default {
 	  	this.$firebaseRefs.pages.orderByChild("slug").equalTo(this.currentPage.slug).once('value').then(function(snapshot) {
 	  		var exists = snapshot.exists();
 	  		if(exists)
-	  			toastr.error('Page slug already exists')
+	  			toastr.error(global.errorMessages.SLUG_EXIST);
 	  		else
 	  			scope.editPage();
 			});

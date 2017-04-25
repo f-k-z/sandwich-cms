@@ -19,7 +19,8 @@
         </thead>
         <tbody>
           <tr v-for="page in pages">
-            <td>{{page.title}}</td>
+            
+            <td><router-link :to="page.slug">{{page.title}}</router-link></td>
             <td>{{page.slug}}</td>
             <td>{{page.type}}</td>
             <td class="hidden-xs">{{page.created | timestampToDate}}</td>

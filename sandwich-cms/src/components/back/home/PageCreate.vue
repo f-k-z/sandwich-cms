@@ -65,7 +65,7 @@ export default {
 			this.$firebaseRefs.pages.push(newPage);
 			//reset fields
 			newPage.title = newPage.slug = newPage.created = newPage.updated = this.slug = this.title = '';
-			toastr.success('Page added successfully')
+			toastr.success(global.errorMessages.PAGE_ADDED);
 	  },
 	  validate: function () {
 	  	var scope = this;
@@ -73,7 +73,7 @@ export default {
 	  	this.$firebaseRefs.pages.orderByChild("slug").equalTo(this.slug).once('value').then(function(snapshot) {
 	  		var exists = snapshot.exists();
 	  		if(exists)
-	  			toastr.error('Page slug already exists')
+	  			toastr.error(global.errorMessages.SLUG_EXIST);
 	  		else
 	  			scope.addPage();
 		});
