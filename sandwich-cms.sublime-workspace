@@ -4,20 +4,28 @@
 		"selected_items":
 		[
 			[
+				"cu",
+				"currentSlice"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
 				"mar",
 				"margin-left"
 			],
 			[
 				"pa",
-				"padding-right"
+				"padding"
+			],
+			[
+				"fo",
+				"float"
 			],
 			[
 				"Slug",
 				"SlugField"
-			],
-			[
-				"fo",
-				"for	for (…) {…}"
 			],
 			[
 				"tex",
@@ -26,10 +34,6 @@
 			[
 				"log",
 				"logRadius"
-			],
-			[
-				"pad",
-				"padding-left"
 			],
 			[
 				"ma",
@@ -456,42 +460,18 @@
 	"buffers":
 	[
 		{
-			"file": "sandwich-cms/src/components/back/page-edit/PageEdit.vue",
-			"settings":
-			{
-				"buffer_size": 3399,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "sandwich-cms/src/components/back/page-edit/SliceManager.vue",
 			"settings":
 			{
-				"buffer_size": 2443,
+				"buffer_size": 4768,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "sandwich-cms/src/components/back/home/PageCreate.vue",
+			"file": "sandwich-cms/src/components/back/page-edit/PageEdit.vue",
 			"settings":
 			{
-				"buffer_size": 2661,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sandwich-cms/src/components/back/home/PageList.vue",
-			"settings":
-			{
-				"buffer_size": 1910,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "sandwich-cms/src/components/back/home/Home.vue",
-			"settings":
-			{
-				"buffer_size": 563,
+				"buffer_size": 3486,
 				"line_ending": "Unix"
 			}
 		},
@@ -499,23 +479,23 @@
 			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 602,
+				"buffer_size": 706,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "sandwich-cms/src/main.js",
+			"file": "sandwich-cms/database.rules.json",
 			"settings":
 			{
-				"buffer_size": 2905,
+				"buffer_size": 59,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "sandwich-cms/index.html",
+			"file": "sandwich-cms/config/index.js",
 			"settings":
 			{
-				"buffer_size": 893,
+				"buffer_size": 1437,
 				"line_ending": "Unix"
 			}
 		}
@@ -523,9 +503,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 375.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
 			[
 				"synt",
 				"Set Syntax: PHP"
@@ -579,10 +563,6 @@
 				"Snippet: Function"
 			],
 			[
-				"pack",
-				"Package Control: Discover Packages"
-			],
-			[
 				"pac",
 				"Package Control: Install Package"
 			],
@@ -615,7 +595,7 @@
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 435.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -632,23 +612,23 @@
 	},
 	"file_history":
 	[
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/field/SlugField.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/home/PageCreate.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/home/Home.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/home/PageList.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/router/index.js",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/README.md",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/page-edit/PageEdit.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/index.html",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/main.js",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/home/PageCreate.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/home/PageList.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/home/Home.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/field/SlugField.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/router/index.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/page-edit/SliceManager.vue`",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/PageEdit.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/index.html",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/global.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/PageEdit.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/main.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/PageList.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/App.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/utils.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/Hello.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/README.md",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/PageCreate.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/Home.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/db/db.js",
@@ -943,18 +923,46 @@
 			[
 				{
 					"buffer": 0,
-					"file": "sandwich-cms/src/components/back/page-edit/PageEdit.vue",
+					"file": "sandwich-cms/src/components/back/page-edit/SliceManager.vue",
 					"settings":
 					{
-						"buffer_size": 3399,
+						"buffer_size": 4768,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1808,
-								1768
+								4205,
+								4205
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1592.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "sandwich-cms/src/components/back/page-edit/PageEdit.vue",
+					"settings":
+					{
+						"buffer_size": 3486,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2405,
+								2383
 							]
 						],
 						"settings":
@@ -963,116 +971,57 @@
 							"tab_size": 2
 						},
 						"translation.x": 0.0,
-						"translation.y": 1478.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "sandwich-cms/src/components/back/page-edit/SliceManager.vue",
-					"settings":
-					{
-						"buffer_size": 2443,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1603,
-								1603
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1064.0,
+						"translation.y": 1400.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "sandwich-cms/src/components/back/home/PageCreate.vue",
+					"file": "README.md",
 					"settings":
 					{
-						"buffer_size": 2661,
+						"buffer_size": 706,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								863,
-								841
+								705,
+								705
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
-							"tab_size": 2,
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 661.0,
+						"translation.y": 295.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "sandwich-cms/src/components/back/home/PageList.vue",
+					"file": "sandwich-cms/database.rules.json",
 					"settings":
 					{
-						"buffer_size": 1910,
+						"buffer_size": 59,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1089,
-								526
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 353.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "sandwich-cms/src/components/back/home/Home.vue",
-					"settings":
-					{
-						"buffer_size": 563,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								553,
-								553
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1081,79 +1030,25 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "README.md",
+					"buffer": 4,
+					"file": "sandwich-cms/config/index.js",
 					"settings":
 					{
-						"buffer_size": 602,
+						"buffer_size": 1437,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								538,
-								538
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 107.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "sandwich-cms/src/main.js",
-					"settings":
-					{
-						"buffer_size": 2905,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2335,
-								2335
+								439,
+								446
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1348.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "sandwich-cms/index.html",
-					"settings":
-					{
-						"buffer_size": 893,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								574,
-								574
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,

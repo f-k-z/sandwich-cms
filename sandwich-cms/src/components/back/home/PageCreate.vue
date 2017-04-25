@@ -70,20 +70,13 @@ export default {
 	  validate: function () {
 	  	var scope = this;
 	  	//check if slug already exists
-	  	var doublon = false;
-	  	this.$firebaseRefs.pages.once('value').then(function(snapshot) {
-		    snapshot.forEach(function(data) {
-		        var page = data.val();
-		        if(page.slug == scope.slug) {
-		        	toastr.error('Page slug already exists')
-		        	doublon = true;
-		        	//simple return to cancel further snapshot.forEach call
-		        	return true;
-		        }
-		    });
-		    if(!doublon)
-				scope.addPage();
-			});
+	  	this.$firebaseRefs.pages.orderByChild("slug").equalTo(this.slug).once('value').then(function(snapshot) {
+	  		var exists = snapshot.exists();
+	  		if(exists)
+	  			toastr.error('Page slug already exists')
+	  		else
+	  			scope.addPage();
+		});
   	},
   },
 	computed: {
