@@ -1,7 +1,5 @@
 <template>
   <div id="app" class="container">
-  	<span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
-    <h1><router-link v-bind:to="'/'">{{ title }}</router-link></h1>
     <router-view></router-view>
   </div>
 </template>

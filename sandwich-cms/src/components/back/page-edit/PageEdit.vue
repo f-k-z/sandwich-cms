@@ -1,5 +1,8 @@
 <template>
-	<div class="page-edit">
+<div class="page-edit">
+	<div class="row container">
+		<header-back></header-back>
+	</div>
   <div class="col col-md-4">
   	<div class="panel panel-default">
 		  <div class="panel-heading">
@@ -38,6 +41,7 @@ import toastr from 'toastr'
 import moment from 'moment'
 import SlugField from '@/components/back/field/SlugField'
 import SliceManager from '@/components/back/page-edit/SliceManager'
+import HeaderBack from '@/components/back/HeaderBack'
 
 export default {
   name: 'page-edit',
@@ -56,7 +60,7 @@ export default {
     }
   },
   components: {
-    SlugField, SliceManager
+    HeaderBack, SlugField, SliceManager
   },
   //load object on created
   created: function() {

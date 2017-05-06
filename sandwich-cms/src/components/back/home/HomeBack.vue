@@ -1,5 +1,6 @@
 <template>
-  <div class="home">
+  <div class="home-back">
+    <header-back></header-back>
     <div class="col col-md-3">
       <page-create></page-create>
     </div>
@@ -12,6 +13,7 @@
 <script>
 import PageCreate from '@/components/back/home/PageCreate'
 import PageList from '@/components/back/home/PageList'
+import HeaderBack from '@/components/back/HeaderBack'
 
 export default {
   name: 'home',
@@ -22,7 +24,8 @@ export default {
   },
   components: {
     PageCreate,
-    PageList
+    PageList,
+    HeaderBack
   }
 }
 </script>

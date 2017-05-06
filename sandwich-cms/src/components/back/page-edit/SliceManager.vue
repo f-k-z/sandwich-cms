@@ -13,7 +13,21 @@
                 <h4 class="modal-title">{{ modalTitle }}</h4>
               </div>
               <div class="modal-body">
-                <vue-html5-editor :content="currentSlice.content" v-on:change="onChangeContent" :height="200" :z-index="1000" :auto-height="true" :show-module-name="false"></vue-html5-editor>
+                <ul class="nav nav-tabs">
+                  <li class="active"><a data-toggle="tab" href="#html-editor">HTML: editor</a></li>
+                  <li><a data-toggle="tab" href="#html-source">HTML: source</a></li>
+                </ul>
+                <br>
+                <div class="tab-content">
+                  <div id="html-editor" class="tab-pane fade in active">
+                   <vue-html5-editor :content="currentSlice.content" v-on:change="onChangeContent" :height="200" :z-index="1000" :auto-height="true" :show-module-name="false"></vue-html5-editor>
+                  </div>
+                  <div id="html-source" class="tab-pane fade">
+                    <label>HTML code only :</label>
+                    <textarea class="form-control" v-model="currentSlice.content" rows="10"></textarea>
+                  </div>
+                </div>
+                
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
