@@ -2,7 +2,7 @@
 	<div class="page-view">
 		<h1>{{ page.title }}</h1>
 		<div id="slices">
-            <div v-for="(slice, sliceKey) in page.slices" class="slice">
+            <div v-for="(slice, sliceKey) in page.slices" :class="slice.css_class" v-if="slice.visible">
               <p v-html="slice.content"></p>
             </div>
         </div>

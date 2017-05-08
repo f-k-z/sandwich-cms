@@ -5,8 +5,14 @@ import App from './App'
 import VueFire from 'vuefire'
 import router from './router'
 import moment from 'moment'
-
 import VueHtml5Editor from 'vue-html5-editor'
+import Sortable from 'sortablejs'
+
+Vue.directive('sortable', {
+  inserted: function (el, binding) {
+    new Sortable(el, binding.value || {})
+  }
+})
 
 var editorOptions = { 
     // global component name
@@ -72,7 +78,7 @@ var editorOptions = {
         "link",
         "unlink",
         //"tabulation",
-        //"image",
+        "image",
         //"hr",
         "eraser",
         "undo",

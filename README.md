@@ -25,6 +25,8 @@ Vue.js CLI command:
 	$ npm install
 
 	DEPENDENCY:
+	$ npm install vue-sortable
+	$ npm install sass-loader node-sass webpack --save-dev
 	$ npm install -g firebase-tools
 	$ npm install firebase vuefire --save
 	$ npm install --save jquery
