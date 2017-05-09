@@ -1,5 +1,6 @@
 <template>
 	<div class="page-view">
+    <button class="btn btn-primary action" v-on:click="editPage(page)">Edit Page <i class="fa fa-pencil" aria-hidden="true"></i></button>
 		<h1>{{ page.title }}</h1>
 		<div id="slices">
             <div v-for="(slice, sliceKey) in page.slices" :class="slice.css_class" v-if="slice.visible">
@@ -25,7 +26,13 @@ export default {
     	//page slug
       slug: this.$route.params.page_slug,
       page: {},
+      key: '',
     }
+  },
+  methods: {
+    editPage: function (page) {
+      this.$router.push('/page/edit/'+this.key);
+    },
   },
   //load object on created
   created: function() {
@@ -37,6 +44,7 @@ export default {
   		{
   			pageSnapshot.forEach(function (snapshot) {
           scope.page = snapshot.val();
+          scope.key = snapshot.key;
       	});
   		}
   		else
@@ -44,12 +52,10 @@ export default {
 		});
   },
 
-  methods: {
-	},
-
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.action { float: right; margin-top: 15px; }
 </style>

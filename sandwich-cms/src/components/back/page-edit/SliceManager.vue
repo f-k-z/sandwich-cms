@@ -49,11 +49,11 @@
         <div v-for="(slice, sliceKey) in slices" class="panel panel-default list-group-item" >
             <div class="panel-heading">
                 <h4 class="panel-title">
-              		<a class="action handle">
+              		<span class="action handle">
                     <i class="fa fa-bars handle" aria-hidden="true"></i>
-                  </a>
+                  </span>
                   <a data-toggle="collapse" data-parent="#slices" :href="'#'+ sliceKey">
-                    {{ sliceKey }}
+                    Slice #{{ sliceKey }}
                   </a>
                   <a class="action" v-on:click="removeSlice(slice, sliceKey)">
                     <i class="fa fa-trash" aria-hidden="true"></i>
@@ -92,20 +92,26 @@ export default {
       modalTitle:'New Slice', 
       currentSlice: {
         content: ''},
-      totalSlices: 0,
-      slices: [],
+      draggedSlices: [], 
+      slices: {},
     }
   },
 	methods: {
     saveSlice: function () {
       if(!this.sliceKey ) {
+      	var scope = this;
         //add new slice
-        global.db.ref('pages/'+this.pageKey+'/slices').push(this.currentSlice);
+        this.currentSlice.index = this.draggedSlices.length;
+        global.db.ref('pages/'+this.pageKey+'/slices').push(this.currentSlice, function(error) {
+				    scope.refreshSliceView();
+				});
         toastr.success(global.errorMessages.SLICE_ADDED);
       }
       else {
         //edit slice
-        global.db.ref('pages/'+this.pageKey+'/slices').child(this.sliceKey).set(this.currentSlice);
+        global.db.ref('pages/'+this.pageKey+'/slices').child(this.sliceKey).set(this.currentSlice, function(error) {
+				    scope.refreshSliceView();
+				});
         toastr.success(global.errorMessages.SLICE_EDITED);
       }
       $('#sliceModal').modal('toggle');
@@ -125,15 +131,33 @@ export default {
       $('#sliceModal').modal('toggle');
     },
     removeSlice: function (slice, sliceKey) {
-      global.db.ref('pages/'+this.pageKey+'/slices').child(sliceKey).remove();
+    	var scope = this;
+      global.db.ref('pages/'+this.pageKey+'/slices').child(sliceKey).remove(function(error) {
+      		//update snapshot table
+      	 	scope.draggedSlices.splice(scope.draggedSlices.indexOf(sliceKey), 1);
+      	 	scope.updateDragIndex(true);
+				});
       toastr.success(global.errorMessages.SLICE_REMOVED);
       this.dispatchUpdatedPage();
     },
     onDragSlice: function (event) {
-    	console.log(event);
-      console.log(this.slices);
-    	console.log(this.totalSlices);
-      //this.list.splice(event.newIndex, 0, this.list.splice(event.oldIndex, 1)[0])
+    	//update snapshot table
+      this.draggedSlices.splice(event.newIndex, 0, this.draggedSlices.splice(event.oldIndex, 1)[0]);
+      //update firebase
+      this.updateDragIndex(false);
+    },
+    updateDragIndex: function(updateView) {
+    	var scope = this;
+    	var updates = {};
+      for (var i = 0; i < this.draggedSlices.length; i++) {
+      	var sliceKey = this.draggedSlices[i];
+      	var path = this.pageKey + '/slices/' + sliceKey + '/index';
+      	updates[path] = i;
+      };
+      global.db.ref('pages').update(updates, function(error) {
+      	if(updateView)
+      		scope.refreshSliceView();
+      });
     },
     dispatchUpdatedPage: function() {
       var scope = this;
@@ -144,15 +168,25 @@ export default {
     },
     onChangeContent: function(newContent) {
       this.currentSlice.content = newContent;
+    },
+    refreshSliceView: function() {
+    	var scope = this;
+	    //get slices in an array
+	    global.db.ref('pages/'+this.pageKey+'/slices').orderByChild('index').once('value', function(slicesSnapshot) {
+	      scope.slices = {};
+	      scope.draggedSlices = [];
+	      //snapshot table to handle drag and drop
+	      slicesSnapshot.forEach(function (snapshot) {
+	         var sliceKey = snapshot.key;
+	         scope.slices[sliceKey] = snapshot.val();
+	         scope.draggedSlices.push(sliceKey);
+	     	});
+	    });
     }
 	},
    //load object on created
   created: function() {
-    var scope = this;
-    global.db.ref('pages/'+this.pageKey+'/slices').on('value', function(snapshot) {
-        scope.totalSlices = snapshot.numChildren();
-        scope.slices = snapshot.val();
-      });
+    this.refreshSliceView();
   },
 }
 </script>
@@ -170,10 +204,12 @@ export default {
   }
   .action.handle {
     float: none;
-    margin: 0 0 0 -10px;
+    margin: 0;
     padding: 8px;
   }
 }
+
+#slices .panel-heading { padding: 0; background: transparent; }
 
 .panel-body { overflow: hidden; width: 100%;}
 

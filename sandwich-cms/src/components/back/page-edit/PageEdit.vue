@@ -23,7 +23,12 @@
 						<p><strong>Created:</strong> {{currentPage.created | timestampToDate}}</p>
 						<p><strong>Last update:</strong>  {{currentPage.updated | timestampToDate}}</p>
 					</div>
-					<input type="submit" class="btn btn-primary" value="/ Edit">
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary" value="/ Edit">
+					</div>
+					<div class="form-group">
+						<router-link :to="{ path: '/'+currentPage.slug }">Preview</router-link>
+					</div>
 				</form>
 		  </div>
 	  </div>
