@@ -3,7 +3,7 @@
     <button class="btn btn-primary action" v-on:click="editPage(page)">Edit Page <i class="fa fa-pencil" aria-hidden="true"></i></button>
 		<h1>{{ page.title }}</h1>
 		<div id="slices">
-            <div v-for="(slice, sliceKey) in page.slices" :class="slice.css_class" v-if="slice.visible">
+            <div v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible">
               <p v-html="slice.content"></p>
             </div>
         </div>
@@ -27,12 +27,27 @@ export default {
       slug: this.$route.params.page_slug,
       page: {},
       key: '',
+      slices: [],
     }
   },
   methods: {
     editPage: function (page) {
       this.$router.push('/page/edit/'+this.key);
     },
+    refreshSliceView: function () {
+      var scope = this;
+      //get slices in an array
+      global.db.ref('pages/'+this.key+'/slices').orderByChild('index').once('value', function(slicesSnapshot) {
+        scope.slices = [];
+        //snapshot as an array
+        slicesSnapshot.forEach(function (snapshot) {
+           var sliceKey = snapshot.key;
+           var object = snapshot.val();
+           object.sliceKey = sliceKey;
+           scope.slices.push(object);
+        });
+      });
+    }
   },
   //load object on created
   created: function() {
@@ -45,6 +60,8 @@ export default {
   			pageSnapshot.forEach(function (snapshot) {
           scope.page = snapshot.val();
           scope.key = snapshot.key;
+          scope.refreshSliceView();
+          //scope.page.slices.sort(scope.compareIndex);
       	});
   		}
   		else

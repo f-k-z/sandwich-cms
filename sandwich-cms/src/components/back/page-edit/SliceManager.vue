@@ -52,18 +52,18 @@
               		<span class="action handle">
                     <i class="fa fa-bars handle" aria-hidden="true"></i>
                   </span>
-                  <a data-toggle="collapse" data-parent="#slices" :href="'#'+ sliceKey">
-                    Slice #{{ sliceKey }}
+                  <a data-toggle="collapse" data-parent="#slices" :href="'#'+ slice.sliceKey">
+                    Slice #{{ slice.sliceKey }}
                   </a>
-                  <a class="action" v-on:click="removeSlice(slice, sliceKey)">
+                  <a class="action" v-on:click="removeSlice(slice, slice.sliceKey)">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </a>
-                  <a class="action" v-on:click="editSlice(slice, sliceKey)">
+                  <a class="action" v-on:click="editSlice(slice, slice.sliceKey)">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                   </a>
                 </h4>
             </div>
-            <div :id="sliceKey" class="panel-collapse collapse">
+            <div :id="slice.sliceKey" class="panel-collapse collapse">
                 <div class="panel-body">
                     <p v-html="slice.content"></p>
                 </div>
@@ -92,8 +92,10 @@ export default {
       modalTitle:'New Slice', 
       currentSlice: {
         content: ''},
+      //this table only contains slices key. Useful to reorder table with splice
       draggedSlices: [], 
-      slices: {},
+      //slices data (display)
+      slices: [],
     }
   },
 	methods: {
@@ -141,7 +143,7 @@ export default {
       this.dispatchUpdatedPage();
     },
     onDragSlice: function (event) {
-    	//update snapshot table
+    	//update snapshot table (reorder)
       this.draggedSlices.splice(event.newIndex, 0, this.draggedSlices.splice(event.oldIndex, 1)[0]);
       //update firebase
       this.updateDragIndex(false);
@@ -173,12 +175,14 @@ export default {
     	var scope = this;
 	    //get slices in an array
 	    global.db.ref('pages/'+this.pageKey+'/slices').orderByChild('index').once('value', function(slicesSnapshot) {
-	      scope.slices = {};
+	      scope.slices = [];
 	      scope.draggedSlices = [];
 	      //snapshot table to handle drag and drop
 	      slicesSnapshot.forEach(function (snapshot) {
 	         var sliceKey = snapshot.key;
-	         scope.slices[sliceKey] = snapshot.val();
+           var object = snapshot.val();
+           object.sliceKey = sliceKey;
+	         scope.slices.push(object);
 	         scope.draggedSlices.push(sliceKey);
 	     	});
 	    });
