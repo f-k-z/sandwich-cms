@@ -98,7 +98,13 @@ export default {
 	  	//check if slug already exists
 	  	this.$firebaseRefs.pages.orderByChild("slug").equalTo(this.currentPage.slug).once('value').then(function(snapshot) {
 	  		var exists = snapshot.exists();
-	  		if(exists)
+	  		var isCurrentPage = false;
+	  		//check if the existing slug belongs to current page
+	  		snapshot.forEach(function(childSnapshot) {
+			      if(childSnapshot.key == scope.key)
+			      	isCurrentPage = true;
+			  });
+	  		if(exists && !isCurrentPage)
 	  			toastr.error(global.errorMessages.SLUG_EXIST);
 	  		else
 	  			scope.editPage();
