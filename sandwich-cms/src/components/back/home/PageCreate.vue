@@ -61,9 +61,9 @@ export default {
 	    newPage.slug = this.slug; 
 	  	//set dates
 	  	newPage.created = newPage.updated = moment().format('x');
-		  //add to firebase
-			this.$firebaseRefs.pages.push(newPage);
-			//reset fields
+		//add to firebase
+		this.$firebaseRefs.pages.push(newPage);
+		//reset fields
 			newPage.title = newPage.slug = newPage.created = newPage.updated = this.slug = this.title = '';
 			toastr.success(global.errorMessages.PAGE_ADDED);
 	  },

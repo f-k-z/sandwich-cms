@@ -15,6 +15,7 @@
             <th>Published</th>
             <th></th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@
             <td class="hidden-xs">{{page.created | timestampToDate}}</td>
             <td class="hidden-xs">{{page.updated | timestampToDate}}</td>
             <td>{{page.published}}</td>
+            <td class="action" v-on:click="clonePage(page)"><i class="fa fa-clone" aria-hidden="true"></i></td>
             <td class="action" v-on:click="editPage(page)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
             <td  class="action" v-on:click="removePage(page)"><i class="fa fa-trash" aria-hidden="true"></i></td>
           </tr>
@@ -39,6 +41,7 @@
 
 import global from '@/global'
 import toastr from 'toastr'
+import moment from 'moment'
 
 export default {
   name: 'page-list',
@@ -53,6 +56,20 @@ export default {
     }
   },
 	methods: {
+    clonePage: function (page) {
+      var newPage = {};
+      var newRef = this.$firebaseRefs.pages.push(newPage);
+      //copy page to newEmpty
+      this.$firebaseRefs.pages.child(page['.key']).once('value', function(snap)  {
+          var pageVal = snap.val();
+          //set dates
+          pageVal.created = pageVal.updated = moment().format('x');
+          pageVal.slug = pageVal.slug+"-c";
+          newRef.set( pageVal, function(error) {
+            if( error && typeof(console) !== 'undefined' && console.error ) {  console.error(error); }
+          });
+      });
+    },
 		editPage: function (page) {
 			this.$router.push('/admin/edit/'+page['.key']);
 		},
