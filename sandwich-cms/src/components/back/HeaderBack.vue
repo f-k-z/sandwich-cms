@@ -11,6 +11,9 @@
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ email }}<span class="caret"></span></a>
 	          <ul class="dropdown-menu">
 	          	<li>
+	          		<router-link v-bind:to="'/'">Home Front</router-link>
+	          	</li>
+	          	<li>
 	          		<router-link v-bind:to="'/admin'">Home Admin</router-link>
 	          	</li>
 	            <li role="separator" class="divider"></li>

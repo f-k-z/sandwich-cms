@@ -1,8 +1,8 @@
 <template>
 	<div class="page-view">
-    <router-link :to="'/'"><i class="fa fa-arrow-left" aria-hidden="true"></i> Home</router-link>
-    <br>
+    
     <button v-if="isUser" class="btn btn-primary action" v-on:click="editPage(page)">Edit Page <i class="fa fa-pencil" aria-hidden="true"></i></button>
+    <router-link class="btn back" :to="'/'"><i class="fa fa-arrow-left" aria-hidden="true"></i> Home</router-link><br>
 		<h1>{{ page.title }}</h1>
 		<div id="slices">
             <div v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible">
@@ -80,5 +80,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.action { float: right; margin-top: 15px; }
+  .action { 
+    right:15px; 
+    position: absolute; 
+    top: 15px; 
+    opacity: .5; 
+  }
+  .action:hover { opacity: 1; }
+
+  .back { position: absolute; top: 10px; left: 0px;}
 </style>
