@@ -20,7 +20,7 @@
         <tbody>
           <tr v-for="page in pages">
             
-            <td><router-link :to="page.slug">{{page.title}}</router-link></td>
+            <td><router-link :to="'page/'+page.slug">{{page.title}}</router-link></td>
             <td>{{page.slug}}</td>
             <td>{{page.type}}</td>
             <td class="hidden-xs">{{page.created | timestampToDate}}</td>
@@ -54,7 +54,7 @@ export default {
   },
 	methods: {
 		editPage: function (page) {
-			this.$router.push('/page/edit/'+page['.key']);
+			this.$router.push('/admin/edit/'+page['.key']);
 		},
 	  removePage: function (page) {
 			this.$firebaseRefs.pages.child(page['.key']).remove()

@@ -4,12 +4,16 @@
 		"selected_items":
 		[
 			[
-				"slice",
-				"sliceKey"
+				"va",
+				"var"
 			],
 			[
 				"fo",
-				"for	for (…) {…}"
+				"forEach"
+			],
+			[
+				"slice",
+				"sliceKey"
 			],
 			[
 				"for",
@@ -471,15 +475,7 @@
 			"file": "sandwich-cms/src/components/back/page-edit/SliceManager.vue",
 			"settings":
 			{
-				"buffer_size": 7736,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "README.md",
-			"settings":
-			{
-				"buffer_size": 790,
+				"buffer_size": 7952,
 				"line_ending": "Unix"
 			}
 		},
@@ -492,10 +488,13 @@
 			}
 		},
 		{
+			"contents": "<template>\n	<div class=\"page-view\">\n    <button class=\"btn btn-primary action\" v-on:click=\"editPage(page)\">Edit Page <i class=\"fa fa-pencil\" aria-hidden=\"true\"></i></button>\n		<h1>{{ page.title }}</h1>\n		<div id=\"slices\">\n            <div v-for=\"(slice, sliceKey) in slices\" :class=\"slice.css_class\" v-if=\"slice.visible\">\n              <p v-html=\"slice.content\"></p>\n            </div>\n        </div>\n	</div>\n</template>\n\n<script>\n\nimport global from '@/global'\n\nexport default {\n  name: 'page-edit',\n\n  firebase: {\n	    pages: global.db.ref('pages')\n	},\n\n  data () {\n    return {\n    	//page slug\n      slug: this.$route.params.page_slug,\n      page: {},\n      key: '',\n      slices: [],\n    }\n  },\n  methods: {\n    editPage: function (page) {\n      this.$router.push('/page/edit/'+this.key);\n    },\n    refreshSliceView: function () {\n      var scope = this;\n      //get slices in an array\n      global.db.ref('pages/'+this.key+'/slices').orderByChild('index').once('value', function(slicesSnapshot) {\n        scope.slices = [];\n        //snapshot as an array\n        slicesSnapshot.forEach(function (snapshot) {\n           var sliceKey = snapshot.key;\n           var object = snapshot.val();\n           object.sliceKey = sliceKey;\n           scope.slices.push(object);\n        });\n      });\n    }\n  },\n  //load object on created\n  created: function() {\n  	var scope = this;\n  	//get page by slug\n  	this.$firebaseRefs.pages.orderByChild(\"slug\").equalTo(this.slug).on('value', function(pageSnapshot) {\n  		var exists = pageSnapshot.exists();\n  		if(exists)\n  		{\n  			pageSnapshot.forEach(function (snapshot) {\n          scope.page = snapshot.val();\n          scope.key = snapshot.key;\n          scope.refreshSliceView();\n      	});\n  		}\n  		else\n  			console.log('no page');\n		});\n  },\n\n}\n</script>\n\n<!-- Add \"scoped\" attribute to limit CSS to this component only -->\n<style scoped>\n.action { float: right; margin-top: 15px; }\n</style>\n",
 			"file": "sandwich-cms/src/components/front/PageView.vue",
+			"file_size": 1996,
+			"file_write_time": 1497529092000000,
 			"settings":
 			{
-				"buffer_size": 1392,
+				"buffer_size": 1940,
 				"line_ending": "Unix"
 			}
 		},
@@ -503,7 +502,7 @@
 			"file": "sandwich-cms/src/components/back/page-edit/PageEdit.vue",
 			"settings":
 			{
-				"buffer_size": 3582,
+				"buffer_size": 3823,
 				"line_ending": "Unix"
 			}
 		},
@@ -628,6 +627,7 @@
 	},
 	"file_history":
 	[
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/README.md",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/global.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/home/PageList.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/App.vue",
@@ -638,7 +638,6 @@
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/HeaderBack.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/main.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/page-edit/SliceManager.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/README.md",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/front/PageView.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/components/back/home/PageCreate.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/config/index.js",
@@ -774,6 +773,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"draggedSlices",
 			"');\n",
 			"global",
 			"updateS",
@@ -935,6 +935,7 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -942,15 +943,15 @@
 					"file": "sandwich-cms/src/components/back/page-edit/SliceManager.vue",
 					"settings":
 					{
-						"buffer_size": 7736,
+						"buffer_size": 7952,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5438,
-								5438
+								7274,
+								6732
 							]
 						],
 						"settings":
@@ -960,40 +961,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4331.0,
+						"translation.y": 5581.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "README.md",
-					"settings":
-					{
-						"buffer_size": 790,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								648,
-								648
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "sandwich-cms/src/main.js",
 					"settings":
 					{
@@ -1021,19 +995,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 2,
 					"file": "sandwich-cms/src/components/front/PageView.vue",
 					"settings":
 					{
-						"buffer_size": 1392,
+						"buffer_size": 1940,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1380,
-								1380
+								1740,
+								1740
 							]
 						],
 						"settings":
@@ -1043,25 +1017,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1065.0,
+						"translation.y": 1437.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 3,
 					"file": "sandwich-cms/src/components/back/page-edit/PageEdit.vue",
 					"settings":
 					{
-						"buffer_size": 3582,
+						"buffer_size": 3823,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2884,
-								2860
+								3303,
+								3303
 							]
 						],
 						"settings":
@@ -1070,13 +1044,13 @@
 							"tab_size": 2
 						},
 						"translation.x": 0.0,
-						"translation.y": 2997.0,
+						"translation.y": 2703.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "sandwich-cms/src/global.js",
 					"settings":
 					{

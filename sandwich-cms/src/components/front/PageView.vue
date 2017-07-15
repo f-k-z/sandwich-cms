@@ -1,6 +1,8 @@
 <template>
 	<div class="page-view">
-    <button class="btn btn-primary action" v-on:click="editPage(page)">Edit Page <i class="fa fa-pencil" aria-hidden="true"></i></button>
+    <router-link :to="'/'"><i class="fa fa-arrow-left" aria-hidden="true"></i> Home</router-link>
+    <br>
+    <button v-if="isUser" class="btn btn-primary action" v-on:click="editPage(page)">Edit Page <i class="fa fa-pencil" aria-hidden="true"></i></button>
 		<h1>{{ page.title }}</h1>
 		<div id="slices">
             <div v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible">
@@ -13,6 +15,7 @@
 <script>
 
 import global from '@/global'
+import Firebase from 'firebase'
 
 export default {
   name: 'page-edit',
@@ -28,11 +31,12 @@ export default {
       page: {},
       key: '',
       slices: [],
+      isUser: false
     }
   },
   methods: {
     editPage: function (page) {
-      this.$router.push('/page/edit/'+this.key);
+      this.$router.push('/admin/edit/'+this.key);
     },
     refreshSliceView: function () {
       var scope = this;
@@ -61,12 +65,14 @@ export default {
           scope.page = snapshot.val();
           scope.key = snapshot.key;
           scope.refreshSliceView();
-          //scope.page.slices.sort(scope.compareIndex);
       	});
   		}
   		else
   			console.log('no page');
 		});
+
+    var user = Firebase.auth().currentUser;
+    this.isUser = (user) ? true : false;
   },
 
 }

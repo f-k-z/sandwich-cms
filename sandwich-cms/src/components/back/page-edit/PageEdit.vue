@@ -27,7 +27,7 @@
 						<input type="submit" class="btn btn-primary" value="/ Edit">
 					</div>
 					<div class="form-group">
-						<router-link :to="{ path: '/'+currentPage.slug }">Preview</router-link>
+						<router-link :to="{ path: '/page/'+currentPage.slug }">Preview</router-link>
 					</div>
 				</form>
 		  </div>
@@ -131,4 +131,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.col-md-4 { padding-left: 0px;}
+.col-md-8 { padding: 0; }
+@media (max-width: 992px) {
+  .col-md-4 { padding: 0;}
+}
 </style>

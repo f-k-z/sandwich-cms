@@ -3,8 +3,10 @@ import Router from 'vue-router'
 
 // components
 import HomeBack from '@/components/back/home/HomeBack'
+import Home from '@/components/front/Home'
 import PageEdit from '@/components/back/page-edit/PageEdit'
 import PageView from '@/components/front/PageView'
+import Login from '@/components/back/login/Login'
 
 // router
 Vue.use(Router)
@@ -15,18 +17,29 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'Home',
+      component: Home,
+      meta: {title: 'Home'}
+    },
+    {
+      path: '/admin',
       name: 'HomeBack',
       component: HomeBack
     },
     {
-      path: '/page/edit/:page_id',
+      path: '/admin/edit/:page_id',
       name: 'PageEdit',
       component: PageEdit
     },
     {
-      path: '/:page_slug',
+      path: '/page/:page_slug',
       name: 'PageView',
       component: PageView
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
 })

@@ -91,7 +91,8 @@ export default {
       sliceKey: false,
       modalTitle:'New Slice', 
       currentSlice: {
-        content: ''},
+        content: '',
+        visible: true },
       //this table only contains slices key. Useful to reorder table with splice
       draggedSlices: [], 
       //slices data (display)
@@ -123,7 +124,7 @@ export default {
     resetSlice: function() {
       this.sliceKey = false;
       this.modalTitle = 'New Slice';
-      this.currentSlice = { content: '' };
+      this.currentSlice = { content: '', visible: true };
     },
     editSlice: function (slice, sliceKey) {
       this.currentSlice = slice;
@@ -226,4 +227,9 @@ export default {
   }
    
 }
+
+.panel-default>.panel-heading+.panel-collapse>.panel-body {
+  border-top-color: transparent;
+}
+.panel-collapse { overflow: hidden; }
 </style>

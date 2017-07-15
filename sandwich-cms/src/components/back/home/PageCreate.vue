@@ -4,7 +4,7 @@
       <strong>New Page</strong>
     </div>
 	  <div class="panel-body">
-	    <form id="form" class="form" v-on:submit.prevent="validate">
+	    <form id="form-create" class="form" v-on:submit.prevent="validate">
 				<div class="form-group">
 					<label for="pageTitle">Title:</label>
 					<input type="text" id="pageTitle" class="form-control" v-model="title">
