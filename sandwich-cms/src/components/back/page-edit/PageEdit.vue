@@ -20,6 +20,10 @@
 						<label for="pagePublished">Published</label>
 					</div>
 					<div class="form-group">
+						<input type="checkbox" id="pageLocked" v-model="currentPage.locked">
+						<label for="pageLocked">Locked</label>
+					</div>
+					<div class="form-group">
 						<p><strong>Created:</strong> {{currentPage.created | timestampToDate}}</p>
 						<p><strong>Last update:</strong>  {{currentPage.updated | timestampToDate}}</p>
 					</div>
@@ -32,6 +36,7 @@
 				</form>
 		  </div>
 	  </div>
+	  <file-manager :page-key="key"></file-manager>
   </div>
   <div class="col col-md-8">
   	<slice-manager v-on:update="updatePageData" :page-key="key"></slice-manager>
@@ -46,6 +51,7 @@ import toastr from 'toastr'
 import moment from 'moment'
 import SlugField from '@/components/back/field/SlugField'
 import SliceManager from '@/components/back/page-edit/SliceManager'
+import FileManager from '@/components/back/page-edit/FileManager'
 import HeaderBack from '@/components/back/HeaderBack'
 
 export default {
@@ -65,7 +71,7 @@ export default {
     }
   },
   components: {
-    HeaderBack, SlugField, SliceManager
+    HeaderBack, SlugField, SliceManager, FileManager
   },
   //load object on created
   created: function() {

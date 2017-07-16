@@ -36,14 +36,7 @@ export default {
   
 	data () {
     return {
-        newPage: {
-	        title: '',
-	        slug: '',
-	        created: '',
-	        updated: '',
-	        type: 'basic',
-	        published: false
-      	},
+        newPage: global.emptyPage,
       	slug: '',
       	stringToSlug: '',
       	title: ''

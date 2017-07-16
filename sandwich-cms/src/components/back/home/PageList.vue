@@ -29,7 +29,7 @@
             <td>{{page.published}}</td>
             <td class="action" v-on:click="clonePage(page)"><i class="fa fa-clone" aria-hidden="true"></i></td>
             <td class="action" v-on:click="editPage(page)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
-            <td  class="action" v-on:click="removePage(page)"><i class="fa fa-trash" aria-hidden="true"></i></td>
+            <td v-bind:class="{ disabled: page.locked }" class="action" v-on:click="removePage(page)"><i class="fa fa-trash" aria-hidden="true"></i></td>
           </tr>
         </tbody>
       </table>
@@ -91,4 +91,9 @@ export default {
 .action {  cursor: pointer; }
 .action:hover { background: #DDD; }
 .fa { margin-left: 10px; }
+.disabled { 
+  opacity: .2;
+  pointer-events: none;
+  cursor: default;
+}
 </style>

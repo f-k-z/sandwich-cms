@@ -13,6 +13,10 @@
               <h4 class="modal-title">{{ modalTitle }}</h4>
             </div>
             <div class="modal-body">
+              <div class="form-group">
+                <label for="sliceCSSClass">Name</label>
+                <input type="text" id="sliceCSSClass" v-model="currentSlice.name">
+              </div>
               <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#html-editor">HTML: editor</a></li>
                 <li><a data-toggle="tab" href="#html-source">HTML: source</a></li>
@@ -36,6 +40,10 @@
                 <label for="sliceCSSClass">CSS Class</label>
                 <input type="text" id="sliceCSSClass" v-model="currentSlice.css_class">
               </div>
+              <div class="form-group">
+                <input type="checkbox" id="sliceLocked" v-model="currentSlice.locked">
+                <label for="sliceLocked">Locked</label>
+              </div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -52,10 +60,13 @@
               		<span class="action handle">
                     <i class="fa fa-bars handle" aria-hidden="true"></i>
                   </span>
-                  <a data-toggle="collapse" data-parent="#slices" :href="'#'+ slice.sliceKey">
+                  <a v-if="slice.name == '' || !slice.name" data-toggle="collapse" data-parent="#slices" :href="'#'+ slice.sliceKey">
                     Slice #{{ slice.sliceKey }}
                   </a>
-                  <a class="action" v-on:click="removeSlice(slice, slice.sliceKey)">
+                  <a v-else data-toggle="collapse" data-parent="#slices" :href="'#'+ slice.sliceKey">
+                    {{ slice.name }}
+                  </a>
+                  <a class="action" v-on:click="removeSlice(slice, slice.sliceKey)" v-bind:class="{ disabled: slice.locked }">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </a>
                   <a class="action" v-on:click="editSlice(slice, slice.sliceKey)">
@@ -90,9 +101,7 @@ export default {
     return {
       sliceKey: false,
       modalTitle:'New Slice', 
-      currentSlice: {
-        content: '',
-        visible: true },
+      currentSlice: global.emptySlice,
       //this table only contains slices key. Useful to reorder table with splice
       draggedSlices: [], 
       //slices data (display)
@@ -124,7 +133,7 @@ export default {
     resetSlice: function() {
       this.sliceKey = false;
       this.modalTitle = 'New Slice';
-      this.currentSlice = { content: '', visible: true };
+      this.currentSlice = global.emptySlice;
     },
     editSlice: function (slice, sliceKey) {
       this.currentSlice = slice;
@@ -232,4 +241,10 @@ export default {
   border-top-color: transparent;
 }
 .panel-collapse { overflow: hidden; }
+
+.disabled { 
+  opacity: .2;
+  pointer-events: none;
+  cursor: default;
+}
 </style>
