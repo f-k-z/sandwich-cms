@@ -248,3 +248,7 @@ export default {
   cursor: default;
 }
 </style>
+<style lang="scss">
+//hide upload button
+.vue-html5-editor .dashboard input[type="file"] + button { display: none!important; }
+</style>
