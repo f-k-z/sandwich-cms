@@ -14,6 +14,7 @@ Vue.use(Router)
 //see nested views https://router.vuejs.org/en/essentials/nested-routes.html
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -41,5 +42,8 @@ export default new Router({
       name: 'Login',
       component: Login
     }
-  ]
+  ],
+  scrollBehavior: function (to, from, savedPosition) {
+    return { x: 0, y: 0 };
+  }
 })

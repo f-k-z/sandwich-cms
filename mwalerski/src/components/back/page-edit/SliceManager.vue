@@ -41,6 +41,10 @@
                 <input type="text" id="sliceCSSClass" v-model="currentSlice.css_class">
               </div>
               <div class="form-group">
+                <label for="sliceCSSStyle">CSS Style</label>
+                <input type="text" id="sliceCSSStyle" v-model="currentSlice.css_style">
+              </div>
+              <div class="form-group">
                 <input type="checkbox" id="sliceLocked" v-model="currentSlice.locked">
                 <label for="sliceLocked">Locked</label>
               </div>

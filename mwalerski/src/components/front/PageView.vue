@@ -4,7 +4,7 @@
     <button v-if="isUser" class="btn btn-primary action" v-on:click="editPage(page)">Edit Page <i class="fa fa-pencil" aria-hidden="true"></i></button>
 		
 		<div id="slices">
-      <div v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible">
+      <div v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible" :style="slice.css_style">
         <p class="slice" v-html="slice.content"></p>
       </div>
     </div>
@@ -133,6 +133,7 @@ export default {
   }
 
   .header, .normal-text, .sub, .credits { margin-left: 15%; }
+  .header-wide { margin-left: 0; }
 
   .action { 
     right:15px; 

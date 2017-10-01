@@ -17,6 +17,10 @@
                 <label for="sliceCSSClass">Name</label>
                 <input type="text" id="sliceCSSClass" v-model="currentSlice.name">
               </div>
+              <div class="form-group">
+                <label for="sliceCSSStyle">CSS Style</label>
+                <input type="text" id="sliceCSSStyle" v-model="currentSlice.css_style">
+              </div>
               <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#html-editor">HTML: editor</a></li>
                 <li><a data-toggle="tab" href="#html-source">HTML: source</a></li>

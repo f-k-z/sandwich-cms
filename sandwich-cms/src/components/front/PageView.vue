@@ -5,8 +5,8 @@
     <router-link class="btn back" :to="'/'"><i class="fa fa-arrow-left" aria-hidden="true"></i> Home</router-link><br>
 		<h1>{{ page.title }}</h1>
 		<div id="slices">
-            <div v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible">
-              <p v-html="slice.content"></p>
+            <div v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible" :style="slice.css_style">
+              <p class="slice" v-html="slice.content"></p>
             </div>
         </div>
 	</div>
