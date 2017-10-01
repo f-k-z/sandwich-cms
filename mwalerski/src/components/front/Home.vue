@@ -1,7 +1,7 @@
 <template>
   <div class="home front">
     <header-front></header-front>
-    <ul class="nav">
+    <ul class="nav page-content">
     	<li class="nav-item" v-for="page in pages">       
         <router-link class="thumb" :to="'page/'+page.slug">
           <div :class="slice.css_class" v-if="slice.index < 3" v-for="slice in page.slices"> 

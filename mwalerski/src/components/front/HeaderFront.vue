@@ -1,7 +1,5 @@
 <template>
-  <header>
-    <button v-if="isUser" class="btn btn-primary action right" v-on:click="goToAdmin(page)">Admin <i class="fa fa-home" aria-hidden="true"></i></button>
-    
+  <header>    
 		<h2>Choregrapher  <span class="cardo">&</span> Dancer</h2>
 		<h1 class="logo"><router-link class="btn" :to="'/'">{{ title }}</router-link></h1>
     <div id="nav-icon">

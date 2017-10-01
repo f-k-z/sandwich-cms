@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <transition name="fade">
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -23,6 +25,22 @@ export default {
 </script>
 
 <style lang="scss">
+
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+}
+
+.fade-enter-active {
+  transition-duration: 1s;
+}
+
+.fade-leave-active {
+  transition-duration: .2s;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0
+}
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
