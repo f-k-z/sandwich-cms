@@ -3,13 +3,13 @@
 	<div class="row container">
 		<header-back></header-back>
 	</div>
-  <div class="col col-md-4">
+  <div class="col col-md-5">
   	<div class="panel panel-default">
 		  <div class="panel-heading">
-		  	<strong>{{ key }}</strong>
+		  	<strong>Edit Page #{{ key }}</strong>
 		  </div>
 		  <div class="panel-body">
-		  	<form id="form" class="form" v-on:submit.prevent="validate">
+		  	<form id="form-create" class="form" v-on:submit.prevent="validate">
 					<div class="form-group">
 						<label for="pageTitle">Title:</label>
 						<input type="text" id="pageTitle" class="form-control" v-model="title">
@@ -17,28 +17,24 @@
 					<slug-field v-on:update="updatePageSlug" :string-to-slug="stringToSlug"></slug-field>
 					<div class="form-group">
 						<input type="checkbox" id="pagePublished" v-model="currentPage.published">
-						<label for="pagePublished">Published</label>
-					</div>
-					<div class="form-group">
+						<label for="pagePublished">Published</label> | 
 						<input type="checkbox" id="pageLocked" v-model="currentPage.locked">
 						<label for="pageLocked">Locked</label>
 					</div>
-					<div class="form-group">
-						<p><strong>Created:</strong> {{currentPage.created | timestampToDate}}</p>
-						<p><strong>Last update:</strong>  {{currentPage.updated | timestampToDate}}</p>
+					<div class="form-group dates">
+						<p><strong>Created:</strong> {{currentPage.created | timestampToDate}}<br>
+						<strong>Last update:</strong>  {{currentPage.updated | timestampToDate}}</p>
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="/ Edit">
-					</div>
-					<div class="form-group">
-						<router-link :to="{ path: '/page/'+currentPage.slug }">Preview</router-link>
+						<router-link class="btn btn-info"  :to="{ path: '/page/'+currentPage.slug }"><i class="fa fa-eye" aria-hidden="true"></i> Preview</router-link>
 					</div>
 				</form>
 		  </div>
 	  </div>
 	  <file-manager :page-key="key"></file-manager>
   </div>
-  <div class="col col-md-8">
+  <div class="col col-md-7">
   	<slice-manager v-on:update="updatePageData" :page-key="key"></slice-manager>
   </div>
 </div>
@@ -65,7 +61,7 @@ export default {
     return {
     	//page key
       key: this.$route.params.page_id,
-      currentPage: global.emptyPage,
+      currentPage: global.getEmptyPage(),
       title: '',
       stringToSlug: ''
     }
@@ -137,9 +133,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.col-md-4 { padding-left: 0px;}
-.col-md-8 { padding: 0; }
+.col-md-5 { padding-left: 0px;}
+.col-md-7 { padding: 0; }
 @media (max-width: 992px) {
-  .col-md-4 { padding: 0;}
+  .col-md-5 { padding: 0;}
 }
+.dates { font-size: 12px; }
+
+#form-create .btn-info { float: right; }
 </style>
