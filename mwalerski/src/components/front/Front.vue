@@ -1,7 +1,7 @@
 <template>
   <div id="front">
     <header-front></header-front>
-    <animated-loader ref="aload"></animated-loader>
+    <animated-loader id="loader" ref="aload"></animated-loader>
     <div id="content">
       <transition v-on:before-enter="beforeEnter"
           v-on:enter="enter"
@@ -26,6 +26,9 @@ import Velocity from 'velocity-animate'
 
 export default {
   name: 'front',
+  firebase: {
+    pages: global.db.ref('pages')
+  },
   components: {
     HeaderFront, AnimatedLoader
   },
@@ -33,7 +36,8 @@ export default {
     return {
       title: global.PROJECT_NAME,
       isUser: false,
-      isLoading: false
+      isLoading: false,
+      loading: false,
     }
   },
   methods: {
@@ -42,24 +46,24 @@ export default {
     // --------
     beforeEnter: function (el) {
       // ...
-
     },
     // the done callback is optional when
     // used in combination with CSS
     enter: function (el, done) {
-      //$("#content").css('opacity', 0);
+      console.log('enter');
+      //get all images in content and listen to their load
       var images = el.getElementsByTagName("img");
       var done = done;
-      var urls = [];
       var imagesLoaded = 0 ;
       var scope = this;
       for(var i=0; i < images.length; i++){
         images[i].onload = function() {
           imagesLoaded++;
-
           if(imagesLoaded == images.length)
           {
+            //loading is finish!
             scope.isLoading = false;
+            //done callback
             done();
           }
         } 
@@ -84,7 +88,6 @@ export default {
     leave: function (el, done) {
       this.isLoading = true;
       Velocity($("#content"), { opacity: 0 }, { duration: 300, transition:"easeInExpo", complete: done }); 
-      //done()
     },
     afterLeave: function (el) {
       if(this.isLoading)
@@ -93,15 +96,41 @@ export default {
     // leaveCancelled only available with v-show
     leaveCancelled: function (el) {
       // ...
+    },
+    startMainLoader: function() {
+      var aload = this.$refs.aload;
+      /*console.log(this.$el);
+      var images = this.$el.getElementsByTagName("img");
+      console.log(images.length);
+      var imagesLoaded = 0 ;
+      var scope = this;
+      
+      for(var i=0; i < images.length; i++){
+        images[i].onload = function() {
+          imagesLoaded++;
+          if(imagesLoaded == images.length)
+          {
+            //loading is finish!
+            console.log('loading is finish!');
+          }
+        } 
+      }*/
+      
+      aload.hide();
+      aload.unsetOverlay();
     }
   },
   //load object on created
   created: function() {
     var user = Firebase.auth().currentUser;
     this.isUser = (user) ? true : false;
-  },
-  mounted: function() {
-    this.$refs.aload.hide();
+    var scope = this;
+    
+    //here we load firebase at first to access data and set up DOM
+    this.$firebaseRefs.pages.once('value', 
+      function(pageSnapshot) {
+      scope.startMainLoader();
+    });
   },
 }
 </script>
@@ -123,7 +152,8 @@ export default {
   @media (max-width : 1100px) {
     #content {
       width: 100%;
-      margin: 210px 0 0 0;
+      margin: 0;
+      padding-top: 210px;
     }
   }
 </style>

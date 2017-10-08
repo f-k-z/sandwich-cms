@@ -40,6 +40,7 @@ export default {
   created: function() {
     var user = Firebase.auth().currentUser;
     this.isUser = (user) ? true : false;
+    var scope = this;
   },
 }
 </script>
@@ -53,7 +54,7 @@ export default {
 <style lang="scss" scoped>
 
   .nav { 
-    margin-top: 30px;
+    padding-top: 30px;
     a, a:hover {
       background: transparent!important;
       font-family: 'CardoItalic';

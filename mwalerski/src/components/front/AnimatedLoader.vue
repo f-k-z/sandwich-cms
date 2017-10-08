@@ -1,5 +1,5 @@
 <template>
-	<div class="animated-loader">
+	<div class="animated-loader overlay">
 		<div class="loader">
 			<div class="loading"></div>
 		</div>
@@ -17,6 +17,12 @@ export default {
     }
 	},
 	methods: {
+		setOverlay: function() {
+			$('.animated-loader').addClass('overlay');
+		},
+		unsetOverlay: function() {
+			$('.animated-loader').removeClass('overlay');
+		},
 		hide: function() {
 			$('.animated-loader').addClass('hide');
 		},
@@ -30,11 +36,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
-	$base-line-height: 24px;
+	$base-line-height: 40px;
 	$white: rgb(0,0,0);
 	$off-white: rgba($white, 0.2);
 	$spin-duration: 1s;
-	$pulse-duration: 750ms;
 
 	@keyframes spin {
 	  0% {
@@ -49,6 +54,10 @@ export default {
 	  50% { 
 	    background: $white;
 	  } 
+	}
+
+	.animated-loader.overlay {
+		z-index: 999;
 	}
 
 	.animated-loader.hide {
@@ -69,9 +78,9 @@ export default {
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		width: 30px; height: 30px;
-		margin-left: -15px;
-		margin-top: -15px;
+		width: 50px; height: 50px;
+		margin-left: -25px;
+		margin-top: -25px;
 	}
 
 	.loading {
