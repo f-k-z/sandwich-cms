@@ -91,7 +91,7 @@ export default {
     margin: -100px 0 0 0;
   }
 
-  .logo a {
+  h1.logo a {
     font-family: 'Cormorant Garamond';
     font-size: 64px;
     color: #222222;
@@ -104,7 +104,21 @@ export default {
     text-align: center;
     padding: 0;
     z-index: 999;
+    -webkit-appearance: none;
   }
+input:hover
+input:active, 
+input:focus, 
+textarea:active,
+textarea:hover,
+textarea:focus, 
+button:focus,
+button:active,
+button:hover
+{
+    outline:0px !important;
+}
+
 
   nav {
   	position: absolute;

@@ -1,6 +1,5 @@
 <template>
-  <div class="home front">
-    <header-front></header-front>
+  <div class="home">
     <ul class="nav page-content">
     	<li class="nav-item" v-for="page in pages">       
         <router-link class="thumb" :to="'page/'+page.slug">
@@ -52,21 +51,19 @@ export default {
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-  .home {
-    margin-left: 25%;
-  }
-  .nav { margin-top: 30px; }
 
-  .nav a, .nav a:hover {
-    background: transparent!important;
-    font-family: 'CardoItalic';
-    font-size: 22px;
-    color: #222222;
-  }
-
-  .nav a:hover .title {
-    text-decoration: none;
-    color: #999999!important;
+  .nav { 
+    margin-top: 30px;
+    a, a:hover {
+      background: transparent!important;
+      font-family: 'CardoItalic';
+      font-size: 22px;
+      color: #222222;
+    }
+    a:hover .title {
+      text-decoration: none;
+      color: #999999!important;
+    }
   }
 
   $randomNumber: random(10%);
@@ -106,26 +103,5 @@ export default {
         transform: rotate(-90deg) ;     
       }
     }
-  }
-</style>
-
-<!-- RESPONSIVE -->
-<style lang="scss" scoped>
-
-  @media (max-width : 1100px) {
-    .home {
-      width: 100%;
-      margin: 0;
-      margin-top: 210px;
-    }
-    h2 { display: none; }
-    nav { display: none; }
-    h1.logo { position: static; margin: 0; margin-top: 50px; }
-    h1.logo a {
-      width: 200px;
-      font-size: 44px;
-      line-height: 39px;
-    }
-    #nav-icon { display: block; }
   }
 </style>

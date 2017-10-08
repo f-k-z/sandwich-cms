@@ -7,6 +7,7 @@ import Home from '@/components/front/Home'
 import PageEdit from '@/components/back/page-edit/PageEdit'
 import PageView from '@/components/front/PageView'
 import Login from '@/components/back/login/Login'
+import Front from '@/components/front/Front'
 
 // router
 Vue.use(Router)
@@ -18,9 +19,20 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home,
-      meta: {title: 'Home'}
+      component: Front,
+      children : [
+        { 
+          path: '', 
+          name: 'Home',
+          component: Home,
+          meta: {title: 'Home'}
+        },
+        {
+          path: '/page/:page_slug',
+          name: 'PageView',
+          component: PageView
+        },
+      ]
     },
     {
       path: '/admin',
@@ -32,18 +44,11 @@ export default new Router({
       name: 'PageEdit',
       component: PageEdit
     },
-    {
-      path: '/page/:page_slug',
-      name: 'PageView',
-      component: PageView
-    },
+    
     {
       path: '/login',
       name: 'Login',
       component: Login
     }
   ],
-  scrollBehavior: function (to, from, savedPosition) {
-    return { x: 0, y: 0 };
-  }
 })

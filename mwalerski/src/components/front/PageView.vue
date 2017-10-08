@@ -1,6 +1,5 @@
 <template>
 	<div class="page-view front">
-    <header-front></header-front>		
 		<div id="slices" class="page-content">
       <div v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible" :style="slice.css_style">
         <p class="slice" v-html="slice.content"></p>
@@ -125,11 +124,6 @@ export default {
 
   $sidebar_w: 25%;
 
-  #slices { 
-    width: 78%;
-    margin-left: $sidebar_w;
-  }
-
   .header, .normal-text, .sub, .credits { margin-left: 15%; }
   .header-wide { margin-left: 0; }
 
@@ -228,14 +222,6 @@ export default {
 <style lang="scss" scoped>
 
   @media (max-width : 1100px) {
-    #slices { 
-      overflow: hidden;
-      position: absolute;
-      top: 210px;
-      margin-left: 0; 
-      width: 100%;
-      left: 0;
-    }
 
     .header, .normal-text, .sub { margin-left: 0; }
 
