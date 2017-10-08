@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition name="fade">
+    <transition>
       <router-view></router-view>
     </transition>
   </div>
@@ -31,24 +31,6 @@ export default {
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
     box-shadow: none !important;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition-property: opacity;
-}
-
-.fade-enter-active {
-  transition-duration: 1s;
-  transition-timing-function: ease-in-out;
-}
-
-.fade-leave-active {
-  transition-duration: .2s;
-  transition-timing-function: ease-in;
-}
-
-.fade-enter, .fade-leave-active {
-  opacity: 0
 }
 
 #app {

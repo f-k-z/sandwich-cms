@@ -57,6 +57,7 @@ export default {
     top: 0;
     height: 100%;
     z-index: 100;
+    z-index: 10;
   }
 
   .action { 

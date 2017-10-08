@@ -1,6 +1,7 @@
 <template>
   <div id="front">
     <header-front></header-front>
+    <animated-loader ref="aload"></animated-loader>
     <div id="content">
       <transition v-on:before-enter="beforeEnter"
           v-on:enter="enter"
@@ -19,18 +20,20 @@
 <script>
 import global from '@/global'
 import HeaderFront from '@/components/front/HeaderFront'
+import AnimatedLoader from '@/components/front/AnimatedLoader'
 import Firebase from 'firebase'
 import Velocity from 'velocity-animate'
 
 export default {
   name: 'front',
   components: {
-    HeaderFront
+    HeaderFront, AnimatedLoader
   },
   data () {
     return {
       title: global.PROJECT_NAME,
-      isUser: false
+      isUser: false,
+      isLoading: false
     }
   },
   methods: {
@@ -45,11 +48,27 @@ export default {
     // used in combination with CSS
     enter: function (el, done) {
       //$("#content").css('opacity', 0);
-      Velocity($("#content"), "scroll", { offset:0, duration: 0 });
-      Velocity($("#content"), { opacity: 1 }, { duration: 800, transition:"easeInOutExpo", complete: done })
+      var images = el.getElementsByTagName("img");
+      var done = done;
+      var urls = [];
+      var imagesLoaded = 0 ;
+      var scope = this;
+      for(var i=0; i < images.length; i++){
+        images[i].onload = function() {
+          imagesLoaded++;
+
+          if(imagesLoaded == images.length)
+          {
+            scope.isLoading = false;
+            done();
+          }
+        } 
+      }
     },
     afterEnter: function (el) {
-      
+      this.$refs.aload.hide();
+      Velocity($("#content"), "scroll", { offset:0, duration: 0 });
+      Velocity($("#content"), { opacity: 1 }, { duration: 800, transition:"easeInOutExpo"});
     },
     enterCancelled: function (el) {
       // ...
@@ -63,11 +82,13 @@ export default {
     // the done callback is optional when
     // used in combination with CSS
     leave: function (el, done) {
+      this.isLoading = true;
       Velocity($("#content"), { opacity: 0 }, { duration: 300, transition:"easeInExpo", complete: done }); 
       //done()
     },
     afterLeave: function (el) {
-      // ...
+      if(this.isLoading)
+        this.$refs.aload.show();
     },
     // leaveCancelled only available with v-show
     leaveCancelled: function (el) {
@@ -78,6 +99,9 @@ export default {
   created: function() {
     var user = Firebase.auth().currentUser;
     this.isUser = (user) ? true : false;
+  },
+  mounted: function() {
+    this.$refs.aload.hide();
   },
 }
 </script>
