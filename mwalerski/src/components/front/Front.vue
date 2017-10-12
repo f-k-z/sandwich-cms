@@ -11,7 +11,7 @@
           v-on:leave="leave"
           v-on:after-leave="afterLeave"
           v-on:leave-cancelled="leaveCancelled">
-        <router-view></router-view>
+        <router-view v-on:loaded="onLoaded"></router-view>
       </transition>
     </div>
   </div>
@@ -91,6 +91,7 @@ export default {
       Velocity($("#content"), { opacity: 0 }, { duration: 300, transition:"easeInExpo", complete: done }); 
     },
     afterLeave: function (el) {
+      //don't show the loader if load is already done
       if(this.isLoading)
         this.$refs.aload.show();
     },
@@ -98,27 +99,20 @@ export default {
     leaveCancelled: function (el) {
       // ...
     },
-    startMainLoader: function() {
+    /** this method only manage first loading **/
+    onLoaded: function() {
       var aload = this.$refs.aload;
-      /*console.log(this.$el);
-      var images = this.$el.getElementsByTagName("img");
-      console.log(images.length);
-      var imagesLoaded = 0 ;
-      var scope = this;
-      
-      for(var i=0; i < images.length; i++){
-        images[i].onload = function() {
-          imagesLoaded++;
-          if(imagesLoaded == images.length)
-          {
-            //loading is finish!
-            console.log('loading is finish!');
-          }
+      console.log(this.$el);
+      var images = $("#content img");
+      //hide loader
+      Velocity($("#loader"), { opacity: 0 }, { duration: 800, transition:"easeInOutExpo", 
+        complete: function () {
+          aload.hide();
+          aload.unsetOverlay();
+          //set back loader opacity to 0 again
+          Velocity($("#loader"), { opacity: 1 }, { duration: 0 });
         } 
-      }*/
-      
-      aload.hide();
-      aload.unsetOverlay();
+      }); 
     }
   },
   //load object on created
@@ -126,12 +120,6 @@ export default {
     var user = Firebase.auth().currentUser;
     this.isUser = (user) ? true : false;
     var scope = this;
-    
-    //here we load firebase at first to access data and set up DOM
-    this.$firebaseRefs.pages.once('value', 
-      function(pageSnapshot) {
-      scope.startMainLoader();
-    });
   },
 }
 </script>

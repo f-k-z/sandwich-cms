@@ -3,6 +3,7 @@
     <ul class="nav page-content">
     	<li class="nav-item" v-for="page in pages">       
         <router-link class="thumb" :to="'page/'+page.slug">
+        <!-- We only take the first three slice (header, text and sub) -->
           <div :class="slice.css_class" v-if="slice.index < 3" v-for="slice in page.slices"> 
             <div v-html="slice.content"></div>
           </div>
@@ -35,12 +36,46 @@ export default {
     goToAdmin: function () {
       this.$router.push('/admin');
     },
+    loadAsset: function (assets) {
+      var scope = this;
+      var imagesLoaded = 0;
+      // start preloading
+      for(var i = 0; i < assets.length; i++) 
+      {
+        var imageObj = new Image();
+        imageObj.src = assets[i];
+        imageObj.onload = function() {
+          imagesLoaded++;
+          if(imagesLoaded == assets.length)
+            //EMIT LOADED EVENT
+            scope.$emit('loaded');
+        }
+      }
+    }
   },
   //load object on created
   created: function() {
+     var scope = this;
     var user = Firebase.auth().currentUser;
     this.isUser = (user) ? true : false;
-    var scope = this;
+    /** LOADER 
+       * get all header slices (slice at 0) to load images
+    **/
+    this.$firebaseRefs.pages.once('value', function(pageSnapshot) {
+      var headers = [];
+      
+      pageSnapshot.forEach(function (snapshot) {
+        var object = snapshot.val();
+        var slices = object.slices;
+        //get header slice
+        var headerDOM = slices[Object.keys(slices)[0]].content;
+        //get image path
+        var src = headerDOM.match(/src="(.*?)"/);
+        if(src)
+          headers.push(src[1]);
+      });
+      scope.loadAsset(headers);      
+    });
   },
 }
 </script>

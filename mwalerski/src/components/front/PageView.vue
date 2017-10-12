@@ -32,30 +32,62 @@ export default {
       page: {},
       key: '',
       slices: [],
-      isUser: false
+      isUser: false,
+      firstLoad: true
     }
   },
   methods: {
     editPage: function (page) {
       this.$router.push('/admin/edit/'+this.key);
     },
+    loadAsset: function (assets) {
+      var scope = this;
+      var imagesLoaded = 0;
+      // start preloading
+      console.log(assets);
+      for(var i = 0; i < assets.length; i++) 
+      {
+        var imageObj = new Image();
+        imageObj.src = assets[i];
+        imageObj.onload = function() {
+          imagesLoaded++;
+          if(imagesLoaded == assets.length)
+            //EMIT LOADED EVENT
+            scope.$emit('loaded');
+        }
+      }
+    },
     refreshSliceView: function () {
       var scope = this;
+      var imgToLoad = [];
       //get slices in an array
       global.db.ref('pages/'+this.key+'/slices').orderByChild('index').once('value', function(slicesSnapshot) {
         scope.slices = [];
         //snapshot as an array
         slicesSnapshot.forEach(function (snapshot) {
-           var sliceKey = snapshot.key;
-           var object = snapshot.val();
-           object.sliceKey = sliceKey;
-           scope.slices.push(object);
+          var sliceKey = snapshot.key;
+          var object = snapshot.val();
+          
+          if(scope.firstLoad) {
+            var sliceDOM = object.content;
+            //get image path
+            var src = sliceDOM.match(/img.*?src="(.*?)"/);
+            if(src)
+              imgToLoad.push(src[1]);
+          }
+          object.sliceKey = sliceKey;
+          scope.slices.push(object);
         });
+        if(scope.firstLoad) {
+          scope.firstLoad = false;
+          scope.loadAsset(imgToLoad);
+        }
       });
     }
   },
   //load object on created
   created: function() {
+    this.firstLoad = true;
   	var scope = this;
   	//get page by slug
   	this.$firebaseRefs.pages.orderByChild("slug").equalTo(this.slug).on('value', function(pageSnapshot) {
