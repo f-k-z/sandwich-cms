@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"data",
+				"dataLoaded"
+			],
+			[
+				"is",
+				"isLoading"
+			],
+			[
+				"pad",
+				"padding-top"
+			],
+			[
+				"padd",
+				"padding-top"
+			],
+			[
+				"cone",
+				"console"
+			],
+			[
+				"ani",
+				"animatedLoader"
+			],
+			[
+				"an",
+				"animatedLoader"
+			],
+			[
+				"anim",
+				"animated-loader"
+			],
+			[
 				"ma",
 				"margin-left"
 			],
@@ -14,10 +46,6 @@
 			[
 				"fon",
 				"font-size"
-			],
-			[
-				"pad",
-				"padding"
 			],
 			[
 				"bor",
@@ -72,10 +100,6 @@
 				"logRadius"
 			],
 			[
-				"padd",
-				"padding-left"
-			],
-			[
 				"retu",
 				"return"
 			],
@@ -102,10 +126,6 @@
 			[
 				"strip",
 				"strip_tags"
-			],
-			[
-				"is",
-				"is_array"
 			],
 			[
 				"fi",
@@ -483,7 +503,7 @@
 			"file": "mwalerski/src/App.vue",
 			"settings":
 			{
-				"buffer_size": 7809,
+				"buffer_size": 7708,
 				"line_ending": "Unix"
 			}
 		},
@@ -491,7 +511,7 @@
 			"file": "mwalerski/src/components/front/PageView.vue",
 			"settings":
 			{
-				"buffer_size": 5367,
+				"buffer_size": 5122,
 				"line_ending": "Unix"
 			}
 		},
@@ -499,15 +519,23 @@
 			"file": "mwalerski/src/components/front/Home.vue",
 			"settings":
 			{
-				"buffer_size": 2798,
+				"buffer_size": 2343,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "sandwich-cms/firebase.json",
+			"file": "mwalerski/src/router/index.js",
 			"settings":
 			{
-				"buffer_size": 206,
+				"buffer_size": 1135,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/front/Front.vue",
+			"settings":
+			{
+				"buffer_size": 4037,
 				"line_ending": "Unix"
 			}
 		},
@@ -515,7 +543,15 @@
 			"file": "mwalerski/src/components/front/HeaderFront.vue",
 			"settings":
 			{
-				"buffer_size": 3373,
+				"buffer_size": 3588,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/front/AnimatedLoader.vue",
+			"settings":
+			{
+				"buffer_size": 1655,
 				"line_ending": "Unix"
 			}
 		}
@@ -632,6 +668,11 @@
 	},
 	"file_history":
 	[
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/AnimatedLoader.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/Loader.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/firebase.json",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/HeaderFront.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/Front.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/router/index.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/page-edit/SliceManager.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/App.vue",
@@ -754,12 +795,7 @@
 		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/js/lib/jquery.sticky.js",
 		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/system/region.tpl.php",
 		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/block/block--promo-footer.tpl.php",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/views/views-view-field--tableau-offres--block-1--field-usage.tpl.php",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/views/views-view--picto-usage--block.tpl.php",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/node/node--107.tpl.php",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/template.php",
-		"/Users/fgillet/Desktop/test.php",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/block/block--connexion.tpl.php"
+		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/views/views-view-field--tableau-offres--block-1--field-usage.tpl.php"
 	],
 	"find":
 	{
@@ -778,6 +814,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"created: function() {\n    var user = Firebase.auth().currentUser;\n    this.isUser = (user) ? true : false;\n    this.$emit('loaded');\n  },",
+			"emit",
+			"<!-- Add \"scoped\" attribute to limit CSS to this component only -->",
 			"emp",
 			"mediaRef",
 			"emptyMedia",
@@ -902,10 +941,7 @@
 			"label",
 			"isnt",
 			"_detail",
-			"subscr",
-			"block",
-			"validateSmilelUser",
-			"validateSmileUser"
+			"subscr"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -955,15 +991,15 @@
 					"file": "mwalerski/src/App.vue",
 					"settings":
 					{
-						"buffer_size": 7809,
+						"buffer_size": 7708,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								598,
-								598
+								157,
+								157
 							]
 						],
 						"settings":
@@ -973,7 +1009,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 470.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -983,15 +1019,15 @@
 					"file": "mwalerski/src/components/front/PageView.vue",
 					"settings":
 					{
-						"buffer_size": 5367,
+						"buffer_size": 5122,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								550,
-								550
+								1623,
+								1623
 							]
 						],
 						"settings":
@@ -1001,7 +1037,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1334.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1011,15 +1047,15 @@
 					"file": "mwalerski/src/components/front/Home.vue",
 					"settings":
 					{
-						"buffer_size": 2798,
+						"buffer_size": 2343,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								104,
-								104
+								995,
+								995
 							]
 						],
 						"settings":
@@ -1029,30 +1065,86 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 740.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "sandwich-cms/firebase.json",
+					"file": "mwalerski/src/router/index.js",
 					"settings":
 					{
-						"buffer_size": 206,
+						"buffer_size": 1135,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								57,
-								57
+								528,
+								534
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 344.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "mwalerski/src/components/front/Front.vue",
+					"settings":
+					{
+						"buffer_size": 4037,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2154,
+								2154
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1638.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "mwalerski/src/components/front/HeaderFront.vue",
+					"settings":
+					{
+						"buffer_size": 3588,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1157,
+								1141
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -1063,26 +1155,25 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "mwalerski/src/components/front/HeaderFront.vue",
+					"buffer": 6,
+					"file": "mwalerski/src/components/front/AnimatedLoader.vue",
 					"settings":
 					{
-						"buffer_size": 3373,
+						"buffer_size": 1655,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								21,
-								21
+								132,
+								132
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

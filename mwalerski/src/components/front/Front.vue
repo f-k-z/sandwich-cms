@@ -45,12 +45,10 @@ export default {
     // ENTERING
     // --------
     beforeEnter: function (el) {
-      // ...
     },
     // the done callback is optional when
     // used in combination with CSS
     enter: function (el, done) {
-      console.log('enter');
       //get all images in content and listen to their load
       var images = el.getElementsByTagName("img");
       var done = done;
@@ -71,7 +69,9 @@ export default {
     },
     afterEnter: function (el) {
       this.$refs.aload.hide();
+      //back the scroll to top
       Velocity($("#content"), "scroll", { offset:0, duration: 0 });
+      //show main content
       Velocity($("#content"), { opacity: 1 }, { duration: 800, transition:"easeInOutExpo"});
     },
     enterCancelled: function (el) {
@@ -81,12 +81,13 @@ export default {
     // LEAVING
     // --------
     beforeLeave: function (el) {
-      // ...
+
     },
     // the done callback is optional when
     // used in combination with CSS
     leave: function (el, done) {
       this.isLoading = true;
+      //hide content
       Velocity($("#content"), { opacity: 0 }, { duration: 300, transition:"easeInExpo", complete: done }); 
     },
     afterLeave: function (el) {
@@ -144,6 +145,11 @@ export default {
 
   #content {
     margin-left: $sidebar_w;
+  }
+
+  /** DON'T REMOVE: This little thing let the next content hide during the transition **/
+  .v-leave-active + div {
+    display: none;
   }
 </style>
 

@@ -1,5 +1,5 @@
 <template>
-	<div class="page-view front">
+	<div class="page-view">
 		<div id="slices" class="page-content">
       <div v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible" :style="slice.css_style">
         <p class="slice" v-html="slice.content"></p>

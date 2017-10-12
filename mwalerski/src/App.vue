@@ -61,6 +61,10 @@ body {
   font-size: 16px;
 }
 
+.hide {
+  display: none;
+}
+
 /*** FONTS ***/
 
 @font-face {
