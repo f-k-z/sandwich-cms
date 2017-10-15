@@ -16,6 +16,10 @@
 					</div>
 					<slug-field v-on:update="updatePageSlug" :string-to-slug="stringToSlug"></slug-field>
 					<div class="form-group">
+            <label for="pageCSSClass">CSS Class</label>
+            <input type="text" id="pageCSSClass" v-model="currentPage.css_class">
+          </div>
+					<div class="form-group">
 						<input type="checkbox" id="pagePublished" v-model="currentPage.published">
 						<label for="pagePublished">Published</label> | 
 						<input type="checkbox" id="pageLocked" v-model="currentPage.locked">

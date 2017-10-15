@@ -9,9 +9,9 @@
     </div>
 		<nav>
 			<ul>
-				<li><a class="active" href="#"><span class="cardo">View</span> My Work</a></li>
-				<li><a href="#"><span class="cardo">About</span> Me</a></li>
-				<li><a href="#"><span class="cardo">Keep</span> Contact</a></li>
+				<li><router-link :to="'/work'"><span class="cardo">View</span> My Work</router-link></li>
+				<li><router-link :to="'/about'"><span class="cardo">About</span> Me</router-link></li>
+				<li><router-link :to="'/contact'"><span class="cardo">Keep</span> Contact</router-link></li>
 			</ul>
 		</nav>
   </header>
@@ -84,6 +84,7 @@ export default {
     font-family: 'CardoItalic';
     color: #999999;
     text-transform: none!important;
+    transition: color 0.5s ease-in-out;
   }
 
   h1.logo {
@@ -107,19 +108,22 @@ export default {
     padding: 0;
     z-index: 999;
     -webkit-appearance: none;
+    transition: color 0.5s ease-in-out;
   }
-input:hover
-input:active, 
-input:focus, 
-textarea:active,
-textarea:hover,
-textarea:focus, 
-button:focus,
-button:active,
-button:hover
-{
-    outline:0px !important;
-}
+
+
+  input:hover
+  input:active, 
+  input:focus, 
+  textarea:active,
+  textarea:hover,
+  textarea:focus, 
+  button:focus,
+  button:active,
+  button:hover
+  {
+      outline:0px !important;
+  }
 
 
   nav {
@@ -138,16 +142,14 @@ button:hover
 			width: 112px; text-align: center;
 			display: block;
 			text-transform: uppercase;
-  	}
-  	li a:hover {
-  		text-decoration: none;
+      text-decoration: none!important;
   	}
 
   	li a:not(:hover) {
   		color: #999999;
   	}
 
-    li a.active:not(:hover) {
+    li a.router-link-active:not(:hover) {
       color: #222222;
     }
   }
@@ -168,6 +170,15 @@ button:hover
     width: 100%;
     background: #000;
     margin-bottom: 6px;
+    transition: background-color 0.5s ease-in-out;
+  }
+
+  .about #nav-icon span {
+    background: #fff;
+  }
+
+  .about h1.logo a, .about .cardo, .about h2, .about nav li a.router-link-active:not(:hover), .about nav li a  {
+    color: #FFF;
   }
 
 </style>

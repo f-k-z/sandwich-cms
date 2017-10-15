@@ -1,5 +1,5 @@
 <template>
-  <div id="front">
+  <div id="front" :class="css_class">
     <header-front></header-front>
     <animated-loader id="loader" ref="aload"></animated-loader>
     <div id="content">
@@ -11,9 +11,10 @@
           v-on:leave="leave"
           v-on:after-leave="afterLeave"
           v-on:leave-cancelled="leaveCancelled">
-        <router-view v-on:loaded="onLoaded"></router-view>
+        <router-view ref="routerView" v-on:reload="onReload" v-on:reloaded="onReloaded" v-on:loaded="onLoaded" v-on:cssclass="onClass"></router-view>
       </transition>
     </div>
+    <div class="bg"></div>
   </div>
 </template>
 
@@ -38,9 +39,14 @@ export default {
       isUser: false,
       isLoading: false,
       firstLoad: true,
+      contentShown: true,
+      css_class: ''
     }
   },
   methods: {
+    onClass: function(css_class) {
+      this.css_class = css_class;
+    },
     // --------
     // ENTERING
     // --------
@@ -67,14 +73,19 @@ export default {
       }
     },
     afterEnter: function (el) {
+      
+      this.showContent();
+    },
+    enterCancelled: function (el) {
+      // ...
+    },
+    showContent: function () {
+      this.contentShown = true;
       this.$refs.aload.hide();
       //back the scroll to top
       Velocity($("#content"), "scroll", { offset:0, duration: 0 });
       //show main content
       Velocity($("#content"), { opacity: 1 }, { duration: 800, transition:"easeInOutExpo"});
-    },
-    enterCancelled: function (el) {
-      // ...
     },
     // --------
     // LEAVING
@@ -86,6 +97,7 @@ export default {
     // used in combination with CSS
     leave: function (el, done) {
       this.isLoading = true;
+      this.contentShown = false;
       //hide content
       Velocity($("#content"), { opacity: 0 }, { duration: 300, transition:"easeInExpo", complete: done }); 
     },
@@ -98,7 +110,25 @@ export default {
     leaveCancelled: function (el) {
       // ...
     },
-    /** this method only manage first loading **/
+    /** LOADED LISTENER **/
+    onReload: function() {
+      var scope = this;
+      var routerView = this.$refs.routerView;
+      this.isLoading = true;
+      this.contentShown = false;
+      Velocity($("#content"), { opacity: 0 }, { duration: 300, transition:"easeInExpo", complete: function() {
+        routerView.initPage();
+        if(scope.isLoading)
+          scope.$refs.aload.show();
+        else if(!scope.contentShown)
+          scope.showContent();
+      } }); 
+    },
+    onReloaded: function () {
+      this.isLoading = true;
+      if(!this.contentShown)
+        this.showContent();
+    },
     onLoaded: function() {
       var aload = this.$refs.aload;
       var images = $("#content img");
@@ -124,12 +154,23 @@ export default {
     var user = Firebase.auth().currentUser;
     this.isUser = (user) ? true : false;
     var scope = this;
+    console.log('created');
   },
 }
 </script>
 <!-- GLOBAL CSS -->
 <style lang="scss">
-  
+  #front .bg{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0; left: 0;
+    z-index: -1;
+    transition: background-color 0.5s ease-in-out;
+  }
+  #front.about .bg{
+    background: #000;
+  }
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>

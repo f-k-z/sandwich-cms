@@ -3,8 +3,9 @@ import Router from 'vue-router'
 
 // components
 import HomeBack from '@/components/back/home/HomeBack'
-import Home from '@/components/front/Home'
+import PageList from '@/components/front/PageList'
 import PageEdit from '@/components/back/page-edit/PageEdit'
+import DynamicPage from '@/components/front/DynamicPage'
 import PageView from '@/components/front/PageView'
 import Login from '@/components/back/login/Login'
 import Front from '@/components/front/Front'
@@ -23,31 +24,40 @@ export default new Router({
       children : [
         { 
           path: '', 
-          name: 'Home',
-          component: Home,
-          meta: {title: 'Home'}
+          component: PageView,
+          props : { slug: 'home' },
         },
         {
-          path: '/page/:page_slug',
-          name: 'PageView',
-          component: PageView
+          path: '/work',
+          component: PageList,
+        },
+        {
+          path: '/work/:slug',
+          component: DynamicPage
+        },
+        { 
+          path: '/about', 
+          component: PageView,
+          props : { slug: 'about' },
+        },
+        { 
+          path: '/contact', 
+          component: PageView,
+          props : { slug: 'contact' },
         },
       ]
     },
     {
       path: '/admin',
-      name: 'HomeBack',
       component: HomeBack
     },
     {
       path: '/admin/edit/:page_id',
-      name: 'PageEdit',
       component: PageEdit
     },
     
     {
       path: '/login',
-      name: 'Login',
       component: Login
     }
   ],

@@ -1,5 +1,5 @@
 <template>
-	<div class="page-view">
+	<div class="page-view" :class="page.css_class">
 		<div id="slices" class="page-content">
       <div v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible" :style="slice.css_style">
         <p class="slice" v-html="slice.content"></p>
@@ -16,7 +16,7 @@ import Firebase from 'firebase'
 
 export default {
   name: 'page-edit',
-
+  props: ['slug'],
   firebase: {
 	  pages: global.db.ref('pages')
 	},
@@ -27,13 +27,12 @@ export default {
   data () {
     return {
       title: global.PROJECT_NAME,
-    	//page slug
-      slug: this.$route.params.page_slug,
       page: {},
       key: '',
       slices: [],
       isUser: false,
-      firstLoad: true
+      firstLoad: true,
+      isReload: false
     }
   },
   methods: {
@@ -53,6 +52,11 @@ export default {
           if(imagesLoaded == assets.length)
             //EMIT LOADED EVENT
             scope.$emit('loaded');
+            if(scope.isReload) {
+              scope.$emit('reloaded');
+              scope.isReload = false;
+            }
+              
         }
       }
     },
@@ -83,30 +87,46 @@ export default {
           scope.loadAsset(imgToLoad);
         }
       });
+    },
+    initPage: function() {
+      this.firstLoad = true;
+
+      var scope = this;
+      //get page by slug
+      this.$firebaseRefs.pages.orderByChild("slug").equalTo(this.slug).on('value', function(pageSnapshot) {
+        var exists = pageSnapshot.exists();
+        if(exists)
+        {
+          pageSnapshot.forEach(function (snapshot) {
+            scope.page = snapshot.val();
+            /** body class **/
+            if(scope.page.css_class)
+              scope.$emit("cssclass", scope.page.css_class);
+            else
+              scope.$emit("cssclass", '');
+            /** end body class **/
+            scope.key = snapshot.key;
+            scope.refreshSliceView();
+          });
+        }
+        else
+          console.log('no page');
+      });
+
+      var user = Firebase.auth().currentUser;
+      this.isUser = (user) ? true : false;
     }
   },
   //load object on created
   created: function() {
-    this.firstLoad = true;
-  	var scope = this;
-  	//get page by slug
-  	this.$firebaseRefs.pages.orderByChild("slug").equalTo(this.slug).on('value', function(pageSnapshot) {
-  		var exists = pageSnapshot.exists();
-  		if(exists)
-  		{
-  			pageSnapshot.forEach(function (snapshot) {
-          scope.page = snapshot.val();
-          scope.key = snapshot.key;
-          scope.refreshSliceView();
-      	});
-  		}
-  		else
-  			console.log('no page');
-		});
-
-    var user = Firebase.auth().currentUser;
-    this.isUser = (user) ? true : false;
+    this.initPage();
   },
+  watch: {
+    '$route' (to, from) {
+      this.isReload = true;
+      this.$emit('reload');
+    }
+  }
 
 }
 </script>
@@ -117,8 +137,18 @@ export default {
   {
     width: 100%;
     img {
-      max-width: 100%!important;
+      max-width: 100%;
       height: auto;
+    }
+  }
+
+  .contact-pic { 
+    .slice img {
+      height: 100%;
+      max-width: none;
+      width: auto;
+      position: absolute;
+      right: 0;
     }
   }
 
@@ -149,6 +179,15 @@ export default {
         text-transform: none;
       }
     }
+  }
+  .normal-text b, .normal-text a {
+    color: #1A1A1A;
+    font-family: 'CalibreRegular';
+    font-weight: normal;
+  }
+
+  .about .normal-text b, .about .normal-text a {
+    color: #FFF;
   }
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -201,6 +240,10 @@ export default {
     padding: 0;
   }
 
+  .contact-pic { 
+    position: absolute; height: 100%;
+    right: 0;
+  }
   .normal-text {
     font-family: 'CalibreRegular';
     font-size: 16px;
@@ -211,6 +254,18 @@ export default {
     width: 80%;
     text-align: justify;
     margin-bottom: 20px;
+  }
+
+  .big-letter {
+    font-family: "CardoRegular";
+    font-size: 40px;
+    color: #1A1A1A;
+    letter-spacing: 130.4px;
+    line-height: 242px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 10;
+    word-wrap: break-word;
   }
 
   .credits {
@@ -232,6 +287,7 @@ export default {
     margin-bottom: 30px;
   }
 
+  .about .quote { color: #fff; }
 
   .img-float-left {
     position: absolute;
