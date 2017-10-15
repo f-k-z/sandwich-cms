@@ -193,6 +193,10 @@ export default {
 
   .header { margin-top: -200px; }
 
+  .header-right {
+    margin-top: 50px;
+  }
+
   .header, .normal-text, .sub, .quote, .title {
     padding: 0;
   }

@@ -76,6 +76,7 @@ export default {
     width: 130px;
     text-align: center;
     margin: 57px auto 0 auto;
+    text-transform: uppercase;
   }
 
   .cardo {

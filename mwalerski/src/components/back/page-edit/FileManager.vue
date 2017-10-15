@@ -62,12 +62,20 @@ export default {
       currentFile.name = this.tmpFileData.name;
       //upload the file
       var fileStorageRef = global.storage.child(currentFile.name);
+      var oldTimeout = toastr.options.timeOut;
+      //set to 0 to make it sticky
+      toastr.options.timeOut = 0;
+      toastr.info('File is uploading... Please wait.');
+
       fileStorageRef.putString(this.tmpFileData.data, 'data_url').then(function(snapshot) {
         //media will only save image download URL
         currentFile.url = snapshot.downloadURL;
         pageFileRef.push(currentFile);
+        toastr.options.timeOut = oldTimeout;
+        toastr.clear();
+        toastr.success('File uploaded successfully');
         //reset fields
-        currentFile: global.getEmptyFile();
+        currentFile = global.getEmptyFile();
       });
     },
     //remove file in storage and DB
