@@ -49,14 +49,20 @@ export default {
         imageObj.src = assets[i];
         imageObj.onload = function() {
           imagesLoaded++;
-          if(imagesLoaded == assets.length)
+          if(imagesLoaded == assets.length) {
             //EMIT LOADED EVENT
             scope.$emit('loaded');
             if(scope.isReload) {
               scope.$emit('reloaded');
               scope.isReload = false;
             }
-              
+             /** body class **/
+            if(scope.page.css_class)
+              scope.$emit("cssclass", scope.page.css_class);
+            else
+              scope.$emit("cssclass", '');
+            /** end body class **/
+          }
         }
       }
     },
@@ -99,12 +105,6 @@ export default {
         {
           pageSnapshot.forEach(function (snapshot) {
             scope.page = snapshot.val();
-            /** body class **/
-            if(scope.page.css_class)
-              scope.$emit("cssclass", scope.page.css_class);
-            else
-              scope.$emit("cssclass", '');
-            /** end body class **/
             scope.key = snapshot.key;
             scope.refreshSliceView();
           });
@@ -179,6 +179,9 @@ export default {
         text-transform: none;
       }
     }
+  }
+  .about .credits {
+    color: #fff;
   }
   .normal-text b, .normal-text a {
     color: #1A1A1A;
@@ -273,7 +276,10 @@ export default {
     width: 80%;
     text-align: center;
     margin-top: 60px;
+  }
 
+  .credits.unalign {
+    text-align: left;
   }
 
   .quote {
