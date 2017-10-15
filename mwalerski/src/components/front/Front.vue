@@ -37,7 +37,7 @@ export default {
       title: global.PROJECT_NAME,
       isUser: false,
       isLoading: false,
-      loading: false,
+      firstLoad: true,
     }
   },
   methods: {
@@ -46,15 +46,14 @@ export default {
     // --------
     beforeEnter: function (el) {
     },
-    // the done callback is optional when
-    // used in combination with CSS
     enter: function (el, done) {
       //get all images in content and listen to their load
+      // we use this and not the loaded event because there is some issue with the cache (Image have been loaded each time we open the äge view component on it)
       var images = el.getElementsByTagName("img");
       var done = done;
       var imagesLoaded = 0 ;
       var scope = this;
-      for(var i=0; i < images.length; i++){
+      for(var i = 0; i < images.length; i++){
         images[i].onload = function() {
           imagesLoaded++;
           if(imagesLoaded == images.length)
@@ -102,17 +101,22 @@ export default {
     /** this method only manage first loading **/
     onLoaded: function() {
       var aload = this.$refs.aload;
-      console.log(this.$el);
       var images = $("#content img");
-      //hide loader
-      Velocity($("#loader"), { opacity: 0 }, { duration: 800, transition:"easeInOutExpo", 
-        complete: function () {
-          aload.hide();
-          aload.unsetOverlay();
-          //set back loader opacity to 0 again
-          Velocity($("#loader"), { opacity: 1 }, { duration: 0 });
-        } 
-      }); 
+      if(this.firstLoad)
+      {
+        this.firstLoad = false;
+        //hide loader
+        Velocity($("#loader"), { opacity: 0 }, { duration: 800, transition:"easeInOutExpo", 
+          complete: function () {
+            aload.hide();
+            aload.unsetOverlay();
+            //set back loader opacity to 0 again
+            Velocity($("#loader"), { opacity: 1 }, { duration: 0 });
+          } 
+        }); 
+      }
+      else
+        aload.hide();
     }
   },
   //load object on created

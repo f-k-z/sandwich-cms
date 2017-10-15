@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <ul class="nav page-content">
-    	<li class="nav-item" v-for="page in pages">       
+    	<li class="nav-item" v-if="page.listed && page.published" v-for="page in pages">       
         <router-link class="thumb" :to="'page/'+page.slug">
         <!-- We only take the first three slice (header, text and sub) -->
           <div :class="slice.css_class" v-if="slice.index < 3" v-for="slice in page.slices"> 
@@ -55,7 +55,7 @@ export default {
   },
   //load object on created
   created: function() {
-     var scope = this;
+    var scope = this;
     var user = Firebase.auth().currentUser;
     this.isUser = (user) ? true : false;
     /** LOADER 
@@ -63,7 +63,6 @@ export default {
     **/
     this.$firebaseRefs.pages.once('value', function(pageSnapshot) {
       var headers = [];
-      
       pageSnapshot.forEach(function (snapshot) {
         var object = snapshot.val();
         var slices = object.slices;

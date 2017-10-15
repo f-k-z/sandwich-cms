@@ -44,7 +44,6 @@ export default {
       var scope = this;
       var imagesLoaded = 0;
       // start preloading
-      console.log(assets);
       for(var i = 0; i < assets.length; i++) 
       {
         var imageObj = new Image();
@@ -67,7 +66,7 @@ export default {
         slicesSnapshot.forEach(function (snapshot) {
           var sliceKey = snapshot.key;
           var object = snapshot.val();
-          
+          /** Loading stuff, we store img path **/
           if(scope.firstLoad) {
             var sliceDOM = object.content;
             //get image path
@@ -75,6 +74,7 @@ export default {
             if(src)
               imgToLoad.push(src[1]);
           }
+          /** end loading stuff **/
           object.sliceKey = sliceKey;
           scope.slices.push(object);
         });

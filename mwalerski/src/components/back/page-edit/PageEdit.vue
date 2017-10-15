@@ -19,7 +19,9 @@
 						<input type="checkbox" id="pagePublished" v-model="currentPage.published">
 						<label for="pagePublished">Published</label> | 
 						<input type="checkbox" id="pageLocked" v-model="currentPage.locked">
-						<label for="pageLocked">Locked</label>
+						<label for="pageLocked">Locked</label> | 
+						<input type="checkbox" id="pageListed" v-model="currentPage.listed">
+						<label for="pageListed">Listed</label>
 					</div>
 					<div class="form-group dates">
 						<p><strong>Created:</strong> {{currentPage.created | timestampToDate}}<br>
