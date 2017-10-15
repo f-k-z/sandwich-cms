@@ -189,6 +189,14 @@ export default {
     font-weight: normal;
   }
 
+  .quote b, .quote strong {
+    font-family: "CalibreMedium";
+    font-size: 14px;
+    letter-spacing: 0;
+    float: right;
+    text-transform: uppercase;
+  }
+
   .about .normal-text b, .about .normal-text a {
     color: #FFF;
   }
@@ -280,6 +288,7 @@ export default {
 
   .credits.unalign {
     text-align: left;
+    margin-top: 20px;
   }
 
   .quote {
@@ -343,6 +352,8 @@ export default {
       max-width: 70%;
       margin: 0 auto;
     }
+
+    .contact-pic { display: none; }
 
   }
 </style>
