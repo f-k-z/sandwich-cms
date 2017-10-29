@@ -70,6 +70,7 @@
                   <a v-else data-toggle="collapse" data-parent="#slices" :href="'#'+ slice.sliceKey">
                     {{ slice.name }}
                   </a>
+                  <b>Index: {{ slice.index }}</b>
                   <a class="action" v-on:click="removeSlice(slice, slice.sliceKey)" v-bind:class="{ disabled: slice.locked }">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </a>
@@ -163,19 +164,31 @@ export default {
     	//update snapshot table (reorder)
       this.draggedSlices.splice(event.newIndex, 0, this.draggedSlices.splice(event.oldIndex, 1)[0]);
       //update firebase
-      this.updateDragIndex(false);
+      this.updateDragIndex(true);
     },
     updateDragIndex: function(updateView) {
     	var scope = this;
     	var updates = {};
+      $('#slices .handle').addClass('disabled');
       for (var i = 0; i < this.draggedSlices.length; i++) {
       	var sliceKey = this.draggedSlices[i];
       	var path = this.pageKey + '/slices/' + sliceKey + '/index';
       	updates[path] = i;
+        //update related slice index
+        for (var j = 0; j < this.slices.length; j++) {
+          if(this.slices[j].sliceKey == sliceKey)
+            this.slices[j].index = i;
+        };
       };
       global.db.ref('pages').update(updates, function(error) {
+        
+         console.log("updateDragIndex: update");
       	if(updateView)
-      		scope.refreshSliceView();
+      		setTimeout(function() { 
+            $('#slices .handle').removeClass('disabled');
+            
+            scope.refreshSliceView(); 
+          }, 1000);
       });
     },
     dispatchUpdatedPage: function() {
@@ -190,6 +203,8 @@ export default {
     },
     refreshSliceView: function() {
     	var scope = this;
+      console.log("refreshSliceView");
+      sliceRef = global.db.ref('pages/'+this.pageKey+'/slices');
 	    //get slices in an array
 	    sliceRef.orderByChild('index').once('value', function(slicesSnapshot) {
 	      scope.slices = [];
@@ -202,12 +217,12 @@ export default {
 	         scope.slices.push(object);
 	         scope.draggedSlices.push(sliceKey);
 	     	});
+        console.log("refreshSliceView: value", scope.slices);
 	    });
     }
 	},
    //load object on created
   created: function() {
-    sliceRef = global.db.ref('pages/'+this.pageKey+'/slices');
     this.refreshSliceView();
   },
 }

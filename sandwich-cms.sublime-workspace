@@ -4,6 +4,66 @@
 		"selected_items":
 		[
 			[
+				"sli",
+				"slices"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"css",
+				"css_class"
+			],
+			[
+				"h",
+				"hidden"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"m",
+				"max-height"
+			],
+			[
+				"show",
+				"showContent"
+			],
+			[
+				"on",
+				"only"
+			],
+			[
+				"tex",
+				"text-transform"
+			],
+			[
+				"fo",
+				"font-weight"
+			],
+			[
+				"to",
+				"toastr"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"fir",
+				"firstLoad"
+			],
+			[
+				"fi",
+				"firstLoad"
+			],
+			[
 				"data",
 				"dataLoaded"
 			],
@@ -36,24 +96,12 @@
 				"animated-loader"
 			],
 			[
-				"ma",
-				"margin-left"
-			],
-			[
-				"tex",
-				"text-align"
-			],
-			[
 				"fon",
 				"font-size"
 			],
 			[
 				"bor",
 				"border-top"
-			],
-			[
-				"mar",
-				"margin-bottom"
 			],
 			[
 				"col",
@@ -66,10 +114,6 @@
 			[
 				"va",
 				"var"
-			],
-			[
-				"fo",
-				"forEach"
 			],
 			[
 				"slice",
@@ -128,10 +172,6 @@
 				"strip_tags"
 			],
 			[
-				"fi",
-				"function"
-			],
-			[
 				"c",
 				"click"
 			],
@@ -158,10 +198,6 @@
 			[
 				"lg",
 				"lg_font"
-			],
-			[
-				"te",
-				"text-decoration"
 			],
 			[
 				"wid",
@@ -400,10 +436,6 @@
 				"username"
 			],
 			[
-				"max",
-				"maximumUnits"
-			],
-			[
 				"byt",
 				"bytesIn"
 			],
@@ -482,44 +514,24 @@
 			[
 				"new",
 				"newPwd"
-			],
-			[
-				"prin",
-				"print_r"
-			],
-			[
-				"stat",
-				"static"
-			],
-			[
-				"SO",
-				"SOAPClient"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "mwalerski/src/App.vue",
-			"settings":
-			{
-				"buffer_size": 7736,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "mwalerski/src/components/front/Home.vue",
-			"settings":
-			{
-				"buffer_size": 3422,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "mwalerski/src/router/index.js",
 			"settings":
 			{
-				"buffer_size": 1135,
+				"buffer_size": 1400,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/front/PageView.vue",
+			"settings":
+			{
+				"buffer_size": 7681,
 				"line_ending": "Unix"
 			}
 		},
@@ -527,23 +539,40 @@
 			"file": "mwalerski/src/components/front/Front.vue",
 			"settings":
 			{
-				"buffer_size": 3995,
+				"buffer_size": 5386,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "mwalerski/src/components/front/AnimatedLoader.vue",
+			"file": "mwalerski/src/components/back/page-edit/SliceManager.vue",
 			"settings":
 			{
-				"buffer_size": 1655,
+				"buffer_size": 9636,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "mwalerski/src/components/front/HeaderFront.vue",
+			"contents": "positionnement item home :\n\n1 ligne par projet avec décalage vertical en %.\n\n",
 			"settings":
 			{
-				"buffer_size": 3588,
+				"buffer_size": 77,
+				"line_ending": "Unix",
+				"name": "positionnement item home :"
+			}
+		},
+		{
+			"file": "mwalerski/src/global.js",
+			"settings":
+			{
+				"buffer_size": 1367,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/index.html",
+			"settings":
+			{
+				"buffer_size": 1124,
 				"line_ending": "Unix"
 			}
 		}
@@ -660,12 +689,19 @@
 	},
 	"file_history":
 	[
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/DynamicPage.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/PageList.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/App.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/page-edit/PageEdit.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/HeaderFront.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/page-edit/FileManager.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/Home.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/PageView.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/Front.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/AnimatedLoader.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/global.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/Loader.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/firebase.json",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/HeaderFront.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/Front.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/router/index.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/page-edit/SliceManager.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/App.vue",
@@ -780,14 +816,7 @@
 		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/views/views-view-unformatted--foire-aux-questions--page.tpl.php",
 		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/views/views-view-fields--foire-aux-questions--page.tpl.php",
 		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/views/views-bootstrap-accordion-plugin-style--avantage-forfait--block.tpl.php",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/fonts/fonts.css",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/sass/_homepage.scss",
-		"/Applications/MAMP/htdocs/website/site_lagoon.sublime-project",
-		"/Applications/MAMP/htdocs/SelfCare/public/sites/all/themes/selfcare_lagoon/sass/_main.scss",
-		"/Applications/MAMP/htdocs/SelfCare/public/sites/all/themes/selfcare_lagoon/sass/_suiviconso.scss",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/js/lib/jquery.sticky.js",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/system/region.tpl.php",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/block/block--promo-footer.tpl.php"
+		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/fonts/fonts.css"
 	],
 	"find":
 	{
@@ -806,6 +835,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"onReloaded",
+			"firstLoad",
+			"home",
+			"pageKey",
+			"loading",
 			"Login",
 			"created: function() {\n    var user = Firebase.auth().currentUser;\n    this.isUser = (user) ? true : false;\n    this.$emit('loaded');\n  },",
 			"emit",
@@ -928,12 +962,7 @@
 			"smile u",
 			"smile",
 			"first-c",
-			"GILLET",
-			"label",
-			"		\n",
-			"label",
-			"isnt",
-			"_detail"
+			"GILLET"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -980,74 +1009,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "mwalerski/src/App.vue",
-					"settings":
-					{
-						"buffer_size": 7736,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								325,
-								325
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1966.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "mwalerski/src/components/front/Home.vue",
-					"settings":
-					{
-						"buffer_size": 3422,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2188,
-								2188
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 939.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "mwalerski/src/router/index.js",
 					"settings":
 					{
-						"buffer_size": 1135,
+						"buffer_size": 1400,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1076,
-								1076
+								465,
+								465
 							]
 						],
 						"settings":
@@ -1057,25 +1030,81 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 762.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "mwalerski/src/components/front/PageView.vue",
+					"settings":
+					{
+						"buffer_size": 7681,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								551,
+								551
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "mwalerski/src/components/front/Front.vue",
+					"settings":
+					{
+						"buffer_size": 5386,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1021,
+								1021
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 461.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "mwalerski/src/components/front/Front.vue",
+					"file": "mwalerski/src/components/back/page-edit/SliceManager.vue",
 					"settings":
 					{
-						"buffer_size": 3995,
+						"buffer_size": 9636,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3014,
-								3014
+								7621,
+								7621
 							]
 						],
 						"settings":
@@ -1085,62 +1114,88 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2360.0,
+						"translation.y": 3977.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "mwalerski/src/components/front/AnimatedLoader.vue",
 					"settings":
 					{
-						"buffer_size": 1655,
+						"buffer_size": 77,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								142,
-								142
+								77,
+								77
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"auto_name": "positionnement item home :",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1896.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "mwalerski/src/components/front/HeaderFront.vue",
+					"file": "mwalerski/src/global.js",
 					"settings":
 					{
-						"buffer_size": 3588,
+						"buffer_size": 1367,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1454,
-								1456
+								485,
+								485
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "mwalerski/index.html",
+					"settings":
+					{
+						"buffer_size": 1124,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1124,
+								1124
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 757.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

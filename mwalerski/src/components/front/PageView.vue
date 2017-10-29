@@ -13,6 +13,9 @@
 import global from '@/global'
 import HeaderFront from '@/components/front/HeaderFront'
 import Firebase from 'firebase'
+import { TimelineMax, TweenMax, Linear } from 'gsap';
+import ScrollMagic from 'scrollmagic';
+import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js';
 
 export default {
   name: 'page-edit',
@@ -120,6 +123,21 @@ export default {
   //load object on created
   created: function() {
     this.initPage();
+    /*** ScrollMagic ***/
+    // tween
+    var blockTween = new TweenMax.to('#content', 1.5, {
+      backgroundColor: 'red'
+  });
+    // init controller
+    var controller = new ScrollMagic.Controller();
+    // create a scene
+    new ScrollMagic.Scene({
+        duration: 100,  // the scene should last for a scroll distance of 100px
+        offset: 150    // start this scene after scrolling for 50px
+      })
+      .setTween(blockTween)
+      // pins the element for the the scene's duration
+      .addTo(controller); // assign the scene to the controller
   },
   watch: {
     '$route' (to, from) {

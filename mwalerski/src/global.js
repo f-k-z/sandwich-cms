@@ -14,7 +14,7 @@ const storage = app.storage().ref()
 
 export default {
 	/*** Project infos ***/
-	PROJECT_NAME: "Mehdi Walerski",
+	PROJECT_NAME: "Medhi Walerski",
 	/*** default page structure ***/
 	getEmptyPage: function () {
     return { 

@@ -15,7 +15,10 @@
     "toastr": "^2.1.2",
     "vue": "^2.2.2",
     "vue-router": "^2.3.0",
-    "vuefire": "^1.4.2"
+    "vuefire": "^1.4.2",
+    "gsap": "^1.19.1",
+    "jquery": "1.12.4 - 3",
+    "scrollmagic": "^2.0.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
@@ -52,7 +55,8 @@
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1",
-    "webpack-merge": "^2.6.1"
+    "webpack-merge": "^2.6.1",
+    "imports-loader": "^0.7.0"
   },
   "engines": {
     "node": ">= 4.0.0",
