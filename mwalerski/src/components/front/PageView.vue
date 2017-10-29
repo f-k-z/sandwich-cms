@@ -1,7 +1,7 @@
 <template>
 	<div class="page-view" :class="page.css_class">
 		<div id="slices" class="page-content">
-      <div v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible" :style="slice.css_style">
+      <div v-on:change="onChangeSlices" v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible" :id="'slice_' + sliceKey" :style="slice.css_style">
         <p class="slice" v-html="slice.content"></p>
       </div>
     </div>
@@ -9,13 +9,15 @@
 </template>
 
 <script>
-
 import global from '@/global'
 import HeaderFront from '@/components/front/HeaderFront'
 import Firebase from 'firebase'
 import { TimelineMax, TweenMax, Linear } from 'gsap';
 import ScrollMagic from 'scrollmagic';
+/** Weird NPM comment to resolve dependencie issue,
+see here for a mush cleaner approach: https://grzegorowski.com/scrollmagic-setup-for-webpack-commonjs/ */
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js';
+import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators.js';
 
 export default {
   name: 'page-edit',
@@ -42,6 +44,9 @@ export default {
     editPage: function (page) {
       this.$router.push('/admin/edit/'+this.key);
     },
+    onChangeSlices: function() {
+      
+    },
     loadAsset: function (assets) {
       var scope = this;
       var imagesLoaded = 0;
@@ -65,6 +70,7 @@ export default {
             else
               scope.$emit("cssclass", '');
             /** end body class **/
+            scope.initScrollAnimation();
           }
         }
       }
@@ -95,6 +101,7 @@ export default {
           scope.firstLoad = false;
           scope.loadAsset(imgToLoad);
         }
+        
       });
     },
     initPage: function() {
@@ -118,26 +125,41 @@ export default {
 
       var user = Firebase.auth().currentUser;
       this.isUser = (user) ? true : false;
+    },
+    initScrollAnimation: function () {
+    /*** ScrollMagic ***/
+      
+      // init controller
+      var controller = new ScrollMagic.Controller();
+
+      for (var i = 0; i < this.slices.length; i++) {
+        var slice = this.slices[i];
+        var domId = "#slice_"+i;
+        
+        if(slice.css_class.indexOf("quote") >= 0) {
+          console.log(domId);
+          /* Tween simple non synchro */
+          var tween = new TimelineMax()
+              .to(domId, 1, {opacity: 1,
+                  onStart: function () {},
+                  onReverseComplete: function () {}
+                }
+              );
+          $(domId).css({opacity: 0});
+          new ScrollMagic.Scene({
+           triggerElement: domId
+          })
+          //.setTween(domId, 1, { scale: 2.5 })
+          .setTween(tween)
+          .addIndicators({name: "timeline"}) 
+          .addTo(controller);
+        }
+      };
     }
   },
   //load object on created
   created: function() {
     this.initPage();
-    /*** ScrollMagic ***/
-    // tween
-    var blockTween = new TweenMax.to('#content', 1.5, {
-      backgroundColor: 'red'
-  });
-    // init controller
-    var controller = new ScrollMagic.Controller();
-    // create a scene
-    new ScrollMagic.Scene({
-        duration: 100,  // the scene should last for a scroll distance of 100px
-        offset: 150    // start this scene after scrolling for 50px
-      })
-      .setTween(blockTween)
-      // pins the element for the the scene's duration
-      .addTo(controller); // assign the scene to the controller
   },
   watch: {
     '$route' (to, from) {
