@@ -36,64 +36,31 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
-	$base-line-height: 40px;
-	$white: rgb(0,0,0);
-	$off-white: rgba($white, 0.2);
-	$spin-duration: 1s;
-
-	@keyframes spin {
-	  0% {
-	    transform: rotate(0deg);
-	  }
-	  100% {
-	    transform: rotate(360deg);
-	  }
-	}
-
-	@keyframes pulse {	
-	  50% { 
-	    background: $white;
-	  } 
-	}
-
-	.animated-loader.overlay {
-		z-index: 999;
-	}
-
-	.animated-loader.hide {
-		display: none;
-	}
-
 	.animated-loader {
 		position: fixed;
 		top: 0;
 		left: 0;
+		background-color: #fff;
 		width: 100%;
 		height: 100%;
-		background: #fff;
-		z-index: 9;
+	}
+
+	.overlay {
+		z-index: 20;
+	}
+
+	.hide {
+		display: none;
 	}
 
 	.loader {
 		position: absolute;
 		top: 50%;
 		left: 50%;
-		width: 50px; height: 50px;
-		margin-left: -25px;
-		margin-top: -25px;
-	}
-
-	.loading {
-	    border-radius: 50%;
-	    width: $base-line-height;
-	    height: $base-line-height;
-	    border: .25rem solid $off-white;
-	    border-top-color: $white;
-	    animation: spin $spin-duration infinite linear;
-	  &--double {
-	    border-style: double;
-	    border-width: .5rem;
-	  }
+		width: 217px; height: 117px;
+		margin-left: -108px;
+		margin-top: -68px;
+		background: transparent url('../../assets/loader.gif') no-repeat top left;
 	}
 
 </style>

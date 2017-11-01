@@ -39,7 +39,6 @@ export default {
       isUser: false,
       isLoading: false,
       firstLoad: true,
-      contentShown: true,
       css_class: ''
     }
   },
@@ -55,7 +54,7 @@ export default {
     enter: function (el, done) {
       //get all images in content and listen to their load
       // we use this and not the loaded event because there is some issue with the cache (Image have been loaded each time we open the äge view component on it)
-      var images = el.getElementsByTagName("img");
+      /*var images = el.getElementsByTagName("img");
       var done = done;
       var imagesLoaded = 0 ;
       var scope = this;
@@ -70,17 +69,17 @@ export default {
             done();
           }
         } 
-      }
+      }*/
+      done();
     },
     afterEnter: function (el) {
       
-      this.showContent();
+      
     },
     enterCancelled: function (el) {
       // ...
     },
     showContent: function () {
-      this.contentShown = true;
       this.$refs.aload.hide();
       //back the scroll to top
       Velocity($("#content"), "scroll", { offset:0, duration: 0 });
@@ -97,7 +96,6 @@ export default {
     // used in combination with CSS
     leave: function (el, done) {
       this.isLoading = true;
-      this.contentShown = false;
       //hide content
       Velocity($("#content"), { opacity: 0 }, { duration: 300, transition:"easeInExpo", complete: done }); 
     },
@@ -115,23 +113,18 @@ export default {
       var scope = this;
       var routerView = this.$refs.routerView;
       this.isLoading = true;
-      this.contentShown = false;
+      var aload = this.$refs.aload;
       Velocity($("#content"), { opacity: 0 }, { duration: 300, transition:"easeInExpo", complete: function() {
         routerView.initPage();
-        if(scope.isLoading)
-          scope.$refs.aload.show();
-        else if(!scope.contentShown)
-          scope.showContent();
+        if(this.isLoading)
+          aload.show();
       } }); 
-    },
-    onReloaded: function () {
-      this.isLoading = true;
-      if(!this.contentShown)
-        this.showContent();
     },
     onLoaded: function() {
       var aload = this.$refs.aload;
       var images = $("#content img");
+      this.isLoading = false;
+      //On first load
       if(this.firstLoad)
       {
         this.firstLoad = false;
@@ -146,15 +139,15 @@ export default {
         }); 
       }
       else
-        aload.hide();
+        this.showContent();
     }
   },
   //load object on created
   created: function() {
+    console.log('Front: created');
     var user = Firebase.auth().currentUser;
     this.isUser = (user) ? true : false;
     var scope = this;
-    console.log('created');
   },
 }
 </script>

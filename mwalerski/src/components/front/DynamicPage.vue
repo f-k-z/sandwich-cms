@@ -1,5 +1,5 @@
 <template>
-  <page-view :slug="slug"></page-view>
+  <page-view v-on:reload="onReload" v-on:reloaded="onReloaded" v-on:loaded="onLoaded" v-on:cssclass="onClass" :slug="slug"></page-view>
 </template>
 
 <script>
@@ -17,6 +17,18 @@ export default {
     }
   },
   methods: {
+    onLoaded: function() {
+      this.$emit('loaded');
+    },
+    onReload: function() {
+      this.$emit('reload');
+    },
+    onReloaded: function() {
+      this.$emit('reloaded');
+    },
+    onClass: function(css_class) {
+      this.$emit("cssclass", css_class);
+    },
   },
   //load object on created
   created: function() {

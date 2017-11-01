@@ -2,7 +2,7 @@
   <div class="page-list">
     <ul class="nav page-content">
     	<li class="nav-item" v-if="page.listed && page.published" v-for="page in pages">       
-        <router-link class="thumb" :to="'work/'+page.slug">
+        <router-link class="thumb" :to="'/work/'+page.slug">
         <!-- We only take the first three slice (header, text and sub) -->
           <div :class="slice.css_class" v-if="slice.index < 3" v-for="slice in page.slices"> 
             <div v-html="slice.content"></div>

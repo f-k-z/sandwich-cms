@@ -1,8 +1,7 @@
 <template>
 	<div class="page-view" :class="page.css_class">
 		<div id="slices" class="page-content">
-      <div v-on:change="onChangeSlices" v-for="(slice, sliceKey) in slices" :class="slice.css_class" v-if="slice.visible" :id="'slice_' + sliceKey" :style="slice.css_style">
-        <p class="slice" v-html="slice.content"></p>
+      <div v-on:change="onChangeSlices" v-for="(slice, sliceKey) in slices" :class="'slice '+slice.css_class" v-if="slice.visible" :id="'slice_' + sliceKey" :style="slice.css_style" v-html="slice.content">
       </div>
     </div>
 	</div>
@@ -14,6 +13,8 @@ import HeaderFront from '@/components/front/HeaderFront'
 import Firebase from 'firebase'
 import { TimelineMax, TweenMax, Linear } from 'gsap';
 import ScrollMagic from 'scrollmagic';
+import SplitText from 'split-text';
+import Velocity from 'velocity-animate'
 /** Weird NPM comment to resolve dependencie issue,
 see here for a mush cleaner approach: https://grzegorowski.com/scrollmagic-setup-for-webpack-commonjs/ */
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js';
@@ -37,7 +38,8 @@ export default {
       slices: [],
       isUser: false,
       firstLoad: true,
-      isReload: false
+      isReload: false,
+      scrollController: null
     }
   },
   methods: {
@@ -58,18 +60,6 @@ export default {
         imageObj.onload = function() {
           imagesLoaded++;
           if(imagesLoaded == assets.length) {
-            //EMIT LOADED EVENT
-            scope.$emit('loaded');
-            if(scope.isReload) {
-              scope.$emit('reloaded');
-              scope.isReload = false;
-            }
-             /** body class **/
-            if(scope.page.css_class)
-              scope.$emit("cssclass", scope.page.css_class);
-            else
-              scope.$emit("cssclass", '');
-            /** end body class **/
             scope.initScrollAnimation();
           }
         }
@@ -128,38 +118,91 @@ export default {
     },
     initScrollAnimation: function () {
     /*** ScrollMagic ***/
-      
+      this.destroyScrollMagic();
+
       // init controller
-      var controller = new ScrollMagic.Controller();
+      var controller = this.scrollController = new ScrollMagic.Controller();
 
       for (var i = 0; i < this.slices.length; i++) {
         var slice = this.slices[i];
         var domId = "#slice_"+i;
-        
-        if(slice.css_class.indexOf("quote") >= 0) {
-          console.log(domId);
+        var isTween = false;
+        var isReverse = false; 
+        var onComplete
+        if(slice.css_class.indexOf("header") >= 0) {
+          isTween = false;
+        }
+        else if(slice.css_class.indexOf("normal-text") >= 0) {
           /* Tween simple non synchro */
-          var tween = new TimelineMax()
-              .to(domId, 1, {opacity: 1,
-                  onStart: function () {},
-                  onReverseComplete: function () {}
-                }
-              );
-          $(domId).css({opacity: 0});
+          var tween = new TimelineMax().to(domId, .6, {opacity: 1, scale:1, ease: Expo.easeOut });
+          TweenLite.set(domId, {opacity: 0, scale:1.2});
+          isTween = true;
+        }
+        else if(slice.css_class.indexOf("quote") >= 0) {
+          var tween = new TimelineMax().to(domId, 1, {opacity: 1, scale:1 });
+          TweenLite.set(domId, {opacity: 0, scale:1.5});
+          /*var pId = domId;
+          var mySplitText = new SplitText(pId, {type:"lines"}),
+          tween = new TimelineLite();
+          tween.staggerFrom(mySplitText.lines, 0.5, {opacity:0, cycle:{x:[100, -100]}}, 0.2)
+          /* */
+          isTween = true;
+        }
+        else if(slice.css_class.indexOf("img-float-left") >= 0 ||  slice.css_class.indexOf("off") >= 0) {
+          var tween = new TimelineMax().to(domId, 1.5, {opacity: 1, left:0, ease: Sine.easeOut });
+          TweenLite.set(domId, {opacity: 0, left:"50%"});
+          /* */
+          isTween = isReverse = true;
+        }
+        else if(slice.css_class.indexOf("img-float-right") >= 0) {
+          var tween = new TimelineMax().to(domId, 1.5, {opacity: 1, right:0, ease: Sine.easeOut });
+          TweenLite.set(domId, {opacity: 0, right:"50%"});
+          /* */
+          isTween = isReverse = true;
+        }
+        else {
+          /* Tween simple non synchro */
+          var tween = new TimelineMax().to(domId, .5, {opacity: 1});
+          TweenLite.set(domId, {opacity: 0});
+          isTween = true;
+        }
+
+        if(isTween)
           new ScrollMagic.Scene({
-           triggerElement: domId
+           triggerElement: domId,
+           reverse:isReverse
           })
           //.setTween(domId, 1, { scale: 2.5 })
           .setTween(tween)
-          .addIndicators({name: "timeline"}) 
+          //.addIndicators({name: "timeline"}) 
           .addTo(controller);
-        }
       };
+
+      controller.update(true);
+      this.emitEnd();
+    },
+    emitEnd: function() {
+      //EMIT LOADED EVENT
+      this.$emit('loaded');
+
+      if(this.page.css_class)
+        this.$emit("cssclass", this.page.css_class);
+      else
+        this.$emit("cssclass", '');
+    },
+    destroyScrollMagic: function() {
+      document.body.scrollTop = document.documentElement.scrollTop = 0;
+      if(this.scrollController) {
+        this.scrollController.destroy(true);
+      }
     }
   },
   //load object on created
   created: function() {
     this.initPage();
+  },
+  destroyed: function() {
+    
   },
   watch: {
     '$route' (to, from) {
@@ -173,14 +216,11 @@ export default {
 
 <!-- Global CSS -->
 <style lang="scss">
-  .slice 
-  {
-    width: 100%;
-    img {
-      max-width: 100%;
-      height: auto;
-    }
+  .slice img {
+    max-width: 100%;
+    height: auto;
   }
+
 
   .contact-pic { 
     .slice img {
@@ -240,6 +280,8 @@ export default {
   .about .normal-text b, .about .normal-text a {
     color: #FFF;
   }
+  #slices { margin-bottom: 200px; }
+
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>

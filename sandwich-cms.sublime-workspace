@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"sl",
+				"slice"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
 				"sli",
 				"slices"
 			],
@@ -118,10 +126,6 @@
 			[
 				"slice",
 				"sliceKey"
-			],
-			[
-				"for",
-				"for	for (…) {…}"
 			],
 			[
 				"nav",
@@ -510,10 +514,6 @@
 			[
 				"array_p",
 				"array_push"
-			],
-			[
-				"new",
-				"newPwd"
 			]
 		]
 	},
@@ -531,7 +531,7 @@
 			"file": "mwalerski/src/components/front/PageView.vue",
 			"settings":
 			{
-				"buffer_size": 7681,
+				"buffer_size": 10115,
 				"line_ending": "Unix"
 			}
 		},
@@ -552,27 +552,42 @@
 			}
 		},
 		{
-			"contents": "positionnement item home :\n\n1 ligne par projet avec décalage vertical en %.\n\n",
-			"settings":
-			{
-				"buffer_size": 77,
-				"line_ending": "Unix",
-				"name": "positionnement item home :"
-			}
-		},
-		{
-			"file": "mwalerski/src/global.js",
-			"settings":
-			{
-				"buffer_size": 1367,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "mwalerski/index.html",
 			"settings":
 			{
 				"buffer_size": 1124,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "sandwich-cms/package.json",
+			"settings":
+			{
+				"buffer_size": 1832,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/package.json",
+			"settings":
+			{
+				"buffer_size": 1944,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/config/index.js",
+			"settings":
+			{
+				"buffer_size": 1437,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/build/webpack.base.conf.js",
+			"settings":
+			{
+				"buffer_size": 1337,
 				"line_ending": "Unix"
 			}
 		}
@@ -689,6 +704,10 @@
 	},
 	"file_history":
 	[
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/package.json",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/node_modules/scrollmagic/scrollmagic/minified/plugins/animation.gsap.min.js",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/node_modules/scrollmagic/package.json",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/global.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/DynamicPage.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/PageList.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/App.vue",
@@ -699,7 +718,6 @@
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/PageView.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/Front.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/AnimatedLoader.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/global.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/Loader.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/firebase.json",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/router/index.js",
@@ -813,10 +831,7 @@
 		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/sass/style.scss",
 		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/sass/_footer.scss",
 		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/site_lagoon.info",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/views/views-view-unformatted--foire-aux-questions--page.tpl.php",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/views/views-view-fields--foire-aux-questions--page.tpl.php",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/views/views-bootstrap-accordion-plugin-style--avantage-forfait--block.tpl.php",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/fonts/fonts.css"
+		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/views/views-view-unformatted--foire-aux-questions--page.tpl.php"
 	],
 	"find":
 	{
@@ -1004,7 +1019,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -1040,15 +1055,15 @@
 					"file": "mwalerski/src/components/front/PageView.vue",
 					"settings":
 					{
-						"buffer_size": 7681,
+						"buffer_size": 10115,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								551,
-								551
+								1963,
+								1963
 							]
 						],
 						"settings":
@@ -1058,7 +1073,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1440.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1075,8 +1090,8 @@
 						"selection":
 						[
 							[
-								1021,
-								1021
+								607,
+								585
 							]
 						],
 						"settings":
@@ -1086,7 +1101,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 461.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1103,8 +1118,8 @@
 						"selection":
 						[
 							[
-								7621,
-								7621
+								505,
+								505
 							]
 						],
 						"settings":
@@ -1114,66 +1129,13 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3977.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"settings":
-					{
-						"buffer_size": 77,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								77,
-								77
-							]
-						],
-						"settings":
-						{
-							"auto_name": "positionnement item home :",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "mwalerski/src/global.js",
-					"settings":
-					{
-						"buffer_size": 1367,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								485,
-								485
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
 					"file": "mwalerski/index.html",
 					"settings":
 					{
@@ -1184,13 +1146,125 @@
 						"selection":
 						[
 							[
-								1124,
-								1124
+								58,
+								58
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "sandwich-cms/package.json",
+					"settings":
+					{
+						"buffer_size": 1832,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1829,
+								1829
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 931.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "mwalerski/package.json",
+					"settings":
+					{
+						"buffer_size": 1944,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1864,
+								1864
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1006.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "mwalerski/config/index.js",
+					"settings":
+					{
+						"buffer_size": 1437,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1434,
+								1434
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 247.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "mwalerski/build/webpack.base.conf.js",
+					"settings":
+					{
+						"buffer_size": 1337,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								526,
+								526
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
