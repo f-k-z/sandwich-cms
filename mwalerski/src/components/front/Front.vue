@@ -11,7 +11,7 @@
           v-on:leave="leave"
           v-on:after-leave="afterLeave"
           v-on:leave-cancelled="leaveCancelled">
-        <router-view ref="routerView" v-on:reload="onReload" v-on:reloaded="onReloaded" v-on:loaded="onLoaded" v-on:cssclass="onClass"></router-view>
+        <router-view ref="routerView" v-on:reload="onReload" v-on:loaded="onLoaded" v-on:cssclass="onClass"></router-view>
       </transition>
     </div>
     <div class="bg"></div>
@@ -115,8 +115,9 @@ export default {
       this.isLoading = true;
       var aload = this.$refs.aload;
       Velocity($("#content"), { opacity: 0 }, { duration: 300, transition:"easeInExpo", complete: function() {
+        scope.css_class = '';
         routerView.initPage();
-        if(this.isLoading)
+        if(scope.isLoading)
           aload.show();
       } }); 
     },

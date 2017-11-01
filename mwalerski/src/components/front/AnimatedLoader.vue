@@ -24,9 +24,11 @@ export default {
 			$('.animated-loader').removeClass('overlay');
 		},
 		hide: function() {
+			$('body').css('overflow', 'visible');
 			$('.animated-loader').addClass('hide');
 		},
 		show: function() {
+			$('body').css('overflow', 'hidden');
 			$('.animated-loader').removeClass('hide');
 		}
 	}
@@ -46,7 +48,7 @@ export default {
 	}
 
 	.overlay {
-		z-index: 20;
+		z-index: 30;
 	}
 
 	.hide {

@@ -1,7 +1,8 @@
 <template>
 	<div class="page-view" :class="page.css_class">
 		<div id="slices" class="page-content">
-      <div v-on:change="onChangeSlices" v-for="(slice, sliceKey) in slices" :class="'slice '+slice.css_class" v-if="slice.visible" :id="'slice_' + sliceKey" :style="slice.css_style" v-html="slice.content">
+      <div v-for="(slice, sliceKey) in slicesToDisplay" v-if="slice.visible"  :style="slice.css_style" >
+        <div :id="'slice_' + page.slug + '_' + sliceKey" :class="'slice '+slice.css_class" v-html="slice.content"></div>
       </div>
     </div>
 	</div>
@@ -30,6 +31,17 @@ export default {
   components: {
     HeaderFront
   },
+  computed: {
+    
+    // a computed getter
+    slicesToDisplay: {
+      cache: false,
+      get: function () {
+        // `this` points to the vm instance
+        return this.slices;
+      }
+    }
+  },
   data () {
     return {
       title: global.PROJECT_NAME,
@@ -45,9 +57,6 @@ export default {
   methods: {
     editPage: function (page) {
       this.$router.push('/admin/edit/'+this.key);
-    },
-    onChangeSlices: function() {
-      
     },
     loadAsset: function (assets) {
       var scope = this;
@@ -70,7 +79,7 @@ export default {
       var imgToLoad = [];
       //get slices in an array
       global.db.ref('pages/'+this.key+'/slices').orderByChild('index').once('value', function(slicesSnapshot) {
-        scope.slices = [];
+        
         //snapshot as an array
         slicesSnapshot.forEach(function (snapshot) {
           var sliceKey = snapshot.key;
@@ -96,8 +105,9 @@ export default {
     },
     initPage: function() {
       this.firstLoad = true;
-
+      this.$forceUpdate();
       var scope = this;
+      this.slices = [];
       //get page by slug
       this.$firebaseRefs.pages.orderByChild("slug").equalTo(this.slug).on('value', function(pageSnapshot) {
         var exists = pageSnapshot.exists();
@@ -117,15 +127,18 @@ export default {
       this.isUser = (user) ? true : false;
     },
     initScrollAnimation: function () {
-    /*** ScrollMagic ***/
+      /*** ScrollMagic ***/
       this.destroyScrollMagic();
 
       // init controller
-      var controller = this.scrollController = new ScrollMagic.Controller();
+      this.scrollController = new ScrollMagic.Controller();
 
       for (var i = 0; i < this.slices.length; i++) {
         var slice = this.slices[i];
-        var domId = "#slice_"+i;
+        var domId = "#slice_"+ this.page.slug +"_" +i;
+        //important, reset style, otherwise vue keeps old TweenLite.set
+        $(domId).attr('style', '');
+
         var isTween = false;
         var isReverse = false; 
         var onComplete
@@ -149,13 +162,13 @@ export default {
           isTween = true;
         }
         else if(slice.css_class.indexOf("img-float-left") >= 0 ||  slice.css_class.indexOf("off") >= 0) {
-          var tween = new TimelineMax().to(domId, 1.5, {opacity: 1, left:0, ease: Sine.easeOut });
+          var tween = new TimelineMax().to(domId, 1.2, {opacity: 1, left:0, ease: Power3.easeOut });
           TweenLite.set(domId, {opacity: 0, left:"50%"});
           /* */
           isTween = isReverse = true;
         }
         else if(slice.css_class.indexOf("img-float-right") >= 0) {
-          var tween = new TimelineMax().to(domId, 1.5, {opacity: 1, right:0, ease: Sine.easeOut });
+          var tween = new TimelineMax().to(domId, 1.2, {opacity: 1, right:0, ease: Power3.easeOut });
           TweenLite.set(domId, {opacity: 0, right:"50%"});
           /* */
           isTween = isReverse = true;
@@ -170,15 +183,15 @@ export default {
         if(isTween)
           new ScrollMagic.Scene({
            triggerElement: domId,
-           reverse:isReverse
+           reverse:false
           })
           //.setTween(domId, 1, { scale: 2.5 })
           .setTween(tween)
           //.addIndicators({name: "timeline"}) 
-          .addTo(controller);
+          .addTo(this.scrollController);
       };
 
-      controller.update(true);
+      this.scrollController.update(true);
       this.emitEnd();
     },
     emitEnd: function() {
@@ -194,6 +207,7 @@ export default {
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       if(this.scrollController) {
         this.scrollController.destroy(true);
+        this.scrollController = null;
       }
     }
   },
@@ -390,12 +404,14 @@ export default {
     position: absolute;
     left: -0px;
     max-width: $sidebar_w - 2%;
+    z-index: 12;
   }
 
   .img-float-right {
     position: absolute;
     right: 0px;
     max-width: $sidebar_w;
+    z-index: 13;
   }
 
   .off {
