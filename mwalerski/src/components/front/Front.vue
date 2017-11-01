@@ -1,7 +1,7 @@
 <template>
   <div id="front" :class="css_class">
     <header-front></header-front>
-    <animated-loader id="loader" ref="aload"></animated-loader>
+    <animated-loader v-on:close="onLoaderClose" id="loader" ref="aload"></animated-loader>
     <div id="content">
       <transition v-on:before-enter="beforeEnter"
           v-on:enter="enter"
@@ -129,23 +129,28 @@ export default {
       if(this.firstLoad)
       {
         this.firstLoad = false;
-        //hide loader
-        Velocity($("#loader"), { opacity: 0 }, { duration: 800, transition:"easeInOutExpo", 
-          complete: function () {
-            aload.hide();
-            aload.unsetOverlay();
-            //set back loader opacity to 0 again
-            Velocity($("#loader"), { opacity: 1 }, { duration: 0 });
-          } 
-        }); 
+        aload.close();
       }
       else
         this.showContent();
+    },
+    onLoaderClose: function() {
+      var aload = this.$refs.aload;
+      //hide loader
+      Velocity($("#loader"), { opacity: 0 }, { duration: 800, transition:"easeInOutExpo", 
+        complete: function () {
+          aload.hide();
+          aload.unsetOverlay();
+          //set back loader opacity to 0 again
+          Velocity($("#loader"), { opacity: 1 }, { duration: 0 });
+        } 
+      }); 
     }
   },
   //load object on created
   created: function() {
-    console.log('Front: created');
+    
+    $('body').css('overflow', 'hidden');
     var user = Firebase.auth().currentUser;
     this.isUser = (user) ? true : false;
     var scope = this;

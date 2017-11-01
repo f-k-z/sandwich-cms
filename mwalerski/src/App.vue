@@ -25,7 +25,9 @@ export default {
 </script>
 
 <style lang="scss">
-
+html {
+  overflow-y: scroll;
+}
 :focus {
     outline: 0;
     -webkit-box-shadow: none !important;

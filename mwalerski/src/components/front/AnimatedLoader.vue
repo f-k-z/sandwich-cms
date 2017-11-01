@@ -1,13 +1,14 @@
 <template>
 	<div class="animated-loader overlay">
 		<div class="loader">
-			<div class="loading"></div>
+			<div id="logo" class="loading"></div>
 		</div>
 	</div>
 </template>
 
 <script>
 import global from '@/global'
+import Velocity from 'velocity-animate'
 
 export default {
 	name: 'animated-loader',
@@ -22,13 +23,20 @@ export default {
 		},
 		unsetOverlay: function() {
 			$('.animated-loader').removeClass('overlay');
+			$("#logo").addClass('hide');
 		},
 		hide: function() {
-			$('body').css('overflow', 'visible');
+			$('body').css('position', 'static');
 			$('.animated-loader').addClass('hide');
 		},
+		close: function() {
+			var scope = this;
+			Velocity($("#logo"), { left: '12.38%' }, { duration: 2000, transition:"easeInOutExpo", complete: function () {
+					scope.$emit('close');
+			} }); 
+		},
 		show: function() {
-			$('body').css('overflow', 'hidden');
+			$('body').css('position', 'fixed');
 			$('.animated-loader').removeClass('hide');
 		}
 	}
@@ -55,13 +63,13 @@ export default {
 		display: none;
 	}
 
-	.loader {
+	.loading {
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		width: 217px; height: 117px;
 		margin-left: -108px;
-		margin-top: -68px;
+		margin-top: -91px;
 		background: transparent url('../../assets/loader.gif') no-repeat top left;
 	}
 
