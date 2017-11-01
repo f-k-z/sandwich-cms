@@ -214,6 +214,11 @@ export default {
   //load object on created
   created: function() {
     this.initPage();
+    /*$(window).scroll(function() {
+   if($(window).scrollTop() + $(window).height() == $(document).height()) {
+       alert("bottom!");
+   }
+});*/
   },
   destroyed: function() {
     
@@ -322,19 +327,26 @@ export default {
     letter-spacing: 1.79px;
     position: absolute;
     text-transform: uppercase;
-    margin-top: 20px;
+    margin-top: 80px;
   }
 
   /*.video { width: 100%; p { width: 100%;} text-align: center;}*/
 
-  .video { margin-left: 15%; }
+  .video { 
+    margin: 80px 0 80px 15%; 
+  }
+
+  .asset {
+    margin-top: 80px;
+    margin-bottom: 80px;
+  }
 
   .sub {
     font-family: 'CardoItalic';
     font-size: 16px;
     color: #000000;
     letter-spacing: 0;
-    margin: 30px 0 20px 15%;
+    margin: 80px 0 20px 15%;
   }
 
   .header { margin-top: -200px; }
@@ -360,7 +372,6 @@ export default {
     max-width: 450px;
     width: 80%;
     text-align: justify;
-    margin-bottom: 20px;
   }
 
   .big-letter {
@@ -379,12 +390,14 @@ export default {
     max-width: 450px;
     width: 80%;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 120px;
+    margin-bottom: 120px;
   }
 
   .credits.unalign {
     text-align: left;
-    margin-top: 20px;
+    margin-top: 80px;
+    margin-bottom: 80px;
   }
 
   .quote {
@@ -395,8 +408,11 @@ export default {
     line-height: 39px;
     max-width: 900px;
     width: 80%;
-    margin-bottom: 30px;
+    margin-top: 80px;
+    margin-bottom: 80px;
   }
+
+  .quote + div { margin-top: 0; }
 
   .about .quote { color: #fff; }
 
