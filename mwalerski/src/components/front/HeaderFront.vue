@@ -1,17 +1,17 @@
 <template>
-  <header>    
+  <header :class="{ open: isNavOpen }">    
 		<h2>Choregrapher  <span class="cardo">&</span> Dancer</h2>
 		<h1 class="logo"><router-link class="btn" :to="'/'">{{ title }}</router-link></h1>
-    <div id="nav-icon">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div id="nav-icon" v-on:click="toggleNav">
+      <span class="n1"></span>
+      <span class="n2"></span>
+      <span class="n3"></span>
     </div>
 		<nav>
 			<ul>
-				<li><router-link :to="'/work'"><span class="cardo">View</span> My Work</router-link></li>
-				<li><router-link :to="'/about'"><span class="cardo">About</span> Me</router-link></li>
-				<li><router-link :to="'/contact'"><span class="cardo">Keep</span> Contact</router-link></li>
+				<li><router-link v-on:click.native="toggleNav" :to="'/work'"><span class="cardo">View</span> My Work</router-link></li>
+				<li><router-link v-on:click.native="toggleNav" :to="'/about'"><span class="cardo">About</span> Me</router-link></li>
+				<li><router-link v-on:click.native="toggleNav" :to="'/contact'"><span class="cardo">Keep</span> Contact</router-link></li>
 			</ul>
 		</nav>
   </header>
@@ -29,13 +29,17 @@ export default {
   data () {
     return {
       title: global.PROJECT_NAME,
-      isUser: false
+      isUser: false,
+      isNavOpen: false
     }
   },
   methods: {
     goToAdmin: function () {
       this.$router.push('/admin');
     },
+    toggleNav: function () {
+      this.isNavOpen = !this.isNavOpen;
+    }
   },
   //load object on created
   created: function() {
@@ -144,6 +148,8 @@ export default {
       text-decoration: none!important;
   	}
 
+    .bg { display: none; }
+
   	li a:not(:hover) {
   		color: #999999;
   	}
@@ -156,7 +162,7 @@ export default {
   /*** HAMBURGER ***/
   #nav-icon {
     display: none;
-    width: 37px;
+    width: 38px;
     height: 21px;
     position: relative;
     margin: 30px auto 0 auto;
@@ -168,8 +174,8 @@ export default {
     height: 3px;
     width: 100%;
     background: #000;
-    margin-bottom: 6px;
-    transition: background-color 0.5s ease-in-out;
+    margin-bottom: 10px;
+    transition: all 0.2s ease-out;
   }
 
   .about #nav-icon span {
@@ -191,10 +197,53 @@ export default {
       width: 100%;
       left: 0;
       top: 0;
-      height: 210px;
+      height: 160px;
     }
     h2 { display: none; }
-    nav { display: none; }
+    /* nav { display: none; }*/
+    nav {
+      margin: 0;
+      background: rgba(0, 0, 0, .6);
+      height: 100%;
+      width: 100%;
+      position: fixed;
+      top: 0; left: 0;
+      ul {
+        position: absolute;
+        left: 50%;
+        margin-left: -90px;
+        margin-top: 220px;
+        li a {
+          font-size: 180%;
+          width: 180px;
+          color: #FFF;
+        }
+      }
+      display: none;
+    }
+    header.open {
+      nav { display: block; }
+      #nav-icon { 
+        position: fixed; 
+        z-index: 200;
+        left: 50%;
+        margin-left: -19px;
+        span { background: #fff; }
+      }
+      
+      .cardo, li a { color: #fff!important; }
+      .n1 {
+        transform: rotate(45deg);
+        transform-origin: top left;
+        margin-left: 7px
+      }
+      .n2 { opacity: 0; }
+      .n3 {
+        transform: rotate(-45deg);
+        transform-origin: bottom left;
+        margin-left: 7px
+      }
+    }
     h1.logo { position: static; margin: 0; margin-top: 50px; }
     h1.logo a {
       width: 200px;

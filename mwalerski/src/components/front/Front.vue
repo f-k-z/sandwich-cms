@@ -100,9 +100,12 @@ export default {
       Velocity($("#content"), { opacity: 0 }, { duration: 300, transition:"easeInExpo", complete: done }); 
     },
     afterLeave: function (el) {
+      var aload = this.$refs.aload;
       //don't show the loader if load is already done
-      if(this.isLoading)
-        this.$refs.aload.show();
+      if(this.isLoading) {
+        aload.show();
+        aload.startRandomGif();
+      }
     },
     // leaveCancelled only available with v-show
     leaveCancelled: function (el) {
@@ -117,14 +120,18 @@ export default {
       Velocity($("#content"), { opacity: 0 }, { duration: 300, transition:"easeInExpo", complete: function() {
         scope.css_class = '';
         routerView.initPage();
-        if(scope.isLoading)
+        if(scope.isLoading) {
           aload.show();
+          aload.startRandomGif();
+        }
+          
       } }); 
     },
     onLoaded: function() {
       var aload = this.$refs.aload;
       var images = $("#content img");
       this.isLoading = false;
+      aload.stopRandomGif();
       //On first load
       if(this.firstLoad)
       {
@@ -159,6 +166,7 @@ export default {
 </script>
 <!-- GLOBAL CSS -->
 <style lang="scss">
+  #front { width: 100%; height: 100%; }
   #front .bg{
     width: 100%;
     height: 100%;

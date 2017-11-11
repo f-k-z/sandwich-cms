@@ -15,7 +15,8 @@ import Firebase from 'firebase'
 import { TimelineMax, TweenMax, Linear } from 'gsap';
 import ScrollMagic from 'scrollmagic';
 import SplitText from 'split-text';
-import Velocity from 'velocity-animate'
+import Velocity from 'velocity-animate';
+import Croppie from 'croppie';
 /** Weird NPM comment to resolve dependencie issue,
 see here for a mush cleaner approach: https://grzegorowski.com/scrollmagic-setup-for-webpack-commonjs/ */
 import 'imports-loader?define=>false!scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap.js';
@@ -142,7 +143,7 @@ export default {
         var isTween = false;
         var isReverse = false; 
         var onComplete
-        if(slice.css_class.indexOf("header") >= 0) {
+        if(slice.css_class.indexOf("header") >= 0 || slice.css_class.indexOf("no-anim") >= 0) {
           isTween = false;
         }
         else if(slice.css_class.indexOf("normal-text") >= 0) {
@@ -152,7 +153,7 @@ export default {
           isTween = true;
         }
         else if(slice.css_class.indexOf("quote") >= 0) {
-          var tween = new TimelineMax().to(domId, 1, {opacity: 1, scale:1 });
+          var tween = new TimelineMax().to(domId, 1, {opacity: 1, scale:1, ease: Power3.easeOut });
           TweenLite.set(domId, {opacity: 0, scale:1.5});
           /*var pId = domId;
           var mySplitText = new SplitText(pId, {type:"lines"}),
@@ -195,6 +196,7 @@ export default {
       this.emitEnd();
     },
     emitEnd: function() {
+      var scope = this;
       //EMIT LOADED EVENT
       this.$emit('loaded');
 
@@ -202,6 +204,22 @@ export default {
         this.$emit("cssclass", this.page.css_class);
       else
         this.$emit("cssclass", '');
+
+      if(this.page.css_class == 'contact')
+      {
+        this.resizeContact();
+        $( window ).resize(function() {
+          scope.resizeContact();
+        });
+      }
+    },
+    resizeContact: function() {
+      //calculate the ratio base on original image size (1024px height & 685px width)
+      var ratio = $(window).height()/1024;
+      var next_w = Math.round(ratio*685);
+      var r = 80 + next_w;
+      $( "#slice_contact_2" ).css('right', r+'px');
+      $( "#slice_contact_1" ).css('right', (r - 350)+'px');
     },
     destroyScrollMagic: function() {
       document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -214,11 +232,6 @@ export default {
   //load object on created
   created: function() {
     this.initPage();
-    /*$(window).scroll(function() {
-   if($(window).scrollTop() + $(window).height() == $(document).height()) {
-       alert("bottom!");
-   }
-});*/
   },
   destroyed: function() {
     
@@ -299,7 +312,16 @@ export default {
   .about .normal-text b, .about .normal-text a {
     color: #FFF;
   }
-  #slices { margin-bottom: 200px; }
+
+  .contact-pic  { 
+    position: absolute;
+    img { height: 100%!important; }
+  }
+  #slice_contact_2 {
+    position: absolute;
+    bottom: 120px;
+    right: 700px;
+  }
 
 </style>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -341,6 +363,10 @@ export default {
     margin-bottom: 80px;
   }
 
+  .inside-img { padding: 40px; }
+
+  .margin-top-null { margin-top: 0!important; }
+
   .sub {
     font-family: 'CardoItalic';
     font-size: 16px;
@@ -359,9 +385,10 @@ export default {
     padding: 0;
   }
 
-  .contact-pic { 
+  .contact-pic  { 
     position: absolute; height: 100%;
     right: 0;
+    img { height: 100%!important; }
   }
   .normal-text {
     font-family: 'CalibreRegular';
@@ -379,11 +406,14 @@ export default {
     font-size: 40px;
     color: #1A1A1A;
     letter-spacing: 130.4px;
-    line-height: 242px;
+    line-height: 150px;
     text-transform: uppercase;
-    position: relative;
+    position: absolute;
     z-index: 10;
     word-wrap: break-word;
+    width: 550px;
+    top: 120px;
+    text-align:center;
   }
 
   .credits {
@@ -449,11 +479,11 @@ export default {
     .header, .normal-text, .sub, .quote, .title, .credits {
       width: 100%;
       padding: 0 40px;
-      text-align: center;
       max-width: 800px;
       margin: 30px auto;
     }
     .title { position: static; }
+    .quote { margin-top: 0!important; }
 
     .header { text-align: center; width: 100%; }
 
