@@ -134,7 +134,7 @@ export default {
       // init controller
       this.scrollController = new ScrollMagic.Controller();
 
-      for (var i = 0; i < this.slices.length; i++) {
+      for (var i = 3; i < this.slices.length; i++) {
         var slice = this.slices[i];
         var domId = "#slice_"+ this.page.slug +"_" +i;
         //important, reset style, otherwise vue keeps old TweenLite.set
@@ -146,15 +146,14 @@ export default {
         if(slice.css_class.indexOf("header") >= 0 || slice.css_class.indexOf("no-anim") >= 0) {
           isTween = false;
         }
-        else if(slice.css_class.indexOf("normal-text") >= 0) {
-          /* Tween simple non synchro */
+        /*else if(slice.css_class.indexOf("normal-text") >= 0) {
           var tween = new TimelineMax().to(domId, .6, {opacity: 1, scale:1, ease: Expo.easeOut });
           TweenLite.set(domId, {opacity: 0, scale:1.2});
           isTween = true;
-        }
+        }*/
         else if(slice.css_class.indexOf("quote") >= 0) {
           var tween = new TimelineMax().to(domId, 1, {opacity: 1, scale:1, ease: Power3.easeOut });
-          TweenLite.set(domId, {opacity: 0, scale:1.5});
+          TweenLite.set(domId, {opacity: 0, scale:1.3});
           /*var pId = domId;
           var mySplitText = new SplitText(pId, {type:"lines"}),
           tween = new TimelineLite();
@@ -466,6 +465,9 @@ export default {
     margin-top: 150px;
     max-width: 22%;
   }
+  .contact .normal-text.info {
+    text-align: right
+  }
 
 </style>
 
@@ -498,6 +500,29 @@ export default {
     }
 
     .contact-pic { display: none; }
+
+    .big-letter { 
+      font-size: 30px;
+      color: #1A1A1A;
+      letter-spacing: 93px;
+      line-height: 115px;
+    }
+
+    .contact .big-letter { 
+      left: 50%!important; 
+      margin-top: 90px; margin-left: -145px; 
+      width: 380px;
+    }
+
+
+    .contact .normal-text.info {
+      bottom: auto!important;
+      top: 540px;
+      right: 50%!important;
+      text-align: center!important;
+      width: 320px;
+      margin-right: -160px;
+    }
 
   }
 </style>

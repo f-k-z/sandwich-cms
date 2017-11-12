@@ -200,6 +200,14 @@ export default {
       width: 100%;
       margin: 0;
       padding-top: 210px;
+
+
+    }
+    .contact #content { 
+      width: 100%;
+      min-height: 800px;
+      overflow-x: hidden;
+      position: relative;
     }
   }
 </style>
