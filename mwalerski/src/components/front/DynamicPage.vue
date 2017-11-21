@@ -1,5 +1,5 @@
 <template>
-  <page-view v-on:reload="onReload" v-on:reloaded="onReloaded" v-on:loaded="onLoaded" v-on:cssclass="onClass" :slug="slug"></page-view>
+  <page-view ref="pageView" v-on:reload="onReload" v-on:reloaded="onReloaded" v-on:loaded="onLoaded" v-on:cssclass="onClass" :slug="slug"></page-view>
 </template>
 
 <script>
@@ -29,6 +29,12 @@ export default {
     onClass: function(css_class) {
       this.$emit("cssclass", css_class);
     },
+    initPage: function() {
+      var pageView = this.$refs.pageView;
+      //force slug up
+      this.slug = this.$route.params.slug;
+      pageView.initPage(this.slug);
+    }
   },
   //load object on created
   created: function() {

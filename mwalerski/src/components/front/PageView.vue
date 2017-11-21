@@ -5,6 +5,29 @@
         <div :id="'slice_' + page.slug + '_' + sliceKey" :class="'slice '+slice.css_class" v-html="slice.content"></div>
       </div>
     </div>
+    <div id="nav-page" v-if="page.listed">
+      <div id="prev-next" v-if="page.listed">
+        <router-link class="thumb prev" v-if="prevPage" :to="'/work/'+prevPage.slug">
+            <div :class="slice.css_class" v-if="slice.index < 3" v-for="slice in prevPage.slices"> 
+              <div v-html="slice.content"></div>
+            </div>
+        </router-link>
+        <router-link class="thumb next" v-if="nextPage" :to="'/work/'+nextPage.slug">
+            <div :class="slice.css_class" v-if="slice.index < 3" v-for="slice in nextPage.slices"> 
+              <div v-html="slice.content"></div>
+            </div>
+        </router-link>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <router-link id="push-home" :to="'/work'" v-if="page.slug == 'home'">
+      <div class="thumb" v-for="(listedPage, listedPageKey) in listedPages" v-if="listedPage.published">
+        <div :class="slice.css_class" v-if="slice.index < 1" v-for="slice in listedPage.slices"> 
+          <div v-html="slice.content"></div>
+        </div>
+        <p>Discover my work</p>
+      </div>
+    </router-link>
 	</div>
 </template>
 
@@ -33,12 +56,9 @@ export default {
     HeaderFront
   },
   computed: {
-    
-    // a computed getter
     slicesToDisplay: {
       cache: false,
       get: function () {
-        // `this` points to the vm instance
         return this.slices;
       }
     }
@@ -48,11 +68,16 @@ export default {
       title: global.PROJECT_NAME,
       page: {},
       key: '',
+      totalItems: 0,
+      currentIndex: 0,
       slices: [],
       isUser: false,
       firstLoad: true,
       isReload: false,
-      scrollController: null
+      scrollController: null,
+      prevPage: null,
+      nextPage: null,
+      listedPages: [],
     }
   },
   methods: {
@@ -62,6 +87,11 @@ export default {
     loadAsset: function (assets) {
       var scope = this;
       var imagesLoaded = 0;
+      //if no asset, directly set up scroll
+      if(assets.length == 0) {
+        scope.initScrollAnimation();
+        return;
+      }
       // start preloading
       for(var i = 0; i < assets.length; i++) 
       {
@@ -78,6 +108,8 @@ export default {
     refreshSliceView: function () {
       var scope = this;
       var imgToLoad = [];
+      //reinit slices
+      this.slices =[]; 
       //get slices in an array
       global.db.ref('pages/'+this.key+'/slices').orderByChild('index').once('value', function(slicesSnapshot) {
         
@@ -104,28 +136,57 @@ export default {
         
       });
     },
-    initPage: function() {
+    initPage: function(nextSlug = null) {
       this.firstLoad = true;
-      this.$forceUpdate();
       var scope = this;
       this.slices = [];
+      var i = 0;
+      //need to force slug sometimes because vue.js act like a fool
+      var nextSlug = (nextSlug) ? nextSlug : this.slug;
       //get page by slug
-      this.$firebaseRefs.pages.orderByChild("slug").equalTo(this.slug).on('value', function(pageSnapshot) {
-        var exists = pageSnapshot.exists();
-        if(exists)
-        {
-          pageSnapshot.forEach(function (snapshot) {
-            scope.page = snapshot.val();
-            scope.key = snapshot.key;
-            scope.refreshSliceView();
+      this.$firebaseRefs.pages.on('value', function(pagesSnapshot) {
+          scope.totalItems = pagesSnapshot.numChildren();
+          pagesSnapshot.forEach(function (snapshot) {
+            var p = snapshot.val();
+            
+            if(p.slug == nextSlug)
+            {
+              scope.page = p;
+              scope.currentIndex = i;
+              scope.key = snapshot.key;
+            }
+            
+            if(p.listed) {
+              scope.listedPages.push(p);
+              i++;
+            }
           });
-        }
-        else
-          console.log('no page');
+          scope.refreshSliceView();
+          scope.getNextPrev();
+      
       });
 
       var user = Firebase.auth().currentUser;
       this.isUser = (user) ? true : false;
+    },
+    getNextPrev: function() {
+
+      var scope = this;
+      var currentIndex = this.currentIndex;
+      var totalIndex = this.listedPages.length - 1;
+      
+      var prevIndex = currentIndex - 1;
+      if(prevIndex < 0)
+        prevIndex = totalIndex;
+
+      var nextIndex = currentIndex + 1;
+      if(nextIndex > totalIndex)
+        nextIndex = 0;
+
+      this.prevPage = this.listedPages[prevIndex];
+      this.nextPage = this.listedPages[nextIndex];
+
+    
     },
     initScrollAnimation: function () {
       /*** ScrollMagic ***/
@@ -133,8 +194,9 @@ export default {
 
       // init controller
       this.scrollController = new ScrollMagic.Controller();
+      var start = (this.page.listed) ? 4 : 3;
 
-      for (var i = 3; i < this.slices.length; i++) {
+      for (var i = start; i < this.slices.length; i++) {
         var slice = this.slices[i];
         var domId = "#slice_"+ this.page.slug +"_" +i;
         //important, reset style, otherwise vue keeps old TweenLite.set
@@ -142,7 +204,7 @@ export default {
 
         var isTween = false;
         var isReverse = false; 
-        var onComplete
+
         if(slice.css_class.indexOf("header") >= 0 || slice.css_class.indexOf("no-anim") >= 0) {
           isTween = false;
         }
@@ -152,7 +214,7 @@ export default {
           isTween = true;
         }*/
         else if(slice.css_class.indexOf("quote") >= 0) {
-          var tween = new TimelineMax().to(domId, 1, {opacity: 1, scale:1, ease: Power3.easeOut });
+          var tween = new TimelineMax().to(domId, 1.5, {opacity: 1, scale:1, ease: Power3.easeOut,  });
           TweenLite.set(domId, {opacity: 0, scale:1.3});
           /*var pId = domId;
           var mySplitText = new SplitText(pId, {type:"lines"}),
@@ -162,20 +224,20 @@ export default {
           isTween = true;
         }
         else if(slice.css_class.indexOf("img-float-left") >= 0 ||  slice.css_class.indexOf("off") >= 0) {
-          var tween = new TimelineMax().to(domId, 1.2, {opacity: 1, left:0, ease: Power3.easeOut });
+          var tween = new TimelineMax().to(domId, 1.8, {opacity: 1, left:0, ease: Sine.easeOut, bezier:{type:"soft", values:[{x:0, y:0}, {x:0, y:-300}, {x:0, y:0}]} });
           TweenLite.set(domId, {opacity: 0, left:"50%"});
           /* */
           isTween = isReverse = true;
         }
         else if(slice.css_class.indexOf("img-float-right") >= 0) {
-          var tween = new TimelineMax().to(domId, 1.2, {opacity: 1, right:0, ease: Power3.easeOut });
+          var tween = new TimelineMax().to(domId, 1.8, {opacity: 1, right:0, ease: Sine.easeOut, bezier:{type:"soft", values:[{x:0, y:0}, {x:0, y:300}, {x:0, y:0}]} });
           TweenLite.set(domId, {opacity: 0, right:"50%"});
           /* */
           isTween = isReverse = true;
         }
         else {
           /* Tween simple non synchro */
-          var tween = new TimelineMax().to(domId, .5, {opacity: 1});
+          var tween = new TimelineMax().to(domId, .8, {opacity: 1});
           TweenLite.set(domId, {opacity: 0});
           isTween = true;
         }
@@ -231,6 +293,8 @@ export default {
   //load object on created
   created: function() {
     this.initPage();
+    var w = Math.round($(window).width()*0.75*0.5);
+
   },
   destroyed: function() {
     
@@ -320,6 +384,101 @@ export default {
     position: absolute;
     bottom: 120px;
     right: 700px;
+  }
+
+
+  #nav-page {
+    width: 100%;  
+  }
+
+  $thumbH: 270px;
+
+  .page-view .thumb {
+    background: red;
+    width: 35%;
+    height: $thumbH;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    
+    padding: 0;
+    .header { 
+      width: 100%;
+      position: absolute;
+      top: 0;
+      padding: 0!important;
+      margin: 0!important;
+      text-align: left!important;
+      height: $thumbH;
+      div {
+        height: $thumbH;
+        overflow: hidden;
+        position: relative;
+      }
+      img {
+        position:absolute;
+        top:0;
+        bottom:0;
+        margin:auto;
+      }
+    }
+
+    .title {
+      font-family: "CalibreMedium";
+      font-size: 18px;
+      color: #FFF;
+      margin-top: -12px;
+      letter-spacing: 1.46px;
+      text-transform: uppercase;
+      text-align: center;
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left:0;
+    }
+    .sub {
+      font-family: "CardoItalic";
+      font-size: 14px;
+      color: #000000;
+      letter-spacing: 0;
+      position: absolute;
+      bottom: 0;
+      height: 100%;
+      left: -20px;
+      text-align: left;
+      margin: 0;
+      transform: translate(-100%, 0px);
+      div {
+        transform-origin: top right;
+        transform: rotate(-90deg) ;     
+      }
+    }
+  }
+  #push-home {
+    margin-top: 80px;
+    width: 60%;
+    position: relative;
+    height: 200px;
+    display: block;
+    margin: 80px 0 0 15%;
+    height: $thumbH;
+    p {
+      font-family: "CardoItalic";
+      font-size: 36px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      line-height: 68px;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top:50%;
+      margin-top: -34px;
+    }
+    .thumb {
+      position: absolute;
+      width: 100%;
+      img { width: 100% ;}
+    }
   }
 
 </style>
@@ -474,7 +633,52 @@ export default {
 <!-- RESPONSIVE -->
 <style lang="scss" scoped>
 
+  $thumbHR: 180px;
+
+  @media (max-width : 1550px) {
+    .page-view .thumb {
+      height: $thumbHR;
+      .header { 
+        height: $thumbHR;
+        div {
+          height: $thumbHR;
+        }
+      }
+    }
+
+    #push-home {
+      height: $thumbHR;
+    }
+  }
+
+  $thumbHR2: 150px;
+  @media (max-width : 450px) {
+    #prev-next .thumb {
+      height: $thumbHR2;
+      .header { 
+        height: $thumbHR2;
+        div {
+          height: $thumbHR2;
+        }
+      }
+    }
+    #push-home {
+      height: $thumbHR2;
+    }
+  }
+
+  @media (max-width : 670px) {
+   #push-home {
+      width: 100%!important;
+    }
+  }
+
   @media (max-width : 1100px) {
+
+    #push-home {
+      margin: 80px auto 0 auto;
+      width: 60%;
+    }
 
     .header, .normal-text, .sub { margin-left: 0; }
 
@@ -514,6 +718,14 @@ export default {
       width: 380px;
     }
 
+    .page-view .thumb {
+      display: block;
+      width: 80%;
+    }
+
+    #prev-next {
+      margin-left: 20%;
+    }
 
     .contact .normal-text.info {
       bottom: auto!important;

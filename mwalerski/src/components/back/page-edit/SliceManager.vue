@@ -122,7 +122,7 @@ export default {
         //add new slice
         this.currentSlice.index = this.draggedSlices.length;
         sliceRef.push(this.currentSlice, function(error) {
-				    scope.refreshSliceView();
+            scope.refreshSliceView();
             scope.resetSlice();
 				});
         toastr.success(global.errorMessages.SLICE_ADDED);
@@ -155,7 +155,7 @@ export default {
       sliceRef.child(sliceKey).remove(function(error) {
       		//update snapshot table
       	 	scope.draggedSlices.splice(scope.draggedSlices.indexOf(sliceKey), 1);
-      	 	scope.updateDragIndex(true);
+      	 	scope.refreshSliceView();
 				});
       toastr.success(global.errorMessages.SLICE_REMOVED);
       this.dispatchUpdatedPage();
@@ -164,7 +164,7 @@ export default {
     	//update snapshot table (reorder)
       this.draggedSlices.splice(event.newIndex, 0, this.draggedSlices.splice(event.oldIndex, 1)[0]);
       //update firebase
-      this.updateDragIndex(true);
+      this.updateDragIndex(false);
     },
     updateDragIndex: function(updateView) {
     	var scope = this;
@@ -181,14 +181,11 @@ export default {
         };
       };
       global.db.ref('pages').update(updates, function(error) {
-        
-         console.log("updateDragIndex: update");
+        console.log("updateDragIndex: update");
       	if(updateView)
-      		setTimeout(function() { 
-            $('#slices .handle').removeClass('disabled');
-            
-            scope.refreshSliceView(); 
-          }, 1000);
+          scope.refreshSliceView(); 
+        else
+          $('#slices .handle').removeClass('disabled');
       });
     },
     dispatchUpdatedPage: function() {
@@ -204,11 +201,11 @@ export default {
     refreshSliceView: function() {
     	var scope = this;
       console.log("refreshSliceView");
+      scope.slices = [];
+      scope.draggedSlices = [];
       sliceRef = global.db.ref('pages/'+this.pageKey+'/slices');
 	    //get slices in an array
 	    sliceRef.orderByChild('index').once('value', function(slicesSnapshot) {
-	      scope.slices = [];
-	      scope.draggedSlices = [];
 	      //snapshot table to handle drag and drop
 	      slicesSnapshot.forEach(function (snapshot) {
 	         var sliceKey = snapshot.key;
