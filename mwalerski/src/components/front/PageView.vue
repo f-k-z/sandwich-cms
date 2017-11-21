@@ -2,7 +2,10 @@
 	<div class="page-view" :class="page.css_class">
 		<div id="slices" class="page-content">
       <div v-for="(slice, sliceKey) in slicesToDisplay" v-if="slice.visible"  :style="slice.css_style" >
+        <div class="video-container" v-if="slice.css_class == 'video'">
         <div :id="'slice_' + page.slug + '_' + sliceKey" :class="'slice '+slice.css_class" v-html="slice.content"></div>
+        </div>
+        <div v-if="slice.css_class != 'video'" :id="'slice_' + page.slug + '_' + sliceKey" :class="'slice '+slice.css_class" v-html="slice.content"></div>
       </div>
     </div>
     <div id="nav-page" v-if="page.listed">
@@ -21,7 +24,7 @@
       </div>
     </div>
     <router-link id="push-home" :to="'/work'" v-if="page.slug == 'home'">
-      <div class="thumb" v-for="(listedPage, listedPageKey) in listedPages" v-if="listedPage.published">
+      <div class="thumb" v-bind:class="[ listedPageKey == 0 ? 'show' : '']" v-for="(listedPage, listedPageKey) in listedPages" v-if="listedPage.published">
         <div :class="slice.css_class" v-if="slice.index < 1" v-for="slice in listedPage.slices"> 
           <div v-html="slice.content"></div>
         </div>
@@ -78,11 +81,23 @@ export default {
       prevPage: null,
       nextPage: null,
       listedPages: [],
+      itvSlide: null,
+      countSlide: 0
     }
   },
   methods: {
     editPage: function (page) {
       this.$router.push('/admin/edit/'+this.key);
+    },
+    initSlideshow: function() {
+      var scope = this;
+      this.itvSlide = setInterval(function() {
+        $("#push-home .thumb").removeClass("show");
+        var n = scope.countSlide + 1;
+        var total = $("#push-home .thumb").length - 1;
+        scope.countSlide = (n > total) ? 0 : n;
+        $("#push-home").children().eq(scope.countSlide).addClass("show");
+      }, 2500);
     },
     loadAsset: function (assets) {
       var scope = this;
@@ -153,9 +168,9 @@ export default {
             {
               scope.page = p;
               scope.currentIndex = i;
-              scope.key = snapshot.key;
+              scope.key = snapshot.key;                
             }
-            
+
             if(p.listed) {
               scope.listedPages.push(p);
               i++;
@@ -294,10 +309,10 @@ export default {
   created: function() {
     this.initPage();
     var w = Math.round($(window).width()*0.75*0.5);
-
+    this.initSlideshow();
   },
   destroyed: function() {
-    
+    clearInterval(this.itvSlide);
   },
   watch: {
     '$route' (to, from) {
@@ -327,7 +342,27 @@ export default {
     }
   }
 
-  .video iframe { margin: 0 auto; }
+  .video {
+    position:relative;
+    padding-bottom:56.25%;
+    padding-top:30px;
+    height:0;
+    overflow:hidden;
+  }
+
+  .video-container {
+    width: 80%;
+    max-width: 560px;
+    margin: 40px 0 40px 15%;
+  }
+
+  .video iframe, .video object, .video embed {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+  }
 
   .credits {
     h3 {
@@ -386,7 +421,6 @@ export default {
     right: 700px;
   }
 
-
   #nav-page {
     width: 100%;  
   }
@@ -394,7 +428,6 @@ export default {
   $thumbH: 270px;
 
   .page-view .thumb {
-    background: red;
     width: 35%;
     height: $thumbH;
     float: left;
@@ -424,17 +457,18 @@ export default {
     }
 
     .title {
-      font-family: "CalibreMedium";
-      font-size: 18px;
+      font-family: "CardoItalic";
+      font-size: 36px;
       color: #FFF;
-      margin-top: -12px;
+      margin-top: -22px;
       letter-spacing: 1.46px;
-      text-transform: uppercase;
+      text-transform: capitalize;
       text-align: center;
       width: 100%;
       position: absolute;
       top: 50%;
       left:0;
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
     }
     .sub {
       font-family: "CardoItalic";
@@ -473,11 +507,21 @@ export default {
       text-align: center;
       top:50%;
       margin-top: -34px;
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
     }
     .thumb {
       position: absolute;
       width: 100%;
       img { width: 100% ;}
+      opacity: 0;
+      transition: opacity 1s ease-out;
+    }
+    .thumb.show { opacity: 1; }
+  }
+
+  #push-home:hover {
+    img {
+      filter: brightness(80%) contrast(150%)!important;
     }
   }
 
@@ -508,12 +552,6 @@ export default {
     position: absolute;
     text-transform: uppercase;
     margin-top: 80px;
-  }
-
-  /*.video { width: 100%; p { width: 100%;} text-align: center;}*/
-
-  .video { 
-    margin: 80px 0 80px 15%; 
   }
 
   .asset {
@@ -671,6 +709,10 @@ export default {
    #push-home {
       width: 100%!important;
     }
+    .video-container {
+      margin-left: 10%;
+      max-width: 80%
+    }
   }
 
   @media (max-width : 1100px) {
@@ -678,6 +720,11 @@ export default {
     #push-home {
       margin: 80px auto 0 auto;
       width: 60%;
+    }
+
+    .video-container {
+      margin-left: 20%;
+      max-width: 60%
     }
 
     .header, .normal-text, .sub { margin-left: 0; }
@@ -692,8 +739,6 @@ export default {
     .quote { margin-top: 0!important; }
 
     .header { text-align: center; width: 100%; }
-
-    .video { margin: 0; width: 100%; p { width: 100%;} text-align: center;}
 
     .img-float-left, .img-float-right, .off  {
       position: static;
@@ -735,6 +780,7 @@ export default {
       width: 320px;
       margin-right: -160px;
     }
-
   }
+
+
 </style>

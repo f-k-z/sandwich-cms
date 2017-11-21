@@ -207,14 +207,19 @@ export default {
 <!-- RESPONSIVE -->
 <style lang="scss" scoped>
 
-	$base-line-height: 240px;
+	$base-line-height: 120px;
   @media (max-width : 1100px) {
   	.spinner-wrapper {
   		left: 50%;
-			margin-left: -$base-line-height/2;
+  		margin: 0;
+			margin-left: -$base-line-height/2!important;
 			top: 50%;
-			margin-top: -100px;
+			width: $base-line-height;
+			position: fixed;
+			padding: 0;
   	}
-  	
+  	.spinner {
+    	width: $base-line-height;
+  	}
   }
 </style>

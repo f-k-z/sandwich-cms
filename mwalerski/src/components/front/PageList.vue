@@ -102,11 +102,11 @@ export default {
   .thumb img {
     max-width: 100%;
     transition: all .5s ease-out;
-    filter: brightness(100%) contrast(100%) saturate(100%);
+    filter: brightness(100%) contrast(100%);
   }
   .thumb:hover {
     img {
-      filter: brightness(80%) contrast(200%) saturate(50%);
+      filter: brightness(80%) contrast(150%);
     }
     .title > div:before {
       transform: scaleX(1)!important;
@@ -136,7 +136,7 @@ export default {
     li a {
        background: transparent!important;
       font-family: 'CardoItalic';
-      font-size: 22px;
+      font-size: 18px;
       color: #222;
       margin-right: 26px;
       transition: all .3s ease-out;
@@ -149,7 +149,7 @@ export default {
     li div {
       position: absolute;
       right: 0px;
-      top: 16px;
+      top: 13px;
     }
     li hr {
       border: 0;
