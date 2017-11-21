@@ -53,10 +53,6 @@ h1 a, h1 a:hover, h1 a:visited { text-decoration: none!important; color: grey; }
 .action {  cursor: pointer; }
 .action:hover { background: #DDD; }
 
-body {
-  overflow-x: hidden;
-}
-
 /*** FRONT CSS ***/
 .front {
   font-family: 'CalibreRegular';

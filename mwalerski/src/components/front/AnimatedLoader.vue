@@ -90,7 +90,9 @@ export default {
 			Velocity($(domId), { opacity: 1}, { duration: 400, delay:50*id, transition:"easeOutExpo", complete: function () {
 					
 			} }); 
-
+		},
+		created: function() {
+			$('body').css('position', 'fixed');
 		}
 	}
 }
@@ -98,11 +100,12 @@ export default {
 
 <style lang="scss">
 
-	body { position: fixed }
 </style>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+
+
 
 	$base-line-height: 240px;
 	$black: rgb(0,0,0);
