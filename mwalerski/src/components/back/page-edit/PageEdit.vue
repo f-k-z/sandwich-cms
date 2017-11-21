@@ -33,7 +33,7 @@
 					</div>
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="/ Edit">
-						<router-link class="btn btn-info"  :to="{ path: '/page/'+currentPage.slug }"><i class="fa fa-eye" aria-hidden="true"></i> Preview</router-link>
+						<router-link class="btn btn-info"  :to="{ path: '/work/'+currentPage.slug }"><i class="fa fa-eye" aria-hidden="true"></i> Preview</router-link>
 					</div>
 				</form>
 		  </div>

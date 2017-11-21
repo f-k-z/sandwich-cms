@@ -21,7 +21,7 @@
         <tbody>
           <tr v-for="page in pages">
             
-            <td><router-link :to="'page/'+page.slug">{{page.title}}</router-link></td>
+            <td><router-link :to="'work/'+page.slug">{{page.title}}</router-link></td>
             <td>{{page.slug}}</td>
             <td>{{page.type}}</td>
             <td class="hidden-xs">{{page.created | timestampToDate}}</td>
