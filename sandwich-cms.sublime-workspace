@@ -4,8 +4,20 @@
 		"selected_items":
 		[
 			[
+				"ma",
+				"margin"
+			],
+			[
+				"log",
+				"login"
+			],
+			[
+				"pa",
+				"padding"
+			],
+			[
 				"mar",
-				"margin-top"
+				"margin"
 			],
 			[
 				"bac",
@@ -16,20 +28,12 @@
 				"display"
 			],
 			[
-				"ma",
-				"margin-right"
-			],
-			[
 				"bo",
 				"border"
 			],
 			[
 				"tex",
 				"text-decoration"
-			],
-			[
-				"pa",
-				"padding-top"
 			],
 			[
 				"lis",
@@ -218,10 +222,6 @@
 			[
 				"Slug",
 				"SlugField"
-			],
-			[
-				"log",
-				"logRadius"
 			],
 			[
 				"retu",
@@ -523,7 +523,7 @@
 			"file": "mwalerski/src/components/front/PageView.vue",
 			"settings":
 			{
-				"buffer_size": 17812,
+				"buffer_size": 19124,
 				"line_ending": "Unix"
 			}
 		},
@@ -555,7 +555,7 @@
 			"file": "mwalerski/src/components/front/PageList.vue",
 			"settings":
 			{
-				"buffer_size": 5668,
+				"buffer_size": 5639,
 				"line_ending": "Unix"
 			}
 		},
@@ -571,7 +571,7 @@
 			"file": "mwalerski/src/components/front/AnimatedLoader.vue",
 			"settings":
 			{
-				"buffer_size": 5246,
+				"buffer_size": 5401,
 				"line_ending": "Unix"
 			}
 		},
@@ -581,6 +581,47 @@
 			{
 				"buffer_size": 1400,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/App.vue",
+			"settings":
+			{
+				"buffer_size": 7734,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/back/login/Login.vue",
+			"settings":
+			{
+				"buffer_size": 1622,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/back/page-edit/PageEdit.vue",
+			"settings":
+			{
+				"buffer_size": 4633,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/back/home/PageList.vue",
+			"settings":
+			{
+				"buffer_size": 2797,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<h3>Credits</h3><ul><li><b>Choregrapher</b> Medhi Walerski</li><li><b>Dramaturge</b> Pierre Pointvianne</li><li><b>Assistant</b> to the Choregrapher Peter Chu</li><li><b>Music</b> Frederic Chopin — Largo Sonata no.3 in B minor</li><li><b>Sound</b> Design Niels Muddle</li><li><b>Light</b> Theun Mosk</li><li><b>Set Design</b> Theun Mosk</li><li><b>Costumes</b> Medhi Walerski, Joke Visser</li><li><b> Duration</b> 20 min </li><li><b>Year</b> 2015</li></ul>",
+			"settings":
+			{
+				"buffer_size": 456,
+				"line_ending": "Unix",
+				"name": "<h3>Credits</h3><ul><li><b>Choregrapher</b> Medhi"
 			}
 		}
 	],
@@ -846,6 +887,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"/page",
+			"destroyScrollMagic",
+			"filter",
+			".video",
+			"video",
+			"red",
+			"filter",
 			"slug",
 			"listedPages",
 			"prev-next",
@@ -966,14 +1014,7 @@
 			"getInv",
 			"getInvoices",
 			"getInvoic",
-			"strgetcsv",
-			"PASSWORD",
-			"SmileClient",
-			"isDr",
-			"pres",
-			"add_smile_prepaid",
-			"field-name-field-abonnement",
-			"form-item-field-abonnement"
+			"strgetcsv"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1015,7 +1056,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 12,
 			"sheets":
 			[
 				{
@@ -1023,15 +1064,15 @@
 					"file": "mwalerski/src/components/front/PageView.vue",
 					"settings":
 					{
-						"buffer_size": 17812,
+						"buffer_size": 19124,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6379,
-								6379
+								14494,
+								14494
 							]
 						],
 						"settings":
@@ -1041,7 +1082,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7916.0,
+						"translation.y": 13191.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1135,15 +1176,15 @@
 					"file": "mwalerski/src/components/front/PageList.vue",
 					"settings":
 					{
-						"buffer_size": 5668,
+						"buffer_size": 5639,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5601,
-								5601
+								3025,
+								2875
 							]
 						],
 						"settings":
@@ -1153,7 +1194,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5068.0,
+						"translation.y": 2566.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1170,8 +1211,8 @@
 						"selection":
 						[
 							[
-								3363,
-								3363
+								347,
+								347
 							]
 						],
 						"settings":
@@ -1191,15 +1232,15 @@
 					"file": "mwalerski/src/components/front/AnimatedLoader.vue",
 					"settings":
 					{
-						"buffer_size": 5246,
+						"buffer_size": 5401,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2108,
-								2108
+								3153,
+								3153
 							]
 						],
 						"settings":
@@ -1208,7 +1249,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 504.0,
+						"translation.y": 1759.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1237,6 +1278,140 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 88.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "mwalerski/src/App.vue",
+					"settings":
+					{
+						"buffer_size": 7734,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1087,
+								1087
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1211.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "mwalerski/src/components/back/login/Login.vue",
+					"settings":
+					{
+						"buffer_size": 1622,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								51,
+								51
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "mwalerski/src/components/back/page-edit/PageEdit.vue",
+					"settings":
+					{
+						"buffer_size": 4633,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2393,
+								2398
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 1741.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "mwalerski/src/components/back/home/PageList.vue",
+					"settings":
+					{
+						"buffer_size": 2797,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								770,
+								770
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 192.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"settings":
+					{
+						"buffer_size": 456,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								456
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<h3>Credits</h3><ul><li><b>Choregrapher</b> Medhi",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
