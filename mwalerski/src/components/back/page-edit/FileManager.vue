@@ -23,10 +23,10 @@
           <tbody>
             <tr v-for="file in files">
               <td><a target="_blank" v-bind:href="file.url">{{ file.name }}</a></td>
-              <td class="action" v-on:click="removeFile(file)">
+              <td class="action" v-tooltip:top="'Remove'" v-on:click="removeFile(file)">
               	<i class="fa fa-trash fa-fw" aria-hidden="true"></i>
               </td>
-              <td class="action" v-on:click="copyToClipboard(file)">
+              <td class="action" v-tooltip:top="'Copy URL'" v-on:click="copyToClipboard(file)">
               	<i class="fa fa-clipboard fa-fw" aria-hidden="true"></i>
               </td>
             </tr>

@@ -9,7 +9,6 @@
           <tr>
             <th>Title</th>
             <th>Slug</th>
-            <th>Type</th>
             <th class="hidden-xs">Created</th>
             <th class="hidden-xs">Updated</th>
             <th>Published</th>
@@ -23,13 +22,12 @@
             
             <td><router-link :to="'work/'+page.slug">{{page.title}}</router-link></td>
             <td>{{page.slug}}</td>
-            <td>{{page.type}}</td>
             <td class="hidden-xs">{{page.created | timestampToDate}}</td>
             <td class="hidden-xs">{{page.updated | timestampToDate}}</td>
             <td>{{page.published}}</td>
-            <td class="action" v-on:click="clonePage(page)"><i class="fa fa-clone" aria-hidden="true"></i></td>
-            <td class="action" v-on:click="editPage(page)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
-            <td v-bind:class="{ disabled: page.locked }" class="action" v-on:click="removePage(page)"><i class="fa fa-trash" aria-hidden="true"></i></td>
+            <td class="action" v-on:click="clonePage(page)"><i class="fa fa-clone" v-tooltip:top="'Clone'" aria-hidden="true"></i></td>
+            <td class="action" v-on:click="editPage(page)"><i class="fa fa-pencil" v-tooltip:top="'Edit'" aria-hidden="true"></i></td>
+            <td v-bind:class="{ disabled: page.locked }" class="action" v-on:click="removePage(page)" v-tooltip:top="'Remove'"><i class="fa fa-trash" aria-hidden="true"></i></td>
           </tr>
         </tbody>
       </table>
@@ -72,6 +70,7 @@ export default {
       });
     },
 		editPage: function (page) {
+
 			this.$router.push('/admin/edit/'+page['.key']);
 		},
 	  removePage: function (page) {
@@ -79,6 +78,9 @@ export default {
 	    toastr.success('Page removed successfully')
 		},
 	},
+  created: function() {
+
+  },
   computed: {
       active: function () {
         return (this.slug != '');

@@ -13,6 +13,18 @@ Vue.directive('sortable', {
     new Sortable(el, binding.value || {})
   }
 })
+//Bootstrap tooltip
+Vue.directive('tooltip', function(el, binding){
+    $(el).tooltip({
+         title: binding.value,
+         placement: binding.arg,
+         trigger: 'hover' ,
+         container: 'body'            
+    })
+    $(el).on('click', function () {
+        $(this).tooltip('hide');
+    });
+})
 
 var editorOptions = { 
     // global component name

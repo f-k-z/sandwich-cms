@@ -71,10 +71,10 @@
                     {{ slice.name }}
                   </a>
                   <b>Index: {{ slice.index }}</b>
-                  <a class="action" v-on:click="removeSlice(slice, slice.sliceKey)" v-bind:class="{ disabled: slice.locked }">
+                  <a class="action" v-on:click="removeSlice(slice, slice.sliceKey)" v-tooltip:top="'Remove'" v-bind:class="{ disabled: slice.locked }">
                     <i class="fa fa-trash" aria-hidden="true"></i>
                   </a>
-                  <a class="action" v-on:click="editSlice(slice, slice.sliceKey)">
+                  <a class="action" v-tooltip:top="'Edit'" v-on:click="editSlice(slice, slice.sliceKey)">
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                   </a>
                 </h4>
