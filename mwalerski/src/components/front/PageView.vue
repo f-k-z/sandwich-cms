@@ -209,11 +209,11 @@ export default {
       this.destroyScrollMagic();
 
       //remove previous tween
-      for (var i = this.scrollTweens.length - 1; i >= 0; i--) {
+      /*for (var i = this.scrollTweens.length - 1; i >= 0; i--) {
         this.scrollTweens[i].pause(0);
         this.scrollTweens[i].clear();
       };
-      this.scrollTweens = [];
+      this.scrollTweens = [];*/
 
       // init controller
       this.scrollController = new ScrollMagic.Controller();
@@ -222,10 +222,8 @@ export default {
       for (var i = start; i < this.slices.length; i++) {
         var slice = this.slices[i];
         var domId = "#slice_"+ this.page.slug +"_" +i;
-        //important, reset style, otherwise vue keeps old TweenLite.set
+        //important, reset style, otherwise vue keeps old 
         $(domId).attr('style', '');
-        //ugly hack for rotation issue :(
-        TweenLite.set(domId, {clearProps:"all"});
 
         var isTween = false;
         var isReverse = false; 
@@ -255,8 +253,8 @@ export default {
           TweenLite.set(domId, {opacity: 0, right:"50%"}); */
           isTween = isReverse = true;
         }
-        //anim everywhere except video
-        else if(slice.css_class.indexOf("video") == 0) {
+        //anim 
+        else {
           /* Tween simple non synchro */
           var tween = new TimelineMax().to(domId, .8, {opacity: 1});
           TweenLite.set(domId, {opacity: 0});
