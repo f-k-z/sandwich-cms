@@ -25,8 +25,8 @@
             <td class="hidden-xs">{{page.created | timestampToDate}}</td>
             <td class="hidden-xs">{{page.updated | timestampToDate}}</td>
             <td>{{page.published}}</td>
-            <td class="action" v-on:click="clonePage(page)"><i class="fa fa-clone" v-tooltip:top="'Clone'" aria-hidden="true"></i></td>
-            <td class="action" v-on:click="editPage(page)"><i class="fa fa-pencil" v-tooltip:top="'Edit'" aria-hidden="true"></i></td>
+            <td class="action" v-tooltip:top="'Clone'" v-on:click="clonePage(page)"><i class="fa fa-clone" aria-hidden="true"></i></td>
+            <td class="action" v-tooltip:top="'Edit'" v-on:click="editPage(page)"><i class="fa fa-pencil" aria-hidden="true"></i></td>
             <td v-bind:class="{ disabled: page.locked }" class="action" v-on:click="removePage(page)" v-tooltip:top="'Remove'"><i class="fa fa-trash" aria-hidden="true"></i></td>
           </tr>
         </tbody>
@@ -91,8 +91,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-.fa { margin-left: 10px; }
+.action {
+  width: 40px;
+}
+.fa { margin-left: 5px;   }
 .disabled { 
   opacity: .2;
   pointer-events: none;

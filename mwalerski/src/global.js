@@ -22,6 +22,8 @@ export default {
 	    slug: '',
 	    created: '',
 	    updated: '',
+	    css_class: '',
+	    position: 0,
 	    type: 'basic',
 	    published: false,
 	    locked: false

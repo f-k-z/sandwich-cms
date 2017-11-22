@@ -19,6 +19,10 @@
             <label for="pageCSSClass">CSS Class</label>
             <input type="text" id="pageCSSClass" v-model="currentPage.css_class">
           </div>
+          <div v-show="currentPage.listed" class="form-group">
+            <label for="pagePosition">Position</label>
+            <input type="text" id="pagePosition" v-model="currentPage.position">
+          </div>
 					<div class="form-group">
 						<input type="checkbox" id="pagePublished" v-model="currentPage.published">
 						<label for="pagePublished">Published</label> | 

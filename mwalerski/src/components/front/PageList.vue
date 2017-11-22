@@ -32,7 +32,7 @@ import Velocity from 'velocity-animate';
 export default {
   name: 'page-list',
   firebase: {
-    pages: global.db.ref('pages')
+    pages: global.db.ref('pages').orderByChild('position')
   },
   components: {
     HeaderFront
