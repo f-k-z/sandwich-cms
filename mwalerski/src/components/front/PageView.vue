@@ -2,8 +2,8 @@
 	<div class="page-view" :class="page.css_class">
 		<div id="slices" class="page-content">
       <div v-for="(slice, sliceKey) in slicesToDisplay" v-if="slice.visible"  :style="slice.css_style" >
-        <div class="video-container" v-if="slice.css_class == 'video'">
-        <div :id="'slice_' + page.slug + '_' + sliceKey" :class="'slice '+slice.css_class" v-html="slice.content"></div>
+        <div :id="'slice_' + page.slug + '_' + sliceKey" class="video-container" v-if="slice.css_class == 'video'">
+        <div :class="'slice '+slice.css_class" v-html="slice.content"></div>
         </div>
         <div v-if="slice.css_class != 'video'" :id="'slice_' + page.slug + '_' + sliceKey" :class="'slice '+slice.css_class" v-html="slice.content"></div>
       </div>
@@ -82,7 +82,8 @@ export default {
       nextPage: null,
       listedPages: [],
       itvSlide: null,
-      countSlide: 0
+      countSlide: 0,
+      scrollTweens: [],
     }
   },
   methods: {
@@ -207,6 +208,13 @@ export default {
       /*** ScrollMagic ***/
       this.destroyScrollMagic();
 
+      //remove previous tween
+      for (var i = this.scrollTweens.length - 1; i >= 0; i--) {
+        this.scrollTweens[i].pause(0);
+        this.scrollTweens[i].clear();
+      };
+      this.scrollTweens = [];
+
       // init controller
       this.scrollController = new ScrollMagic.Controller();
       var start = (this.page.listed) ? 4 : 3;
@@ -216,19 +224,13 @@ export default {
         var domId = "#slice_"+ this.page.slug +"_" +i;
         //important, reset style, otherwise vue keeps old TweenLite.set
         $(domId).attr('style', '');
+        //ugly hack for rotation issue :(
+        TweenLite.set(domId, {clearProps:"all"});
 
         var isTween = false;
         var isReverse = false; 
 
-        if(slice.css_class.indexOf("header") >= 0 || slice.css_class.indexOf("no-anim") >= 0) {
-          isTween = false;
-        }
-        /*else if(slice.css_class.indexOf("normal-text") >= 0) {
-          var tween = new TimelineMax().to(domId, .6, {opacity: 1, scale:1, ease: Expo.easeOut });
-          TweenLite.set(domId, {opacity: 0, scale:1.2});
-          isTween = true;
-        }*/
-        else if(slice.css_class.indexOf("quote") >= 0) {
+        if(slice.css_class.indexOf("quote") >= 0) {
           var tween = new TimelineMax().to(domId, 1.5, {opacity: 1, scale:1, ease: Power3.easeOut,  });
           TweenLite.set(domId, {opacity: 0, scale:1.3});
           /*var pId = domId;
@@ -239,18 +241,22 @@ export default {
           isTween = true;
         }
         else if(slice.css_class.indexOf("img-float-left") >= 0 ||  slice.css_class.indexOf("off") >= 0) {
-          var tween = new TimelineMax().to(domId, 1.8, {opacity: 1, left:0, ease: Sine.easeOut, bezier:{type:"soft", values:[{x:0, y:0}, {x:0, y:-300}, {x:0, y:0}]} });
-          TweenLite.set(domId, {opacity: 0, left:"50%"});
-          /* */
+          var tween = new TimelineMax().to(domId, 1, {opacity: 1, left:0, ease: Sine.easeOut, rotation:0  });
+          TweenLite.set(domId, {opacity: 0, left:"-100px", rotation:20, transformOrigin:"left center"});
+          /* var tween = new TimelineMax().to(domId, 1.8, {opacity: 1, right:0, ease: Sine.easeOut, bezier:{type:"soft", values:[{x:0, y:0}, {x:0, y:-300}, {x:0, y:0}]} });
+          TweenLite.set(domId, {opacity: 0, left:"50%"});*/
           isTween = isReverse = true;
         }
         else if(slice.css_class.indexOf("img-float-right") >= 0) {
-          var tween = new TimelineMax().to(domId, 1.8, {opacity: 1, right:0, ease: Sine.easeOut, bezier:{type:"soft", values:[{x:0, y:0}, {x:0, y:300}, {x:0, y:0}]} });
-          TweenLite.set(domId, {opacity: 0, right:"50%"});
-          /* */
+
+          var tween = new TimelineMax().to(domId, 1, {opacity: 1, right:0, ease: Sine.easeOut, rotation:0 });
+          TweenLite.set(domId, {opacity: 0, right:"-100px", rotation:20, transformOrigin:"right center"});
+          /* var tween = new TimelineMax().to(domId, 1.8, {opacity: 1, right:0, ease: Sine.easeOut, bezier:{type:"soft", values:[{x:0, y:0}, {x:0, y:300}, {x:0, y:0}]} });
+          TweenLite.set(domId, {opacity: 0, right:"50%"}); */
           isTween = isReverse = true;
         }
-        else {
+        //anim everywhere except video
+        else if(slice.css_class.indexOf("video") == 0) {
           /* Tween simple non synchro */
           var tween = new TimelineMax().to(domId, .8, {opacity: 1});
           TweenLite.set(domId, {opacity: 0});
@@ -258,6 +264,7 @@ export default {
         }
 
         if(isTween)
+          this.scrollTweens.push(tween);
           new ScrollMagic.Scene({
            triggerElement: domId,
            reverse:false
