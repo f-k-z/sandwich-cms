@@ -190,6 +190,10 @@ export default {
     position: relative;
   }
 
+  .contact #content {
+    position: static;
+  }
+
   /** DON'T REMOVE: This little thing let the next content hide during the transition **/
   .v-leave-active + div {
     display: none;
