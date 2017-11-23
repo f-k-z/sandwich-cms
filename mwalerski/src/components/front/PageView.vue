@@ -172,7 +172,7 @@ export default {
               scope.key = snapshot.key;                
             }
 
-            if(p.listed) {
+            if(p.listed && p.published) {
               scope.listedPages.push(p);
               i++;
             }
@@ -208,12 +208,12 @@ export default {
       /*** ScrollMagic ***/
       this.destroyScrollMagic();
 
-      //remove previous tween
-      /*for (var i = this.scrollTweens.length - 1; i >= 0; i--) {
+      //remove previous tweens
+      for (var i = this.scrollTweens.length - 1; i >= 0; i--) {
         this.scrollTweens[i].pause(0);
         this.scrollTweens[i].clear();
       };
-      this.scrollTweens = [];*/
+      this.scrollTweens = [];
 
       // init controller
       this.scrollController = new ScrollMagic.Controller();
@@ -224,6 +224,7 @@ export default {
         var domId = "#slice_"+ this.page.slug +"_" +i;
         //important, reset style, otherwise vue keeps old 
         $(domId).attr('style', '');
+        TweenLite.set(domId, {clearProps:"all"});
 
         var isTween = false;
         var isReverse = false; 

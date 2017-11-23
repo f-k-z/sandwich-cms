@@ -184,7 +184,10 @@ export default {
   $sidebar_w: 25%;
 
   #content {
-    margin-left: $sidebar_w;
+    padding-left: $sidebar_w;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
   }
 
   /** DON'T REMOVE: This little thing let the next content hide during the transition **/
@@ -199,6 +202,7 @@ export default {
     #content {
       width: 100%;
       margin: 0;
+      padding-left: 0;
       padding-top: 210px;
 
 
