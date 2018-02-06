@@ -1,6 +1,6 @@
 <template>
   <header :class="{ open: isNavOpen }">    
-		<h2>Choregrapher  <span class="cardo">&</span> Dancer</h2>
+		<h2>Choreographer  <span class="cardo">&</span> Dancer</h2>
 		<h1 class="logo"><router-link class="btn" :to="'/'">{{ title }}</router-link></h1>
     <div id="nav-icon" v-on:click="toggleNav">
       <span class="n1"></span>
@@ -9,9 +9,9 @@
     </div>
 		<nav>
 			<ul>
-				<li><router-link v-on:click.native="toggleNav" :to="'/work'"><span class="cardo">View</span> My Work</router-link></li>
-				<li><router-link v-on:click.native="toggleNav" :to="'/about'"><span class="cardo">About</span> Me</router-link></li>
-				<li><router-link v-on:click.native="toggleNav" :to="'/contact'"><span class="cardo">Keep</span> Contact</router-link></li>
+				<li><router-link v-on:click.native="toggleNav" :to="'/work'">Work</router-link></li>
+				<li><router-link v-on:click.native="toggleNav" :to="'/about'">About</router-link></li>
+				<li><router-link v-on:click.native="toggleNav" :to="'/contact'">Contact</router-link></li>
 			</ul>
 		</nav>
   </header>

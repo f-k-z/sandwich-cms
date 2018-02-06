@@ -181,7 +181,6 @@ export default {
         };
       };
       global.db.ref('pages').update(updates, function(error) {
-        console.log("updateDragIndex: update");
       	if(updateView)
           scope.refreshSliceView(); 
         else

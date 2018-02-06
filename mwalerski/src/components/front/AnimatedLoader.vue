@@ -1,21 +1,11 @@
 <template>
 	<div class="animated-loader overlay">
 		<div id="logo-loader" class="loader">
-			<!-- <div id="logo" class="loading"></div> -->
-			<h1 id="logo">{{ title }}</h1>
+			<div id="logo" class="loader-png"><img width="217" height="117" src="../../assets/loader.png"></div>
 		</div>
 		<div class="spinner-wrapper hide">
 			<div class="spinner"></div>
 		</div>
-		<!-- <img id="gif0" class="gif_dance hide" src='../../assets/gif_dance/GIF-1-.gif'>
-		<img id="gif1" class="gif_dance hide" src='../../assets/gif_dance/GIF-close-up-BW-2.gif'>
-		<img id="gif2" class="gif_dance hide" src='../../assets/gif_dance/GIF-fall-2.gif'>
-		<img id="gif3" class="gif_dance hide" src='../../assets/gif_dance/GIF-laugh-2.gif'>
-		<img id="gif4" class="gif_dance hide" src='../../assets/gif_dance/GIF-Medhi-1.gif'>
-		<img id="gif5" class="gif_dance hide" src='../../assets/gif_dance/GIF-reverse-2.gif'>
-		<img id="gif6" class="gif_dance hide" src='../../assets/gif_dance/GIF-shake-2.gif'>
-		<img id="gif7" class="gif_dance hide" src='../../assets/gif_dance/GIF-twist-2.gif'>
-		<img id="gif8" class="gif_dance hide" src='../../assets/gif_dance/GIF-wall-fight-2.gif'> -->
 	</div>
 </template>
 
@@ -105,8 +95,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
-
-
 	$base-line-height: 240px;
 	$black: rgb(0,0,0);
 	$off-black: rgba($black, 0.2);
@@ -173,37 +161,14 @@ export default {
 		opacity: 0;
 	}
 
-	.loading {
+	.loader-png {
 		position: absolute;
 		top: 50%;
 		left: 50%;
 		width: 217px; height: 117px;
 		margin-left: -108px;
 		margin-top: -91px;
-		background: transparent url('../../assets/loader.gif') no-repeat top left;
 	}
-
-	h1#logo {
-    font-family: 'Cormorant Garamond';
-    font-size: 64px;
-    color: #222222;
-    line-height: 69px;
-    width: 240px;
-    display: block;
-    font-weight: normal;
-    margin: 0 auto;
-    white-space: inherit;
-    text-align: center;
-    padding: 0;
-    z-index: 999;
-    -webkit-appearance: none;
-    transition: color 0.5s ease-in-out;
-    margin-left: -120px;
-		margin-top: -91px;
-		position: absolute;
-		left: 50%;
-		top: 50%;
-  }
 
 </style>
 

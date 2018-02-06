@@ -55,6 +55,7 @@ export default {
       {
         var imageObj = new Image();
         imageObj.src = assets[i];
+        console.log(i+" "+assets[i]);
         imageObj.onload = function() {
           imagesLoaded++;
           if(imagesLoaded == assets.length)
@@ -85,11 +86,13 @@ export default {
       pageSnapshot.forEach(function (snapshot) {
         var object = snapshot.val();
         var slices = object.slices;
+        var position = object.position;
+        var published = object.published;
         //get header slice
         var headerDOM = slices[Object.keys(slices)[0]].content;
         //get image path
         var src = headerDOM.match(/src="(.*?)"/);
-        if(src)
+        if(src && published)
           headers.push(src[1]);
       });
       scope.loadAsset(headers);      
@@ -116,6 +119,10 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 
+  .page-list {
+    margin-bottom: 50px;
+  }
+
   #anchor-nav {
     position: fixed;
     top:0px;
@@ -136,6 +143,7 @@ export default {
     li a {
        background: transparent!important;
       font-family: 'CardoItalic';
+      font-style: italic;
       font-size: 18px;
       color: #222;
       margin-right: 26px;
@@ -202,7 +210,8 @@ export default {
       margin-left: 30px;
       text-transform: uppercase;
       display: inline-block;
-      position: relative;
+      position: absolute;
+      bottom: -40px;
       > div {
         display: inline-block;
       }
@@ -216,10 +225,11 @@ export default {
       position: absolute;
       background: #000000;
       transform: scaleX(0);
-      transition: .25s linear;
+      transition: .5s cubic-bezier(0.190, 1.000, 0.220, 1.000);
     }
     .sub {
       font-family: "CardoItalic";
+      font-style: italic;
       font-size: 16px;
       color: #000000;
       letter-spacing: 0;

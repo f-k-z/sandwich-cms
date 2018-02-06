@@ -9,7 +9,8 @@
           <tr>
             <th>Title</th>
             <th>Slug</th>
-            <th class="hidden-xs">Created</th>
+            <th>Position</th>
+            <!-- <th class="hidden-xs">Created</th> -->
             <th class="hidden-xs">Updated</th>
             <th>Published</th>
             <th></th>
@@ -22,7 +23,8 @@
             
             <td><router-link :to="'work/'+page.slug">{{page.title}}</router-link></td>
             <td>{{page.slug}}</td>
-            <td class="hidden-xs">{{page.created | timestampToDate}}</td>
+            <td>{{page.position}}</td>
+            <!-- <td class="hidden-xs">{{page.created | timestampToDate}}</td> -->
             <td class="hidden-xs">{{page.updated | timestampToDate}}</td>
             <td>{{page.published}}</td>
             <td class="action" v-tooltip:top="'Clone'" v-on:click="clonePage(page)"><i class="fa fa-clone" aria-hidden="true"></i></td>

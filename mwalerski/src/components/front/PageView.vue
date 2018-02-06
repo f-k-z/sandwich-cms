@@ -24,12 +24,7 @@
       </div>
     </div>
     <router-link id="push-home" :to="'/work'" v-if="page.slug == 'home'">
-      <div class="thumb" v-bind:class="[ listedPageKey == 0 ? 'show' : '']" v-for="(listedPage, listedPageKey) in listedPages" v-if="listedPage.published">
-        <div :class="slice.css_class" v-if="slice.index < 1" v-for="slice in listedPage.slices"> 
-          <div v-html="slice.content"></div>
-        </div>
         <p>Discover my work</p>
-      </div>
     </router-link>
 	</div>
 </template>
@@ -89,16 +84,6 @@ export default {
   methods: {
     editPage: function (page) {
       this.$router.push('/admin/edit/'+this.key);
-    },
-    initSlideshow: function() {
-      var scope = this;
-      this.itvSlide = setInterval(function() {
-        $("#push-home .thumb").removeClass("show");
-        var n = scope.countSlide + 1;
-        var total = $("#push-home .thumb").length - 1;
-        scope.countSlide = (n > total) ? 0 : n;
-        $("#push-home").children().eq(scope.countSlide).addClass("show");
-      }, 2500);
     },
     loadAsset: function (assets) {
       var scope = this;
@@ -337,7 +322,6 @@ export default {
     height: auto;
   }
 
-
   .contact-pic { 
     .slice img {
       height: 100%;
@@ -390,6 +374,7 @@ export default {
       }
       li strong, li b {
         font-family: 'CardoItalic';
+        font-style: italic;
         font-size: 16px;
         color: #999999;
         text-transform: none;
@@ -411,9 +396,22 @@ export default {
     letter-spacing: 0;
     float: right;
     text-transform: uppercase;
+    font-style: normal;
+  }
+  .space-star { width: 10px; display: inline-block; content: ""; }
+  .star {
+    background-image: url(../../assets/star.png);
+    background-size: 12px 12px;
+    text-indent: -999px;
+    overflow: hidden;
+    content: "";
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    margin: 0 2px;
   }
 
-  .about .normal-text b, .about .normal-text a {
+  .about .normal-text b, .about .normal-text a, .about h3 {
     color: #FFF;
   }
 
@@ -423,7 +421,7 @@ export default {
   }
   #slice_contact_2 {
     position: absolute;
-    bottom: 120px;
+    bottom: 50px;
     right: 700px;
   }
 
@@ -464,6 +462,7 @@ export default {
 
     .title {
       font-family: "CardoItalic";
+      font-style: italic;
       font-size: 36px;
       color: #FFF;
       margin-top: -22px;
@@ -474,10 +473,11 @@ export default {
       position: absolute;
       top: 50%;
       left:0;
-      text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+      /* text-shadow: 1px 1px rgba(0, 0, 0, 0.4);*/
     }
     .sub {
       font-family: "CardoItalic";
+      font-style: italic;
       font-size: 14px;
       color: #000000;
       letter-spacing: 0;
@@ -495,40 +495,19 @@ export default {
     }
   }
   #push-home {
-    margin-top: 80px;
-    width: 60%;
-    position: relative;
-    height: 200px;
-    display: block;
-    margin: 80px 0 0 15%;
-    height: $thumbH;
-    p {
-      font-family: "CardoItalic";
-      font-size: 36px;
-      color: #FFFFFF;
-      letter-spacing: 0;
-      line-height: 68px;
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      top:50%;
-      margin-top: -34px;
-      text-shadow: 1px 1px rgba(0, 0, 0, 0.4);
-    }
-    .thumb {
-      position: absolute;
-      width: 100%;
-      img { width: 100% ;}
-      opacity: 0;
-      transition: opacity 1s ease-out;
-    }
-    .thumb.show { opacity: 1; }
+    font-family: "CardoItalic";
+    font-style: italic;
+    font-size: 36px;
+    color: #000;
+    letter-spacing: 0;
+    line-height: 120px;
+    text-align: center;
+    text-decoration: underline;
+    p { width: 80%;  }
   }
 
   #push-home:hover {
-    img {
-      filter: brightness(80%) contrast(150%)!important;
-    }
+    text-decoration: none!important;
   }
 
 </style>
@@ -560,6 +539,10 @@ export default {
     margin-top: 80px;
   }
 
+  #slices .title {
+    max-width: 150px;
+  }
+
   .asset {
     margin-top: 80px;
     margin-bottom: 80px;
@@ -571,16 +554,17 @@ export default {
 
   .sub {
     font-family: 'CardoItalic';
+    font-style: italic;
     font-size: 16px;
     color: #000000;
     letter-spacing: 0;
     margin: 80px 0 20px 15%;
   }
 
-  .header { margin-top: -200px; }
+  .header { margin-top: 0; }
 
   .header-right {
-    margin-top: 50px;
+    margin-top: 0px;
   }
 
   .header, .normal-text, .sub, .quote, .title {
@@ -634,6 +618,7 @@ export default {
 
   .quote {
     font-family: 'CardoItalic';
+    font-style: italic;
     font-size: 26px;
     color: #222222;
     letter-spacing: 0;
@@ -658,7 +643,7 @@ export default {
   .img-float-right {
     position: absolute;
     right: 0px;
-    max-width: $sidebar_w;
+    max-width: 22%;
     z-index: 13;
   }
 
@@ -669,8 +654,12 @@ export default {
     max-width: 22%;
   }
   .contact .normal-text.info {
-    text-align: right
+    text-align: right;
+    position: absolute;
+    z-index: 100;
   }
+
+  #prev-next .title { z-index: 10; }
 
 </style>
 
@@ -724,8 +713,11 @@ export default {
   @media (max-width : 1100px) {
 
     #push-home {
-      margin: 80px auto 0 auto;
-      width: 60%;
+      p { width: 100%;}
+    }
+
+    #slices .title {
+      max-width: none;
     }
 
     .video-container {
@@ -776,6 +768,7 @@ export default {
 
     #prev-next {
       margin-left: 20%;
+      
     }
 
     .contact .normal-text.info {
