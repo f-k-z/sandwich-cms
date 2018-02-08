@@ -5,57 +5,9 @@
     </div>
     <div class="panel-body">
       <button class="btn btn-primary" v-on:click="resetSlice" data-toggle="modal" data-target="#sliceModal">+ Add Slice</button>
-      <div class="modal fade" id="sliceModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">{{ modalTitle }}</h4>
-            </div>
-            <div class="modal-body">
-              <div class="form-group">
-                <label for="sliceCSSClass">Name</label>
-                <input type="text" id="sliceCSSClass" v-model="currentSlice.name">
-              </div>
-              <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#html-editor">HTML: editor</a></li>
-                <li><a data-toggle="tab" href="#html-source">HTML: source</a></li>
-              </ul>
-              <br>
-              <div class="tab-content">
-                <div id="html-editor" class="tab-pane fade in active">
-                 <vue-html5-editor :content="currentSlice.content" v-on:change="onChangeContent" :height="200" :z-index="1000" :auto-height="true" :show-module-name="false"></vue-html5-editor>
-                </div>
-                <div id="html-source" class="tab-pane fade">
-                  <label>HTML code only :</label>
-                  <textarea class="form-control" v-model="currentSlice.content" rows="10"></textarea>
-                </div>
-              </div>
-              <hr>
-              <div class="form-group">
-                <input type="checkbox" id="sliceVisible" v-model="currentSlice.visible">
-                <label for="sliceVisible">Visible</label>
-              </div>
-              <div class="form-group">
-                <label for="sliceCSSClass">CSS Class</label>
-                <input type="text" id="sliceCSSClass" v-model="currentSlice.css_class">
-              </div>
-              <div class="form-group">
-                <label for="sliceCSSStyle">CSS Style</label>
-                <input type="text" id="sliceCSSStyle" v-model="currentSlice.css_style">
-              </div>
-              <div class="form-group">
-                <input type="checkbox" id="sliceLocked" v-model="currentSlice.locked">
-                <label for="sliceLocked">Locked</label>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" v-on:click="saveSlice" class="btn btn-primary">Save</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
+      <button class="btn btn-primary" v-on:click="resetSlice" data-toggle="modal" data-target="#sliceImgModal">+ Add Image Slice</button>
+      <modal-slice id="sliceModal" v-on:save="saveSlice" :modal-title="modalTitle" :current-slice="currentSlice"></modal-slice>
+      <modal-img-slice id="sliceImgModal" v-on:save="saveSlice" :modal-title="modalTitle" :current-slice="currentSlice"></modal-img-slice>
       <hr/>
       <div id="slices" class="panel-group list-group" v-sortable="{ handle: '.handle', onUpdate: onDragSlice }">
         <div v-for="(slice, sliceKey) in slices" class="panel panel-default list-group-item" >
@@ -92,6 +44,9 @@
 
 <script>
 
+import ModalSlice from '@/components/back/page-edit/modal/ModalSlice'
+import ModalImgSlice from '@/components/back/page-edit/modal/ModalImgSlice'
+
 import global from '@/global'
 import toastr from 'toastr'
 
@@ -103,11 +58,13 @@ export default {
   firebase: {
     pages: global.db.ref('pages')
   },
-
+  components: {
+    ModalSlice, ModalImgSlice
+  },
   data () {
     return {
       sliceKey: false,
-      modalTitle:'New Slice', 
+      modalTitle: '',
       currentSlice: global.getEmptySlice(),
       //this table only contains slices key. Useful to reorder table with splice
       draggedSlices: [], 
@@ -116,7 +73,7 @@ export default {
     }
   },
 	methods: {
-    saveSlice: function () {
+    saveSlice: function (modalName) {
       if(!this.sliceKey ) {
       	var scope = this;
         //add new slice
@@ -135,7 +92,13 @@ export default {
 				});
         toastr.success(global.errorMessages.SLICE_EDITED);
       }
-      $('#sliceModal').modal('toggle');
+      console.log(modalName);
+      if (modalName == 'modal-slice') { 
+        $('#sliceModal').modal('toggle'); 
+      };
+      if (modalName == 'modal-img-slice') { 
+        $('#sliceImgModal').modal('toggle');
+      }
       this.dispatchUpdatedPage();
     },
     resetSlice: function() {
@@ -194,12 +157,8 @@ export default {
         scope.$emit('update', object);
       });
     },
-    onChangeContent: function(newContent) {
-      this.currentSlice.content = newContent;
-    },
     refreshSliceView: function() {
     	var scope = this;
-      console.log("refreshSliceView");
       scope.slices = [];
       scope.draggedSlices = [];
       sliceRef = global.db.ref('pages/'+this.pageKey+'/slices');
@@ -213,7 +172,6 @@ export default {
 	         scope.slices.push(object);
 	         scope.draggedSlices.push(sliceKey);
 	     	});
-        console.log("refreshSliceView: value", scope.slices);
 	    });
     }
 	},
@@ -265,8 +223,4 @@ export default {
   pointer-events: none;
   cursor: default;
 }
-</style>
-<style lang="scss">
-//hide upload button
-.vue-html5-editor .dashboard input[type="file"] + button { display: none!important; }
 </style>

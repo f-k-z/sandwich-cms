@@ -421,7 +421,7 @@ export default {
   }
   #slice_contact_2 {
     position: absolute;
-    bottom: 50px;
+    bottom: 57px;
     right: 700px;
   }
 
