@@ -8,29 +8,24 @@
         </div>
         <div class="modal-body">
           <div class="form-group">
-            <label for="sliceName">Name</label>
-            <input type="text" id="sliceName" v-model="currentSlice.name">
-          </div>
-          <div class="form-group">
             <label for="sliceImgUrl">Image URL</label>
-            <input type="text" v-on:change="onChangeImgUrl" id="sliceImgUrl" v-model="imgUrl">
-          </div>
-          <hr>
-          <div class="form-group">
-            <input type="checkbox" id="sliceVisible" v-model="currentSlice.visible">
-            <label for="sliceVisible">Visible</label>
+            <input class="form-control" type="text" v-on:change="onChangeImgUrl" id="sliceImgUrl" v-model="imgUrl">
           </div>
           <div class="form-group">
-            <label for="sliceCSSClass">CSS Class</label>
-            <input type="text" id="sliceCSSClass" v-model="currentSlice.css_class">
+            <label for="sliceImgPosition">Position</label>
+            <v-select id="sliceImgPosition" v-model="position" :options="[{label: 'Left', value: 'img-float-left'}, {label: 'Center', value: 'asset'}, {label: 'Right', value: 'img-float-right'}, {label: 'Header', value: 'header'}, {label: 'Header Wide', value: 'header header-wide'}]"></v-select>
           </div>
           <div class="form-group">
-            <label for="sliceCSSStyle">CSS Style</label>
-            <input type="text" id="sliceCSSStyle" v-model="currentSlice.css_style">
+            <label for="sliceImgAnimation">Animation</label>
+            <v-select id="sliceImgAnimation" v-model="animation" :options="[{label: 'Rotation', value: 'rotation'}, {label: 'Slide', value: 'slide'}]"></v-select>
           </div>
           <div class="form-group">
-            <input type="checkbox" id="sliceLocked" v-model="currentSlice.locked">
-            <label for="sliceLocked">Locked</label>
+            <input type="checkbox" id="sliceImgVisible" v-model="currentSlice.visible">
+            <label for="sliceImgVisible">Visible</label>
+          </div>
+          <div class="form-group">
+            <input type="checkbox" id="sliceImgLocked" v-model="currentSlice.locked">
+            <label for="sliceImgLocked">Locked</label>
           </div>
         </div>
         <div class="modal-footer">
@@ -44,23 +39,37 @@
 
 <script>
 
+import vSelect from 'vue-select'
+
 export default {
   name: 'modal-img-slice',
   props: ['currentSlice', 'modalTitle'],
   data () {
     return {
       imgUrl:'',
+      animation: null,
+      position: null
     }
   },
   methods: {
     saveSlice: function () {
+      this.currentSlice.name = 'Image';
+      var pos = (this.position) ? this.position.value : '';
+      var anim = (this.animation) ? this.animation.value : '';
+      if(this.position && this.animation)
+        anim = ' '+anim;
+      this.currentSlice.css_class = pos+anim;
+      this.currentSlice.css_style = '';
       this.$emit('save', 'modal-img-slice');
+      this.animation = this.position = null;
+      this.imgUrl = '';
     },
     onChangeImgUrl: function() {
       this.currentSlice.content = '<img src="'+this.imgUrl+'">';
     },
   },
   components: {
+    vSelect
   }
 }
 </script>

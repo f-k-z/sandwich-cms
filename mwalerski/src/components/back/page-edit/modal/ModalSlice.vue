@@ -9,7 +9,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label for="sliceName">Name</label>
-            <input type="text" id="sliceName" v-model="currentSlice.name">
+            <input type="text" class="form-control" id="sliceName" v-model="currentSlice.name">
           </div>
           <ul class="nav nav-tabs">
             <li class="active"><a data-toggle="tab" href="#html-editor">HTML: editor</a></li>
@@ -27,16 +27,16 @@
           </div>
           <hr>
           <div class="form-group">
-            <input type="checkbox" id="sliceVisible" v-model="currentSlice.visible">
-            <label for="sliceVisible">Visible</label>
-          </div>
-          <div class="form-group">
             <label for="sliceCSSClass">CSS Class</label>
-            <input type="text" id="sliceCSSClass" v-model="currentSlice.css_class">
+            <input type="text" class="form-control" id="sliceCSSClass" v-model="currentSlice.css_class">
           </div>
           <div class="form-group">
             <label for="sliceCSSStyle">CSS Style</label>
-            <input type="text" id="sliceCSSStyle" v-model="currentSlice.css_style">
+            <input type="text" class="form-control" id="sliceCSSStyle" v-model="currentSlice.css_style">
+          </div>
+          <div class="form-group">
+            <input type="checkbox" id="sliceVisible" v-model="currentSlice.visible">
+            <label for="sliceVisible">Visible</label>
           </div>
           <div class="form-group">
             <input type="checkbox" id="sliceLocked" v-model="currentSlice.locked">

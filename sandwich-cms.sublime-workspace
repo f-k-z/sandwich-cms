@@ -4,20 +4,56 @@
 		"selected_items":
 		[
 			[
-				"fon",
-				"font-style"
+				"cre",
+				"credits"
 			],
 			[
-				"mar",
-				"margin-bottom"
+				"cu",
+				"currentSlice"
 			],
 			[
 				"bo",
-				"bottom"
+				"border"
+			],
+			[
+				"cur",
+				"currentName"
+			],
+			[
+				"curr",
+				"currentRole"
+			],
+			[
+				"im",
+				"imgUrl"
+			],
+			[
+				"an",
+				"animation"
+			],
+			[
+				"n",
+				"nStar"
+			],
+			[
+				"modal",
+				"modalTitle"
 			],
 			[
 				"ma",
-				"max-width"
+				"margin-left"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"tex",
+				"text-indent"
+			],
+			[
+				"fon",
+				"font-style"
 			],
 			[
 				"pad",
@@ -46,10 +82,6 @@
 			[
 				"di",
 				"display"
-			],
-			[
-				"tex",
-				"text-decoration"
 			],
 			[
 				"lis",
@@ -188,10 +220,6 @@
 				"animatedLoader"
 			],
 			[
-				"an",
-				"animatedLoader"
-			],
-			[
 				"anim",
 				"animated-loader"
 			],
@@ -214,10 +242,6 @@
 			[
 				"nav",
 				"navbar"
-			],
-			[
-				"cu",
-				"currentSlice"
 			],
 			[
 				"Slug",
@@ -490,81 +514,72 @@
 			[
 				"byt",
 				"bytesIn"
-			],
-			[
-				"bat",
-				"batchId"
-			],
-			[
-				"soap",
-				"soapNow"
-			],
-			[
-				"co",
-				"color"
-			],
-			[
-				"b",
-				"block"
-			],
-			[
-				"border-c",
-				"border-color"
-			],
-			[
-				"refill",
-				"refill-state"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "mwalerski/src/components/front/PageView.vue",
-			"settings":
-			{
-				"buffer_size": 19780,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "D96E3A6126CAD13C4FE1E4995A",
-			"settings":
-			{
-				"buffer_size": 26,
-				"line_ending": "Unix",
-				"name": "D96E3A6126CAD13C4FE1E4995A"
-			}
-		},
-		{
-			"file": "mwalerski/src/components/front/Front.vue",
-			"settings":
-			{
-				"buffer_size": 5738,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "mwalerski/src/components/front/PageList.vue",
-			"settings":
-			{
-				"buffer_size": 5948,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "mwalerski/src/components/back/home/PageList.vue",
-			"settings":
-			{
-				"buffer_size": 2953,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "mwalerski/src/components/back/page-edit/SliceManager.vue",
 			"settings":
 			{
-				"buffer_size": 9569,
+				"buffer_size": 8135,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/back/page-edit/modal/ModalCredits.vue",
+			"settings":
+			{
+				"buffer_size": 4575,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/back/page-edit/modal/ModalImgSlice.vue",
+			"settings":
+			{
+				"buffer_size": 2967,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/back/page-edit/modal/ModalQuote.vue",
+			"settings":
+			{
+				"buffer_size": 2803,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/back/page-edit/modal/ModalSlice.vue",
+			"settings":
+			{
+				"buffer_size": 3073,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/front/PageView.vue",
+			"settings":
+			{
+				"buffer_size": 18916,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/back/page-edit/PageEdit.vue",
+			"settings":
+			{
+				"buffer_size": 4870,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/main.js",
+			"settings":
+			{
+				"buffer_size": 3490,
 				"line_ending": "Unix"
 			}
 		}
@@ -685,17 +700,20 @@
 	},
 	"file_history":
 	[
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/page-edit/modal/ModalCredits.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/page-edit/ModalSlice.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/AnimatedLoader.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/HeaderFront.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/page-edit/SliceManager.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/home/PageList.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/PageList.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/Front.vue",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/PageView.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/global.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/page-edit/PageEdit.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/page-edit/FileManager.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/page-edit/SliceManager.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/home/PageList.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/main.js",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/HeaderFront.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/DynamicPage.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/Front.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/AnimatedLoader.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/router/index.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/App.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/login/Login.vue",
@@ -707,7 +725,6 @@
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/node_modules/scrollmagic/scrollmagic/minified/plugins/animation.gsap.min.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/node_modules/scrollmagic/package.json",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/Home.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/PageView.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/Loader.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/firebase.json",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/sandwich-cms/src/App.vue",
@@ -810,9 +827,7 @@
 		"/Applications/MAMP/htdocs/website/tests/svgMap.html",
 		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/sass/_header.scss",
 		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/sass/_offre.scss",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/sass/_responsive.scss",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/js/lib/jquery.sticky-kit.js",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/js/main.js"
+		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/sass/_responsive.scss"
 	],
 	"find":
 	{
@@ -831,6 +846,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"initSlideshow",
+			"ul",
+			"b",
+			"credits",
+			"header",
+			".slice",
+			"modalT",
+			"#slice_contact_2",
+			"info",
+			"abou",
+			"push",
 			"prev-next",
 			"thum",
 			"CardoItalic",
@@ -947,18 +973,7 @@
 			"main",
 			"smileauth_change_text_field_max_length",
 			"save_af",
-			"absol",
-			"border-radius(20px)",
-			"border-radius(15px)",
-			"border-radius(20px)",
-			"checkout",
-			"order/",
-			"$order_status",
-			"order_status",
-			"getAdSLB",
-			"				\n",
-			"usn_",
-			"getAc"
+			"absol"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -994,8 +1009,8 @@
 		"reverse": false,
 		"show_context": false,
 		"use_buffer2": false,
-		"whole_word": false,
-		"wrap": false
+		"whole_word": true,
+		"wrap": true
 	},
 	"groups":
 	[
@@ -1005,18 +1020,18 @@
 			[
 				{
 					"buffer": 0,
-					"file": "mwalerski/src/components/front/PageView.vue",
+					"file": "mwalerski/src/components/back/page-edit/SliceManager.vue",
 					"settings":
 					{
-						"buffer_size": 19780,
+						"buffer_size": 8135,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								17870,
-								17870
+								5389,
+								5389
 							]
 						],
 						"settings":
@@ -1026,51 +1041,53 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 17940.0,
+						"translation.y": 1764.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "mwalerski/src/components/back/page-edit/modal/ModalCredits.vue",
 					"settings":
 					{
-						"buffer_size": 26,
+						"buffer_size": 4575,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								26,
-								0
+								3528,
+								3528
 							]
 						],
 						"settings":
 						{
-							"auto_name": "D96E3A6126CAD13C4FE1E4995A",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2122.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "mwalerski/src/components/front/Front.vue",
+					"file": "mwalerski/src/components/back/page-edit/modal/ModalImgSlice.vue",
 					"settings":
 					{
-						"buffer_size": 5738,
+						"buffer_size": 2967,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4678,
-								4678
+								2774,
+								2774
 							]
 						],
 						"settings":
@@ -1080,25 +1097,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1432.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "mwalerski/src/components/front/PageList.vue",
+					"file": "mwalerski/src/components/back/page-edit/modal/ModalQuote.vue",
 					"settings":
 					{
-						"buffer_size": 5948,
+						"buffer_size": 2803,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4345,
-								4345
+								2716,
+								2716
 							]
 						],
 						"settings":
@@ -1108,25 +1125,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4776.0,
+						"translation.y": 1574.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "mwalerski/src/components/back/home/PageList.vue",
+					"file": "mwalerski/src/components/back/page-edit/modal/ModalSlice.vue",
 					"settings":
 					{
-						"buffer_size": 2953,
+						"buffer_size": 3073,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								535,
-								535
+								0,
+								3073
 							]
 						],
 						"settings":
@@ -1136,25 +1153,25 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 535.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 5,
-					"file": "mwalerski/src/components/back/page-edit/SliceManager.vue",
+					"file": "mwalerski/src/components/front/PageView.vue",
 					"settings":
 					{
-						"buffer_size": 9569,
+						"buffer_size": 18916,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7358,
-								7358
+								10177,
+								10177
 							]
 						],
 						"settings":
@@ -1164,7 +1181,61 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 4027.0,
+						"translation.y": 8084.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "mwalerski/src/components/back/page-edit/PageEdit.vue",
+					"settings":
+					{
+						"buffer_size": 4870,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1025,
+								1025
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 283.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "mwalerski/src/main.js",
+					"settings":
+					{
+						"buffer_size": 3490,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								354,
+								354
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

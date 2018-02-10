@@ -300,7 +300,6 @@ export default {
   created: function() {
     this.initPage();
     var w = Math.round($(window).width()*0.75*0.5);
-    this.initSlideshow();
   },
   destroyed: function() {
     clearInterval(this.itvSlide);

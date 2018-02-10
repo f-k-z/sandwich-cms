@@ -6,8 +6,12 @@
     <div class="panel-body">
       <button class="btn btn-primary" v-on:click="resetSlice" data-toggle="modal" data-target="#sliceModal">+ Add Slice</button>
       <button class="btn btn-primary" v-on:click="resetSlice" data-toggle="modal" data-target="#sliceImgModal">+ Add Image Slice</button>
+      <button class="btn btn-primary" v-on:click="resetSlice" data-toggle="modal" data-target="#sliceQuoteModal">+ Add Quote Slice</button>
+      <button class="btn btn-primary" v-on:click="resetSlice" data-toggle="modal" data-target="#sliceCreditsModal">+ Add Credits Slice</button>
       <modal-slice id="sliceModal" v-on:save="saveSlice" :modal-title="modalTitle" :current-slice="currentSlice"></modal-slice>
       <modal-img-slice id="sliceImgModal" v-on:save="saveSlice" :modal-title="modalTitle" :current-slice="currentSlice"></modal-img-slice>
+      <modal-quote id="sliceQuoteModal" v-on:save="saveSlice" :modal-title="modalTitle" :current-slice="currentSlice"></modal-quote>
+      <modal-credits id="sliceCreditsModal" v-on:save="saveSlice" :modal-title="modalTitle" :current-slice="currentSlice"></modal-credits>
       <hr/>
       <div id="slices" class="panel-group list-group" v-sortable="{ handle: '.handle', onUpdate: onDragSlice }">
         <div v-for="(slice, sliceKey) in slices" class="panel panel-default list-group-item" >
@@ -46,6 +50,8 @@
 
 import ModalSlice from '@/components/back/page-edit/modal/ModalSlice'
 import ModalImgSlice from '@/components/back/page-edit/modal/ModalImgSlice'
+import ModalQuote from '@/components/back/page-edit/modal/ModalQuote'
+import ModalCredits from '@/components/back/page-edit/modal/ModalCredits'
 
 import global from '@/global'
 import toastr from 'toastr'
@@ -59,7 +65,7 @@ export default {
     pages: global.db.ref('pages')
   },
   components: {
-    ModalSlice, ModalImgSlice
+    ModalSlice, ModalImgSlice, ModalQuote, ModalCredits
   },
   data () {
     return {
@@ -92,13 +98,13 @@ export default {
 				});
         toastr.success(global.errorMessages.SLICE_EDITED);
       }
-      console.log(modalName);
-      if (modalName == 'modal-slice') { 
-        $('#sliceModal').modal('toggle'); 
-      };
-      if (modalName == 'modal-img-slice') { 
-        $('#sliceImgModal').modal('toggle');
-      }
+      //close the modal
+      var modalToClose = [];
+      modalToClose['modal-slice']     = 'sliceModal';
+      modalToClose['modal-img-slice'] = 'sliceImgModal';
+      modalToClose['modal-quote']     = 'sliceQuoteModal';
+      modalToClose['modal-credits']   = 'sliceCreditsModal';
+      $('#'+modalToClose[modalName]).modal('toggle');
       this.dispatchUpdatedPage();
     },
     resetSlice: function() {

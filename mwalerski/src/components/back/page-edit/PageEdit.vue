@@ -17,7 +17,7 @@
 					<slug-field v-on:update="updatePageSlug" :string-to-slug="stringToSlug"></slug-field>
 					<div class="form-group">
             <label for="pageCSSClass">CSS Class</label>
-            <input type="text" id="pageCSSClass" v-model="currentPage.css_class">
+            <input type="text" class="form-control" id="pageCSSClass" v-model="currentPage.css_class">
           </div>
           <div v-show="currentPage.listed" class="form-group">
             <label for="pagePosition">Position</label>
