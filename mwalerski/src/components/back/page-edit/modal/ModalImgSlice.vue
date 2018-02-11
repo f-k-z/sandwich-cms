@@ -17,7 +17,7 @@
           </div>
           <div class="form-group">
             <label for="sliceImgAnimation">Animation</label>
-            <v-select id="sliceImgAnimation" v-model="animation" :options="[{label: 'Rotation', value: 'rotation'}, {label: 'Slide', value: 'slide'}]"></v-select>
+            <v-select id="sliceImgAnimation" v-model="animation" :options="[{label: 'Rotation', value: 'rotation'}, {label: 'Slide', value: 'slide'}, {label: 'Reveal', value: 'reveal'}]"></v-select>
           </div>
           <div class="form-group">
             <input type="checkbox" id="sliceImgVisible" v-model="currentSlice.visible">

@@ -225,18 +225,39 @@ export default {
           isTween = true;
         }
         else if(slice.css_class.indexOf("img-float-left") >= 0 ||  slice.css_class.indexOf("off") >= 0) {
-          var tween = new TimelineMax().to(domId, 1, {opacity: 1, left:0, ease: Sine.easeOut, rotation:0  });
-          TweenLite.set(domId, {opacity: 0, left:"-100px", rotation:20, transformOrigin:"left center"});
-          /* var tween = new TimelineMax().to(domId, 1.8, {opacity: 1, right:0, ease: Sine.easeOut, bezier:{type:"soft", values:[{x:0, y:0}, {x:0, y:-300}, {x:0, y:0}]} });
-          TweenLite.set(domId, {opacity: 0, left:"50%"});*/
+          if(slice.css_class.indexOf("slide") >= 0)
+          {
+            var tween = new TimelineMax().to(domId, 1.8, {opacity: 1, left:0, ease: Sine.easeOut });
+            TweenLite.set(domId, {opacity: 0, left:"50%"});
+          }
+          else if(slice.css_class.indexOf("reveal") >= 0)
+          {
+            var tween = new TimelineMax().to(domId, 1.8, { left:0, ease: Expo.easeOut });
+            TweenLite.set(domId, { left:"-50%"});
+          }
+          else
+          {
+            var tween = new TimelineMax().to(domId, 1, {opacity: 1, left:0, ease: Sine.easeOut, rotation:0  });
+            TweenLite.set(domId, {opacity: 0, left:"-100px", rotation:20, transformOrigin:"left center"});
+          }
           isTween = isReverse = true;
         }
         else if(slice.css_class.indexOf("img-float-right") >= 0) {
-
-          var tween = new TimelineMax().to(domId, 1, {opacity: 1, right:0, ease: Sine.easeOut, rotation:0 });
-          TweenLite.set(domId, {opacity: 0, right:"-100px", rotation:20, transformOrigin:"right center"});
-          /* var tween = new TimelineMax().to(domId, 1.8, {opacity: 1, right:0, ease: Sine.easeOut, bezier:{type:"soft", values:[{x:0, y:0}, {x:0, y:300}, {x:0, y:0}]} });
-          TweenLite.set(domId, {opacity: 0, right:"50%"}); */
+          if(slice.css_class.indexOf("slide") >= 0)
+          {
+            var tween = new TimelineMax().to(domId, 1.8, {opacity: 1, right:0, ease: Sine.easeOut });
+            TweenLite.set(domId, {opacity: 0, right:"50%"});
+          }
+          else if(slice.css_class.indexOf("reveal") >= 0)
+          {
+            var tween = new TimelineMax().to(domId, 1.8, { right:0, ease: Expo.easeOut });
+            TweenLite.set(domId, {right:"-50%"});
+          }
+          else
+          {
+            var tween = new TimelineMax().to(domId, 1, {opacity: 1, right:0, ease: Sine.easeOut, rotation:0 });
+            TweenLite.set(domId, {opacity: 0, right:"-100px", rotation:20, transformOrigin:"right center"});
+          }
           isTween = isReverse = true;
         }
         //anim 
