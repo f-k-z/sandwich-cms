@@ -539,7 +539,7 @@
 			"file": "mwalerski/src/components/back/page-edit/modal/ModalImgSlice.vue",
 			"settings":
 			{
-				"buffer_size": 2967,
+				"buffer_size": 3003,
 				"line_ending": "Unix"
 			}
 		},
@@ -563,7 +563,7 @@
 			"file": "mwalerski/src/components/front/PageView.vue",
 			"settings":
 			{
-				"buffer_size": 18916,
+				"buffer_size": 19458,
 				"line_ending": "Unix"
 			}
 		},
@@ -580,6 +580,21 @@
 			"settings":
 			{
 				"buffer_size": 3490,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mwalerski/src/components/back/HeaderBack.vue",
+			"settings":
+			{
+				"buffer_size": 1729,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"settings":
+			{
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		}
@@ -700,6 +715,10 @@
 	},
 	"file_history":
 	[
+		"/Users/francoisgillet/Documents/_PROJETS/Lagoon/UNIV/2018/INTE_WEB/S1/TP3/M1205 - Intégration Web-TP 3-12708/Antoine Duguy_10151_assignsubmission_file_/DUGUY-TP3/radioactive.html",
+		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/index.html",
+		"/Users/francoisgillet/Documents/_PROJETS/Lagoon/PERSO/Projet/EDF/index.html",
+		"/Users/francoisgillet/Documents/_PROJETS/Lagoon/PERSO/Projet/EDF/ReadMe.txt",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/page-edit/modal/ModalCredits.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/page-edit/ModalSlice.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/front/AnimatedLoader.vue",
@@ -717,7 +736,6 @@
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/router/index.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/App.vue",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components/back/login/Login.vue",
-		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/index.html",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/build/webpack.base.conf.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/config/index.js",
 		"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/package.json",
@@ -824,10 +842,7 @@
 		"/Applications/MAMP/htdocs/site-lagoon/sites/all/modules/flexslider/theme/flexslider.tpl.php",
 		"/Applications/MAMP/htdocs/site-lagoon/misc/ui/jquery.ui.autocomplete.css",
 		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/templates/system/page.tpl.php",
-		"/Applications/MAMP/htdocs/website/tests/svgMap.html",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/sass/_header.scss",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/sass/_offre.scss",
-		"/Applications/MAMP/htdocs/website/sites/all/themes/site_lagoon/sass/_responsive.scss"
+		"/Applications/MAMP/htdocs/website/tests/svgMap.html"
 	],
 	"find":
 	{
@@ -838,6 +853,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"/Users/francoisgillet/Documents/WWW/sandwich-cms/mwalerski/src/components",
 			""
 		]
 	},
@@ -846,6 +862,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"$(",
+			"$",
 			"initSlideshow",
 			"ul",
 			"b",
@@ -971,9 +989,7 @@
 			"Object",
 			"properti",
 			"main",
-			"smileauth_change_text_field_max_length",
-			"save_af",
-			"absol"
+			"smileauth_change_text_field_max_length"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1009,13 +1025,12 @@
 		"reverse": false,
 		"show_context": false,
 		"use_buffer2": false,
-		"whole_word": true,
-		"wrap": true
+		"whole_word": false,
+		"wrap": false
 	},
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
 				{
@@ -1030,18 +1045,19 @@
 						"selection":
 						[
 							[
-								5389,
-								5389
+								1457,
+								1371
 							]
 						],
 						"settings":
 						{
+							"function_name_status_row": 16,
 							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1764.0,
+						"translation.y": 4624.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1058,18 +1074,19 @@
 						"selection":
 						[
 							[
-								3528,
-								3528
+								3309,
+								3309
 							]
 						],
 						"settings":
 						{
+							"function_name_status_row": 84,
 							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2122.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1079,25 +1096,26 @@
 					"file": "mwalerski/src/components/back/page-edit/modal/ModalImgSlice.vue",
 					"settings":
 					{
-						"buffer_size": 2967,
+						"buffer_size": 3003,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2774,
-								2774
+								2173,
+								2173
 							]
 						],
 						"settings":
 						{
+							"function_name_status_row": 43,
 							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1432.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1114,18 +1132,19 @@
 						"selection":
 						[
 							[
-								2716,
-								2716
+								356,
+								356
 							]
 						],
 						"settings":
 						{
+							"function_name_status_row": 6,
 							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1574.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1142,18 +1161,19 @@
 						"selection":
 						[
 							[
-								0,
-								3073
+								2687,
+								2687
 							]
 						],
 						"settings":
 						{
+							"function_name_status_row": 59,
 							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 535.0,
+						"translation.y": 1348.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1163,25 +1183,26 @@
 					"file": "mwalerski/src/components/front/PageView.vue",
 					"settings":
 					{
-						"buffer_size": 18916,
+						"buffer_size": 19458,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10177,
-								10177
+								1444,
+								1444
 							]
 						],
 						"settings":
 						{
+							"function_name_status_row": 29,
 							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 8084.0,
+						"translation.y": 2598.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1198,16 +1219,17 @@
 						"selection":
 						[
 							[
-								1025,
-								1025
+								1674,
+								1674
 							]
 						],
 						"settings":
 						{
+							"function_name_status_row": 0,
 							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 283.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1224,15 +1246,70 @@
 						"selection":
 						[
 							[
-								354,
-								354
+								774,
+								774
 							]
 						],
 						"settings":
 						{
+							"function_name_status_row": 0,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 430.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "mwalerski/src/components/back/HeaderBack.vue",
+					"settings":
+					{
+						"buffer_size": 1729,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1330,
+								1108
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 0,
+							"syntax": "Packages/Vue Syntax Highlight/vue.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 567.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"function_name_status_row": 0,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1274,6 +1351,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 184.0
+	},
 	"replace":
 	{
 		"height": 66.0

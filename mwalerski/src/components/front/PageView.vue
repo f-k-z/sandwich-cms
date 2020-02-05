@@ -24,7 +24,7 @@
       </div>
     </div>
     <router-link id="push-home" :to="'/work'" v-if="page.slug == 'home'">
-        <p>Discover my work</p>
+        <p>Discover the pieces</p>
     </router-link>
 	</div>
 </template>
